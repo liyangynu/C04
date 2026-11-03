@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "dataset": {
+    "repository": "https://github.com/clinc/oos-eval",
+    "revision": "48a0e1cff8f43dd4d0836ecb4ed5df08733e3d2e",
+    "path": "data/data_full.json",
+    "classes": 150,
+    "split_counts": {"train": 15000, "val": 3000, "test": 4500, "oos_train": 100, "oos_val": 100, "oos_test": 1000}
+  },
+  "seeds": [17, 42, 2026],
+  "shots": [5, 10, 20, 100],
+  "noise_types": ["symmetric", "instance"],
+  "noise_rates": [0.1, 0.2, 0.3],
+  "methods": ["ce", "gce", "confident_learning"],
+  "model": {"backbone": "bilstm", "pooling": "attention", "embedding": "glove.6B.100d", "embedding_trainable": true},
+  "training": {"optimizer": "AdamW", "learning_rate": 0.001, "batch_size": 64, "max_epochs": 5, "early_stopping_metric": "val_macro_f1"},
+  "gce_q": 0.7,
+  "cleaning": {"folds": 5, "short_class_policy": "balanced_non_stratified_oof_with_recorded_warning", "selection_uses_clean_labels": false},
+  "metrics": ["macro_f1", "accuracy", "oos_auroc", "f1_retention", "epoch_seconds", "peak_gpu_memory_mb"],
+  "acceptance": {"high_noise_f1_gain_pp": 5, "oos_auroc_noninferiority_margin": 0.02, "margin_status": "provisional_preregistered_engineering_choice"},
+  "statistics": {"alpha": 0.05, "test": "paired_two_sided_t_and_exact_wilcoxon_sensitivity", "minimum_seeds": 3, "recommended_seeds": 10},
+  "resource_limit": {"gpu_count": 1, "vram_gb": 12, "wall_time_hours": 48}
+}
