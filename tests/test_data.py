@@ -5,9 +5,9 @@ import unittest
 
 import numpy as np
 
-from c04.common import write_jsonl
+from c04.common import file_sha256, read_json, write_json, write_jsonl
 from c04.noise import align_embeddings, inject
-from c04.prepare import nested_sample
+from c04.prepare import nested_sample, prepare, verify_source_checksum
 
 
 def fixture(classes=3, per_class=20):
@@ -16,6 +16,42 @@ def fixture(classes=3, per_class=20):
 
 
 class DataProtocolTests(unittest.TestCase):
+    def test_fixed_checksum_rejects_modified_source(self):
+        with tempfile.TemporaryDirectory() as d:
+            source = Path(d)/"data_full.json"
+            source.write_bytes(b'{"train": []}\n')
+            expected = {"sha256": file_sha256(source)}
+            self.assertEqual(verify_source_checksum(source, expected), expected["sha256"])
+            source.write_bytes(b'{"train": [1]}\n')
+            with self.assertRaisesRegex(ValueError, "SHA256 mismatch"):
+                verify_source_checksum(source, expected)
+
+    def test_json_manifests_use_lf(self):
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d)/"manifest.json"
+            write_json(p, {"value": [1, 2]})
+            self.assertNotIn(b"\r\n", p.read_bytes())
+            self.assertEqual(read_json(p), {"value": [1, 2]})
+
+    def test_local_import_records_source_and_label_mapping(self):
+        # Small three-class fixture with the official per-class split sizes.
+        raw = {split: [[f"{split} class {y} text {i}", f"label_{y}"]
+                       for y in range(3) for i in range(n)]
+               for split, n in [("train", 100), ("val", 20), ("test", 30)]}
+        raw.update({split: [[f"{split} text {i}", "oos"] for i in range(2)]
+                    for split in ["oos_train", "oos_val", "oos_test"]})
+        with tempfile.TemporaryDirectory() as d:
+            source, output = Path(d)/"external.json", Path(d)/"processed"
+            write_json(source, raw)
+            protocol = {"dataset": {"classes": 3, "sha256": file_sha256(source),
+                                     "split_counts": {s: len(rows) for s, rows in raw.items()}},
+                        "seeds": [17], "shots": [5, 10, 20, 100]}
+            result = prepare(source, output, protocol)
+            self.assertEqual(Path(result["source_path"]), source.resolve())
+            self.assertEqual(result["source_sha256"], file_sha256(source))
+            self.assertEqual(result["labels_sha256"], file_sha256(output/"labels.json"))
+            self.assertEqual(len(result["files"]), 10)
+
     def test_nested_sampling_and_seed_variation(self):
         rows = fixture()
         ids = lambda xs: {r["id"] for r in xs}

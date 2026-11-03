@@ -4,6 +4,7 @@
     "repository": "https://github.com/clinc/oos-eval",
     "revision": "48a0e1cff8f43dd4d0836ecb4ed5df08733e3d2e",
     "path": "data/data_full.json",
+    "sha256": "36923c3705a59e08fe9c3883d8bc2dd966ef93e22cb78ac41171782a698d56e0",
     "classes": 150,
     "split_counts": {"train": 15000, "val": 3000, "test": 4500, "oos_train": 100, "oos_val": 100, "oos_test": 1000}
   },

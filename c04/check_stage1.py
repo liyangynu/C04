@@ -1,4 +1,4 @@
-"""Verify official data and materialize the symmetric-noise grid (no model training)."""
+"""Verify CLINC150 data and generate the symmetric-noise experiment grid."""
 from collections import Counter
 from datetime import datetime, timezone
 import math
@@ -10,7 +10,7 @@ import numpy as np
 
 from .common import file_sha256, read_json, read_jsonl, write_json, write_jsonl
 from .noise import inject
-from .prepare import nested_sample, validate_raw
+from .prepare import nested_sample, validate_raw, verify_source_checksum
 
 
 def require(condition, message):
@@ -22,9 +22,11 @@ def main():
     protocol = read_json("configs/protocol.json")
     root = Path("data/processed")
     manifest = read_json(root/"manifest.json")
-    require(manifest["source_sha256"] == file_sha256("data/raw/data_full.json"), "Raw checksum mismatch")
+    source = Path(manifest["source_path"])
+    require(manifest["source_sha256"] == verify_source_checksum(source, protocol["dataset"]), "Raw checksum mismatch")
+    require(manifest["labels_sha256"] == file_sha256(root/"labels.json"), "Label mapping modified")
     require(manifest["protocol_sha256"] == file_sha256("configs/protocol.json"), "Protocol changed; rerun prepare")
-    validate_raw(read_json("data/raw/data_full.json"), protocol["dataset"])
+    validate_raw(read_json(source), protocol["dataset"])
     for name, checksum in manifest["files"].items():
         require(file_sha256(root/name) == checksum, f"Prepared file modified: {name}")
     protected = {p.name: file_sha256(p) for p in (root/"clean").glob("*.jsonl")}
@@ -65,19 +67,21 @@ def main():
                 generated.append(record)
     require(protected == {p.name: file_sha256(p) for p in (root/"clean").glob("*.jsonl")},
             "Clean or evaluation files changed during injection")
-    report = {"stage": 1, "scope": "real_CLINC150_data_pipeline_only_no_model_results",
+    report = {"stage": 1, "scope": "CLINC150_data_preparation_and_noise_validation",
               "generated_utc": datetime.now(timezone.utc).isoformat(),
               "environment": {"python": sys.version.split()[0], "numpy": np.__version__, "platform": platform.platform()},
               "dataset_revision": protocol["dataset"]["revision"],
               "source_sha256": manifest["source_sha256"],
+              "labels_sha256": manifest["labels_sha256"],
               "counts": manifest["counts"], "normalized_text_overlap": manifest["normalized_text_overlap"],
-              "checks": {"official_counts_and_labels": True, "nested_fewshot": True,
+              "checks": {"pinned_source_checksum": True, "label_mapping_checksum": True,
+                         "official_counts_and_labels": True, "nested_fewshot": True,
                          "deterministic_replay": True, "exact_noise_counts": True,
                          "clean_splits_unchanged": True, "audit_truth_separate": True},
               "symmetric_datasets": generated,
               "not_yet_run": ["real_sentence_encoder_IDN", "BiLSTM_training", "three_seed_model_evaluation"]}
     write_json("reports/stage1_validation.json", report)
-    print(f"PASS: official counts, nested subsets, deterministic replay, {len(generated)} noise datasets; no model metrics claimed.")
+    print(f"PASS: source and label checksums, official counts, nested subsets, deterministic replay, {len(generated)} noise datasets.")
 
 
 if __name__ == "__main__":

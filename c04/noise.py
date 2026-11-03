@@ -1,7 +1,7 @@
-"""Inject auditable training-only noise; clean truth is never in the model input.
+"""Construct training-label noise and save separate audit records.
 
-Instance-dependent noise requires *real* frozen sentence-encoder embeddings.
-The generator is a study-specific protocol, not a reproduction of a published IDN generator.
+Instance-dependent noise uses frozen sentence-encoder embeddings and the
+sample-to-centroid protocol defined in docs/实验协议.md.
 """
 import argparse
 from datetime import datetime, timezone

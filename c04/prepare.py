@@ -12,6 +12,13 @@ import urllib.request
 from .common import file_sha256, read_json, stable_seed, write_json, write_jsonl
 
 
+def verify_source_checksum(source, expected):
+    checksum = file_sha256(source)
+    if checksum != expected["sha256"]:
+        raise ValueError(f"Dataset SHA256 mismatch: expected {expected['sha256']}, got {checksum}")
+    return checksum
+
+
 def validate_raw(raw, expected):
     if set(raw) != set(expected["split_counts"]):
         raise ValueError(f"Unexpected split fields: {sorted(raw)}")
@@ -49,6 +56,7 @@ def nested_sample(rows, shots, seed):
 
 
 def prepare(source, output, protocol):
+    source_checksum = verify_source_checksum(source, protocol["dataset"])
     raw = read_json(source)
     names = validate_raw(raw, protocol["dataset"])
     label_to_id = {name: i for i, name in enumerate(names)}
@@ -72,7 +80,9 @@ def prepare(source, output, protocol):
     overlap = {f"{a}__{b}": len(sets[a] & sets[b])
                for a, b in [("train", "val"), ("train", "test"), ("val", "test")]}
     manifest = {
-        "dataset": protocol["dataset"], "source_sha256": file_sha256(source),
+        "dataset": protocol["dataset"], "source_sha256": source_checksum,
+        "source_path": str(Path(source).resolve()),
+        "labels_sha256": file_sha256(output / "labels.json"),
         "protocol_sha256": file_sha256("configs/protocol.json"),
         "generated_utc": datetime.now(timezone.utc).isoformat(),
         "counts": {s: len(rows) for s, rows in canonical.items()},
@@ -108,6 +118,7 @@ def main():
             source.parent.mkdir(parents=True, exist_ok=True)
             temp = source.with_suffix(".download")
             temp.write_bytes(payload)
+            verify_source_checksum(temp, spec)
             validate_raw(read_json(temp), spec)
             temp.replace(source)
             write_json(provenance, {"url": url, "revision": spec["revision"],
@@ -115,7 +126,7 @@ def main():
     else:
         source = args.source
     result = prepare(source, args.output, protocol)
-    result["source_mode"] = "local_import_unverified_revision" if args.source else "pinned_download"
+    result["source_mode"] = "verified_local_import" if args.source else "pinned_download"
     write_json(args.output / "manifest.json", result)
     print(f"Validated {len(result['files'])} prepared files; SHA256={result['source_sha256']}")
 
