@@ -1,0 +1,15 @@
+test_embedding_alignment_is_by_id (test_data.DataProtocolTests.test_embedding_alignment_is_by_id) ... ok
+test_exact_fraction_no_self_flip (test_data.DataProtocolTests.test_exact_fraction_no_self_flip) ... ok
+test_input_is_not_mutated (test_data.DataProtocolTests.test_input_is_not_mutated) ... ok
+test_instance_noise_favors_semantic_neighbors (test_data.DataProtocolTests.test_instance_noise_favors_semantic_neighbors) ... ok
+test_instance_noise_requires_real_vectors (test_data.DataProtocolTests.test_instance_noise_requires_real_vectors) ... ok
+test_nested_corruption_masks (test_data.DataProtocolTests.test_nested_corruption_masks) ... ok
+test_nested_sampling_and_seed_variation (test_data.DataProtocolTests.test_nested_sampling_and_seed_variation) ... ok
+test_reject_eval_oos_and_bad_input (test_data.DataProtocolTests.test_reject_eval_oos_and_bad_input) ... ok
+test_same_seed_same_bytes_and_no_truth_in_training (test_data.DataProtocolTests.test_same_seed_same_bytes_and_no_truth_in_training) ... ok
+test_symmetric_targets_are_not_self_and_cover_other_classes (test_data.DataProtocolTests.test_symmetric_targets_are_not_self_and_cover_other_classes) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.147s
+
+OK
