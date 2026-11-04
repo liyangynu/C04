@@ -1,0 +1,76 @@
+{
+  "best_epoch": 5,
+  "best_val_macro_f1": 0.11409848769184809,
+  "epochs_completed": 5,
+  "early_stopped": false,
+  "total_epoch_seconds": 2.7456931999186054,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 5.022863315582275,
+      "val_loss": 4.996304512023926,
+      "val_macro_f1": 0.004186675316699087,
+      "val_accuracy": 0.018,
+      "epoch_seconds": 0.7796951000345871,
+      "peak_gpu_memory_mb": 96.52490234375,
+      "peak_gpu_reserved_mb": 120.0
+    },
+    {
+      "epoch": 2,
+      "train_loss": 4.98083353805542,
+      "val_loss": 4.97422981262207,
+      "val_macro_f1": 0.011141079396756364,
+      "val_accuracy": 0.024333333333333332,
+      "epoch_seconds": 0.4847750999033451,
+      "peak_gpu_memory_mb": 96.2509765625,
+      "peak_gpu_reserved_mb": 120.0
+    },
+    {
+      "epoch": 3,
+      "train_loss": 4.941307133992513,
+      "val_loss": 4.936746597290039,
+      "val_macro_f1": 0.0434171204742813,
+      "val_accuracy": 0.051666666666666666,
+      "epoch_seconds": 0.5170839000493288,
+      "peak_gpu_memory_mb": 96.12255859375,
+      "peak_gpu_reserved_mb": 120.0
+    },
+    {
+      "epoch": 4,
+      "train_loss": 4.861304410298666,
+      "val_loss": 4.841821193695068,
+      "val_macro_f1": 0.07578846743865443,
+      "val_accuracy": 0.10033333333333333,
+      "epoch_seconds": 0.4779028999619186,
+      "peak_gpu_memory_mb": 97.9658203125,
+      "peak_gpu_reserved_mb": 120.0
+    },
+    {
+      "epoch": 5,
+      "train_loss": 4.6723654899597165,
+      "val_loss": 4.638399600982666,
+      "val_macro_f1": 0.11409848769184809,
+      "val_accuracy": 0.13533333333333333,
+      "epoch_seconds": 0.4862361999694258,
+      "peak_gpu_memory_mb": 96.21533203125,
+      "peak_gpu_reserved_mb": 120.0
+    }
+  ],
+  "fingerprints": {
+    "train": "24e9a0043c78a66057c3798da9ce743b1e7b36d04535d17cb43a9a1365ab5239",
+    "validation": "e4e166ea95ec901f5ab292a4ad2115b383564ae7e352710e7de723d6d7201d9b",
+    "labels": "0bec80c5089c43d6abe66546d6e236064be65b4518be21724c5494051aeb2e8b"
+  },
+  "git": {
+    "revision": "0179afc3591ee50a3e12e1d804d0bee3c85c50a4",
+    "dirty": false
+  },
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "torch": "2.9.1+cu126",
+    "cuda_runtime": "12.6",
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU"
+  }
+}

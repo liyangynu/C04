@@ -1,0 +1,6 @@
+device=cuda; rows=15000; vocab=5218; start_epoch=1
+epoch=1; loss=3.5201; val_f1=0.6859; val_acc=0.6910; seconds=5.09
+epoch=2; loss=1.1927; val_f1=0.8226; val_acc=0.8250; seconds=4.76
+epoch=3; loss=0.6473; val_f1=0.8602; val_acc=0.8610; seconds=4.85
+epoch=4; loss=0.4437; val_f1=0.8835; val_acc=0.8837; seconds=4.88
+epoch=5; loss=0.3319; val_f1=0.8937; val_acc=0.8940; seconds=4.98

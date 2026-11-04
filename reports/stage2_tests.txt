@@ -1,0 +1,35 @@
+asset.bin: 0.0/0.0 MiB
+asset.bin: 0.0/0.0 MiB
+asset.bin: 0.0/0.0 MiB
+asset.bin: 0.0/0.0 MiB
+asset.bin: 0.0/0.0 MiB
+asset.bin: SHA256=f445801e0cb899262c9b9e219836880d73ca2d1b0b9c15fb959c90eb121234e3
+test_auroc_agrees_with_pairwise_definition (test_baseline.MetricTests.test_auroc_agrees_with_pairwise_definition) ... ok
+test_auroc_direction_and_ties (test_baseline.MetricTests.test_auroc_direction_and_ties) ... ok
+test_macro_f1_includes_absent_classes (test_baseline.MetricTests.test_macro_f1_includes_absent_classes) ... ok
+test_numpy_random_state_round_trip (test_baseline.MetricTests.test_numpy_random_state_round_trip) ... ok
+test_gradient_reaches_embeddings_and_padding_stays_zero (test_baseline.ModelTests.test_gradient_reaches_embeddings_and_padding_stays_zero) ... ok
+test_padding_and_mixed_length_batch_invariance (test_baseline.ModelTests.test_padding_and_mixed_length_batch_invariance) ... ok
+test_embedding_alignment_is_by_id (test_data.DataProtocolTests.test_embedding_alignment_is_by_id) ... ok
+test_exact_fraction_no_self_flip (test_data.DataProtocolTests.test_exact_fraction_no_self_flip) ... ok
+test_fixed_checksum_rejects_modified_source (test_data.DataProtocolTests.test_fixed_checksum_rejects_modified_source) ... ok
+test_input_is_not_mutated (test_data.DataProtocolTests.test_input_is_not_mutated) ... ok
+test_instance_noise_favors_semantic_neighbors (test_data.DataProtocolTests.test_instance_noise_favors_semantic_neighbors) ... ok
+test_instance_noise_requires_real_vectors (test_data.DataProtocolTests.test_instance_noise_requires_real_vectors) ... ok
+test_json_manifests_use_lf (test_data.DataProtocolTests.test_json_manifests_use_lf) ... ok
+test_local_import_records_source_and_label_mapping (test_data.DataProtocolTests.test_local_import_records_source_and_label_mapping) ... ok
+test_nested_corruption_masks (test_data.DataProtocolTests.test_nested_corruption_masks) ... ok
+test_nested_sampling_and_seed_variation (test_data.DataProtocolTests.test_nested_sampling_and_seed_variation) ... ok
+test_reject_eval_oos_and_bad_input (test_data.DataProtocolTests.test_reject_eval_oos_and_bad_input) ... ok
+test_same_seed_same_bytes_and_no_truth_in_training (test_data.DataProtocolTests.test_same_seed_same_bytes_and_no_truth_in_training) ... ok
+test_symmetric_targets_are_not_self_and_cover_other_classes (test_data.DataProtocolTests.test_symmetric_targets_are_not_self_and_cover_other_classes) ... ok
+test_incorrect_checksum_is_not_promoted_to_final_file (test_download.DownloadTests.test_incorrect_checksum_is_not_promoted_to_final_file) ... ok
+test_resume_existing_partial_and_verify_content (test_download.DownloadTests.test_resume_existing_partial_and_verify_content) ... ok
+test_empty_unknown_and_truncation (test_text.TextTests.test_empty_unknown_and_truncation) ... ok
+test_glove_mapping_padding_and_seed (test_text.TextTests.test_glove_mapping_padding_and_seed) ... ok
+test_vocab_rejects_validation_and_is_order_independent (test_text.TextTests.test_vocab_rejects_validation_and_is_order_independent) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 1.334s
+
+OK

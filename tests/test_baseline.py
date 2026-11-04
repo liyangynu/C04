@@ -1,7 +1,7 @@
 """Padding invariance, trainable embeddings and metric edge cases."""
 import unittest
 
-from c04.runtime import configure_runtime
+from c04.runtime import configure_runtime, numpy_rng_state, restore_numpy_rng
 import numpy as np
 import torch
 
@@ -10,6 +10,13 @@ from c04.model import BiLSTMClassifier
 
 
 class MetricTests(unittest.TestCase):
+    def test_numpy_random_state_round_trip(self):
+        np.random.seed(17)
+        saved = numpy_rng_state()
+        expected = np.random.normal(size=10)
+        restore_numpy_rng(saved)
+        np.testing.assert_array_equal(np.random.normal(size=10), expected)
+
     def test_macro_f1_includes_absent_classes(self):
         result = classification_metrics([0, 0, 1, 1], [0, 1, 1, 1], 3)
         self.assertAlmostEqual(result["accuracy"], .75)

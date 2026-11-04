@@ -7,7 +7,8 @@ import random
 import time
 
 from .runtime import (check_rows, choose_device, configure_runtime, environment, git_state,
-                      load_official_split, make_loader, predict, save_checkpoint)
+                      load_official_split, make_loader, numpy_rng_state, predict,
+                      restore_numpy_rng, save_checkpoint)
 import torch
 
 from .common import file_sha256, read_json, read_jsonl, write_json
@@ -113,6 +114,8 @@ def main():
                                                      previous["best_epoch"], previous["bad_epochs"])
         generator.set_state(previous["loader_rng"])
         random.setstate(previous["python_rng"])
+        if "numpy_rng" in previous:
+            restore_numpy_rng(previous["numpy_rng"])
         torch.set_rng_state(previous["torch_rng"])
         if device.type == "cuda":
             torch.cuda.set_rng_state_all(previous["cuda_rng"])
@@ -146,13 +149,14 @@ def main():
             best_f1, best_epoch, bad_epochs = entry["val_macro_f1"], epoch, 0
         else:
             bad_epochs += 1
-        checkpoint = {"format_version": 1, "seed": args.seed, "config": config,
+        checkpoint = {"format_version": 2, "seed": args.seed, "config": config,
                       "fingerprints": fingerprints, "vocab": vocab, "labels": labels,
                       "embedding_report": asset_report, "model": model.state_dict(),
                       "optimizer": optimizer.state_dict(), "epoch": epoch,
                       "best_f1": best_f1, "best_epoch": best_epoch, "bad_epochs": bad_epochs,
                       "history": history, "environment": environment(device), "git": run["git"],
                       "loader_rng": generator.get_state(), "python_rng": random.getstate(),
+                      "numpy_rng": numpy_rng_state(),
                       "torch_rng": torch.get_rng_state(),
                       "cuda_rng": torch.cuda.get_rng_state_all() if device.type == "cuda" else []}
         if improved:

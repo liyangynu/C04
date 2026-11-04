@@ -94,6 +94,17 @@ def environment(device):
             "gpu": torch.cuda.get_device_name(device) if device.type == "cuda" else None}
 
 
+def numpy_rng_state():
+    name, keys, position, has_gauss, cached_gauss = np.random.get_state()
+    return {"name": name, "keys": keys.tolist(), "position": position,
+            "has_gauss": has_gauss, "cached_gauss": cached_gauss}
+
+
+def restore_numpy_rng(state):
+    np.random.set_state((state["name"], np.asarray(state["keys"], dtype=np.uint32),
+                         state["position"], state["has_gauss"], state["cached_gauss"]))
+
+
 def git_state():
     def run(*args):
         result = subprocess.run(["git", *args], capture_output=True, text=True)

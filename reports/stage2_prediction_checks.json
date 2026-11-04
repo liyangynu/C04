@@ -1,0 +1,126 @@
+{
+  "matrix_sha256": "40aedfa0b0e0cfaa8db0e2530ca8b81a062192f33b2330038b745dfbfbc190bc",
+  "runs": [
+    {
+      "run": "k5_s17",
+      "rows": 5500,
+      "metrics_recomputed": {
+        "macro_f1": 0.14295617884775405,
+        "accuracy": 0.16133333333333333,
+        "oos_auroc": 0.6075092222222223
+      },
+      "passed": true
+    },
+    {
+      "run": "k5_s42",
+      "rows": 5500,
+      "metrics_recomputed": {
+        "macro_f1": 0.10229072562890837,
+        "accuracy": 0.11688888888888889,
+        "oos_auroc": 0.5986277777777778
+      },
+      "passed": true
+    },
+    {
+      "run": "k5_s2026",
+      "rows": 5500,
+      "metrics_recomputed": {
+        "macro_f1": 0.10000595167780749,
+        "accuracy": 0.12444444444444444,
+        "oos_auroc": 0.6228986666666667
+      },
+      "passed": true
+    },
+    {
+      "run": "k10_s17",
+      "rows": 5500,
+      "metrics_recomputed": {
+        "macro_f1": 0.3484983261503771,
+        "accuracy": 0.37977777777777777,
+        "oos_auroc": 0.6811891111111111
+      },
+      "passed": true
+    },
+    {
+      "run": "k10_s42",
+      "rows": 5500,
+      "metrics_recomputed": {
+        "macro_f1": 0.34340471800614314,
+        "accuracy": 0.3675555555555556,
+        "oos_auroc": 0.6624781111111111
+      },
+      "passed": true
+    },
+    {
+      "run": "k10_s2026",
+      "rows": 5500,
+      "metrics_recomputed": {
+        "macro_f1": 0.35514393306658526,
+        "accuracy": 0.38133333333333336,
+        "oos_auroc": 0.7128723333333333
+      },
+      "passed": true
+    },
+    {
+      "run": "k20_s17",
+      "rows": 5500,
+      "metrics_recomputed": {
+        "macro_f1": 0.6251700610530408,
+        "accuracy": 0.6357777777777778,
+        "oos_auroc": 0.7939261111111111
+      },
+      "passed": true
+    },
+    {
+      "run": "k20_s42",
+      "rows": 5500,
+      "metrics_recomputed": {
+        "macro_f1": 0.6147600335187856,
+        "accuracy": 0.6255555555555555,
+        "oos_auroc": 0.7794035555555555
+      },
+      "passed": true
+    },
+    {
+      "run": "k20_s2026",
+      "rows": 5500,
+      "metrics_recomputed": {
+        "macro_f1": 0.6304570477449977,
+        "accuracy": 0.6393333333333333,
+        "oos_auroc": 0.806102
+      },
+      "passed": true
+    },
+    {
+      "run": "k100_s17",
+      "rows": 5500,
+      "metrics_recomputed": {
+        "macro_f1": 0.8947206681484962,
+        "accuracy": 0.8955555555555555,
+        "oos_auroc": 0.9196143333333333
+      },
+      "passed": true
+    },
+    {
+      "run": "k100_s42",
+      "rows": 5500,
+      "metrics_recomputed": {
+        "macro_f1": 0.895137703861966,
+        "accuracy": 0.896,
+        "oos_auroc": 0.9233503333333334
+      },
+      "passed": true
+    },
+    {
+      "run": "k100_s2026",
+      "rows": 5500,
+      "metrics_recomputed": {
+        "macro_f1": 0.8937689968663313,
+        "accuracy": 0.8946666666666667,
+        "oos_auroc": 0.9234336666666667
+      },
+      "passed": true
+    }
+  ],
+  "all_passed": true
+}

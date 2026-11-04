@@ -1,0 +1,87 @@
+{
+  "seed": 17,
+  "selected_epoch": 5,
+  "checkpoint_sha256": "ffb9c210ae27da6ce6189fa6e87d899e15a13ff14b2eab5ed550bdd0ca1329d4",
+  "train_sha256": "3189eecd49977fad819dffc3acdef0640b593c73e62a21aa5c8d35fb697260bb",
+  "test_sha256": "2295b034d03b72c1b15cafd8dcfe90bae99b7b1e180e744f62940ddac2962782",
+  "oos_test_sha256": "e5dd56d460d91c9dcfc7367abf5f011f78b06f5ca8bb4445f7bae9d59cbac7ad",
+  "test_rows": 4500,
+  "oos_rows": 1000,
+  "macro_f1": 0.3484983261503771,
+  "accuracy": 0.37977777777777777,
+  "oos_auroc": 0.6811891111111111,
+  "oos_positive_class": "OOS",
+  "oos_score": "1 - max softmax probability",
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 5.010309383392334,
+      "val_loss": 4.970782279968262,
+      "val_macro_f1": 0.007768878424228134,
+      "val_accuracy": 0.026333333333333334,
+      "epoch_seconds": 1.190492199966684,
+      "peak_gpu_memory_mb": 96.83203125,
+      "peak_gpu_reserved_mb": 120.0
+    },
+    {
+      "epoch": 2,
+      "train_loss": 4.922119525909424,
+      "val_loss": 4.8528594970703125,
+      "val_macro_f1": 0.13390942066002434,
+      "val_accuracy": 0.16533333333333333,
+      "epoch_seconds": 0.8155898998957127,
+      "peak_gpu_memory_mb": 96.7109375,
+      "peak_gpu_reserved_mb": 120.0
+    },
+    {
+      "epoch": 3,
+      "train_loss": 4.629581508636474,
+      "val_loss": 4.37101936340332,
+      "val_macro_f1": 0.18740959354189785,
+      "val_accuracy": 0.20333333333333334,
+      "epoch_seconds": 0.9077747999690473,
+      "peak_gpu_memory_mb": 96.85888671875,
+      "peak_gpu_reserved_mb": 120.0
+    },
+    {
+      "epoch": 4,
+      "train_loss": 3.9987286593119302,
+      "val_loss": 3.7803733348846436,
+      "val_macro_f1": 0.2616445555522631,
+      "val_accuracy": 0.29533333333333334,
+      "epoch_seconds": 0.7415781000163406,
+      "peak_gpu_memory_mb": 96.91259765625,
+      "peak_gpu_reserved_mb": 120.0
+    },
+    {
+      "epoch": 5,
+      "train_loss": 3.317237060546875,
+      "val_loss": 3.2993226051330566,
+      "val_macro_f1": 0.3553705956275089,
+      "val_accuracy": 0.37866666666666665,
+      "epoch_seconds": 0.8055699999677017,
+      "peak_gpu_memory_mb": 97.1005859375,
+      "peak_gpu_reserved_mb": 120.0
+    }
+  ],
+  "training_git": {
+    "revision": "0179afc3591ee50a3e12e1d804d0bee3c85c50a4",
+    "dirty": false
+  },
+  "training_environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "torch": "2.9.1+cu126",
+    "cuda_runtime": "12.6",
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU"
+  },
+  "evaluation_environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "torch": "2.9.1+cu126",
+    "cuda_runtime": "12.6",
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU"
+  }
+}

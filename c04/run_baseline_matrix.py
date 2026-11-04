@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+import time
 
 import numpy as np
 
@@ -20,6 +21,7 @@ def main():
     parser.add_argument("--device", choices=["auto", "cpu", "cuda"], default="auto")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
+    started = time.perf_counter()
     if len(set(args.seeds)) != len(args.seeds) or len(set(args.shots)) != len(args.shots):
         raise ValueError("Duplicate seeds or sample sizes are not independent experiments")
     if args.output.exists() and any(args.output.iterdir()):
@@ -82,6 +84,7 @@ def main():
         "dataset_sha256": protocol["dataset"]["sha256"], "glove": read_json("configs/glove.json"),
         "baseline_config_sha256": file_sha256("configs/baseline.json"),
         "records": records, "summary_by_shots": summaries,
+        "wall_seconds": time.perf_counter()-started,
         "interpretation": "The CLINC150 paper reports GloVe-CNN accuracy and OOS recall, not this BiLSTM-Attention macro-F1 or MSP-AUROC configuration; results are reported as a project baseline.",
         "model_metrics_used_for_selection": "validation macro-F1 only"}
     write_json(args.output/"matrix.json", report)

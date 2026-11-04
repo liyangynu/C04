@@ -1,0 +1,79 @@
+{
+  "seed": 17,
+  "config": {
+    "model": {
+      "embedding_dim": 100,
+      "hidden_dim": 128,
+      "dropout": 0.3,
+      "pooling": "attention",
+      "embedding_trainable": true,
+      "classes": 150
+    },
+    "text": {
+      "max_length": 40,
+      "min_frequency": 1
+    },
+    "training": {
+      "learning_rate": 0.001,
+      "weight_decay": 0.01,
+      "batch_size": 64,
+      "max_epochs": 5,
+      "patience": 2,
+      "gradient_clip": 5.0,
+      "cpu_threads": 4,
+      "deterministic": true
+    },
+    "selection_metric": "val_macro_f1"
+  },
+  "fingerprints": {
+    "train": "b4167759fd2d675c32254770a8e003b4a60c2b2bdbc83ea6410c474be3c87724",
+    "validation": "e4e166ea95ec901f5ab292a4ad2115b383564ae7e352710e7de723d6d7201d9b",
+    "labels": "0bec80c5089c43d6abe66546d6e236064be65b4518be21724c5494051aeb2e8b"
+  },
+  "git": {
+    "revision": "0179afc3591ee50a3e12e1d804d0bee3c85c50a4",
+    "dirty": false
+  },
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "torch": "2.9.1+cu126",
+    "cuda_runtime": "12.6",
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU"
+  },
+  "train_rows": 750,
+  "val_rows": 3000,
+  "embedding": {
+    "seed": 17,
+    "dimension": 100,
+    "vocab_size": 1234,
+    "train_sha256": "b4167759fd2d675c32254770a8e003b4a60c2b2bdbc83ea6410c474be3c87724",
+    "glove_sha256": "95dde4dfd627ab26608d33e76d1195ec059734bd29089ea52cadb08d07c64544",
+    "vocab_sha256": "26d14ebccc1d8f68fcbadb9582cb5b9caff02cf8c66b4d307c52ac8e48f409a4",
+    "matrix_sha256": "632e1ceb38c2b5c5e6a228c2eb5f7a1d63446bd2442b5cdd3c74daac7db580a0",
+    "covered_types": 1184,
+    "total_types": 1232,
+    "type_coverage": 0.961038961038961,
+    "token_coverage": 0.9807135969141755,
+    "text_stats": {
+      "rows": 750,
+      "tokens": 6222,
+      "unknown_tokens": 0,
+      "unknown_token_rate": 0.0,
+      "truncated_rows": 0,
+      "max_observed_length": 22
+    }
+  },
+  "validation_text": {
+    "rows": 3000,
+    "tokens": 25263,
+    "unknown_tokens": 2950,
+    "unknown_token_rate": 0.11677156315560305,
+    "truncated_rows": 0,
+    "max_observed_length": 24
+  },
+  "parameters": 397726,
+  "resumed_from_epoch": 0,
+  "started_utc": "2026-11-04T10:36:32.947203+00:00"
+}
