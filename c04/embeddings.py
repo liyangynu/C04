@@ -32,9 +32,9 @@ def load_glove(path, vocab, dimension, seed):
     return matrix, found
 
 
-def build_assets(train, glove, output, seed, dimension=100, max_length=40):
+def build_assets(train, glove, output, seed, dimension=100, max_length=40, min_frequency=1):
     rows = read_jsonl(train)
-    vocab = build_vocab(rows)
+    vocab = build_vocab(rows, min_frequency)
     matrix, found = load_glove(glove, vocab, dimension, seed)
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
