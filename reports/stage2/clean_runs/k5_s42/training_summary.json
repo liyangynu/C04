@@ -3,7 +3,7 @@
   "best_val_macro_f1": 0.105344564517352,
   "epochs_completed": 5,
   "early_stopped": false,
-  "total_epoch_seconds": 2.957445500069298,
+  "total_epoch_seconds": 2.640722000040114,
   "history": [
     {
       "epoch": 1,
@@ -11,7 +11,7 @@
       "val_loss": 4.997450351715088,
       "val_macro_f1": 0.004334496735084862,
       "val_accuracy": 0.02033333333333333,
-      "epoch_seconds": 0.8569164000218734,
+      "epoch_seconds": 0.7752728000050411,
       "peak_gpu_memory_mb": 96.38330078125,
       "peak_gpu_reserved_mb": 118.0
     },
@@ -21,7 +21,7 @@
       "val_loss": 4.97531270980835,
       "val_macro_f1": 0.01750169627390336,
       "val_accuracy": 0.028333333333333332,
-      "epoch_seconds": 0.5316423000767827,
+      "epoch_seconds": 0.43225029995664954,
       "peak_gpu_memory_mb": 97.9453125,
       "peak_gpu_reserved_mb": 118.0
     },
@@ -31,7 +31,7 @@
       "val_loss": 4.938200950622559,
       "val_macro_f1": 0.032767936606667276,
       "val_accuracy": 0.049666666666666665,
-      "epoch_seconds": 0.5047692999942228,
+      "epoch_seconds": 0.4499739999882877,
       "peak_gpu_memory_mb": 96.4189453125,
       "peak_gpu_reserved_mb": 118.0
     },
@@ -41,7 +41,7 @@
       "val_loss": 4.847012519836426,
       "val_macro_f1": 0.0649409472097274,
       "val_accuracy": 0.08,
-      "epoch_seconds": 0.5482031999854371,
+      "epoch_seconds": 0.5057564000599086,
       "peak_gpu_memory_mb": 97.9609375,
       "peak_gpu_reserved_mb": 118.0
     },
@@ -51,7 +51,7 @@
       "val_loss": 4.660536766052246,
       "val_macro_f1": 0.105344564517352,
       "val_accuracy": 0.12366666666666666,
-      "epoch_seconds": 0.5159142999909818,
+      "epoch_seconds": 0.477468500030227,
       "peak_gpu_memory_mb": 96.49267578125,
       "peak_gpu_reserved_mb": 118.0
     }
@@ -62,7 +62,7 @@
     "labels": "0bec80c5089c43d6abe66546d6e236064be65b4518be21724c5494051aeb2e8b"
   },
   "git": {
-    "revision": "0179afc3591ee50a3e12e1d804d0bee3c85c50a4",
+    "revision": "34d7c7667c0562bb65dfbcca474a5c5bbea8b63c",
     "dirty": false
   },
   "environment": {

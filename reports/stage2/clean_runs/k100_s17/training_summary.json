@@ -3,7 +3,7 @@
   "best_val_macro_f1": 0.8919459636018735,
   "epochs_completed": 5,
   "early_stopped": false,
-  "total_epoch_seconds": 24.776228200178593,
+  "total_epoch_seconds": 25.270255099865608,
   "history": [
     {
       "epoch": 1,
@@ -11,7 +11,7 @@
       "val_loss": 1.8080846071243286,
       "val_macro_f1": 0.6679683906756813,
       "val_accuracy": 0.676,
-      "epoch_seconds": 5.176574700046331,
+      "epoch_seconds": 5.185323499958031,
       "peak_gpu_memory_mb": 101.37255859375,
       "peak_gpu_reserved_mb": 118.0
     },
@@ -21,7 +21,7 @@
       "val_loss": 0.8721781373023987,
       "val_macro_f1": 0.8163537981301681,
       "val_accuracy": 0.8173333333333334,
-      "epoch_seconds": 5.143512299982831,
+      "epoch_seconds": 4.997840599971823,
       "peak_gpu_memory_mb": 102.3603515625,
       "peak_gpu_reserved_mb": 118.0
     },
@@ -31,7 +31,7 @@
       "val_loss": 0.5832433104515076,
       "val_macro_f1": 0.8638230787470144,
       "val_accuracy": 0.866,
-      "epoch_seconds": 4.871854400029406,
+      "epoch_seconds": 5.103015700005926,
       "peak_gpu_memory_mb": 102.4052734375,
       "peak_gpu_reserved_mb": 118.0
     },
@@ -41,7 +41,7 @@
       "val_loss": 0.49675488471984863,
       "val_macro_f1": 0.873909074673118,
       "val_accuracy": 0.874,
-      "epoch_seconds": 4.73710020002909,
+      "epoch_seconds": 5.0128936999244615,
       "peak_gpu_memory_mb": 101.29931640625,
       "peak_gpu_reserved_mb": 118.0
     },
@@ -51,7 +51,7 @@
       "val_loss": 0.4232963025569916,
       "val_macro_f1": 0.8919459636018735,
       "val_accuracy": 0.8923333333333333,
-      "epoch_seconds": 4.847186600090936,
+      "epoch_seconds": 4.971181600005366,
       "peak_gpu_memory_mb": 101.18408203125,
       "peak_gpu_reserved_mb": 118.0
     }
@@ -62,7 +62,7 @@
     "labels": "0bec80c5089c43d6abe66546d6e236064be65b4518be21724c5494051aeb2e8b"
   },
   "git": {
-    "revision": "0179afc3591ee50a3e12e1d804d0bee3c85c50a4",
+    "revision": "34d7c7667c0562bb65dfbcca474a5c5bbea8b63c",
     "dirty": true
   },
   "environment": {

@@ -1,7 +1,7 @@
 {
   "seed": 2026,
   "selected_epoch": 5,
-  "checkpoint_sha256": "7f03bc36210cd6880626986406e6ebbc6cb7c247e08321d7e3d6beba2c47188e",
+  "checkpoint_sha256": "5a622b3ec50a336217573cd9e9ed8b9307ac6375e4133d7f421184ed314f5351",
   "train_sha256": "b9e8edc7987e778faa0b0901fa22533c51b77f3a468488db703e00f73fc53b81",
   "test_sha256": "2295b034d03b72c1b15cafd8dcfe90bae99b7b1e180e744f62940ddac2962782",
   "oos_test_sha256": "e5dd56d460d91c9dcfc7367abf5f011f78b06f5ca8bb4445f7bae9d59cbac7ad",
@@ -19,7 +19,7 @@
       "val_loss": 4.8801589012146,
       "val_macro_f1": 0.13884256247946708,
       "val_accuracy": 0.17766666666666667,
-      "epoch_seconds": 1.5057297999737784,
+      "epoch_seconds": 1.465306100086309,
       "peak_gpu_memory_mb": 97.91455078125,
       "peak_gpu_reserved_mb": 120.0
     },
@@ -29,7 +29,7 @@
       "val_loss": 3.8835606575012207,
       "val_macro_f1": 0.2545886581441108,
       "val_accuracy": 0.29133333333333333,
-      "epoch_seconds": 1.195564299938269,
+      "epoch_seconds": 1.1183976999018341,
       "peak_gpu_memory_mb": 98.1640625,
       "peak_gpu_reserved_mb": 120.0
     },
@@ -39,7 +39,7 @@
       "val_loss": 2.844541072845459,
       "val_macro_f1": 0.4452214908390286,
       "val_accuracy": 0.473,
-      "epoch_seconds": 1.1314019999699667,
+      "epoch_seconds": 1.153898499906063,
       "peak_gpu_memory_mb": 97.90185546875,
       "peak_gpu_reserved_mb": 120.0
     },
@@ -49,7 +49,7 @@
       "val_loss": 2.188749074935913,
       "val_macro_f1": 0.577525155006137,
       "val_accuracy": 0.592,
-      "epoch_seconds": 1.1170235000317916,
+      "epoch_seconds": 1.1581701000686735,
       "peak_gpu_memory_mb": 97.96923828125,
       "peak_gpu_reserved_mb": 120.0
     },
@@ -59,13 +59,13 @@
       "val_loss": 1.7952628135681152,
       "val_macro_f1": 0.6358876940529479,
       "val_accuracy": 0.6456666666666667,
-      "epoch_seconds": 1.1748838999774307,
+      "epoch_seconds": 1.1681755000026897,
       "peak_gpu_memory_mb": 98.271484375,
       "peak_gpu_reserved_mb": 120.0
     }
   ],
   "training_git": {
-    "revision": "0179afc3591ee50a3e12e1d804d0bee3c85c50a4",
+    "revision": "34d7c7667c0562bb65dfbcca474a5c5bbea8b63c",
     "dirty": true
   },
   "training_environment": {

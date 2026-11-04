@@ -1,6 +1,6 @@
 device=cuda; rows=750; vocab=1223; start_epoch=1
-epoch=1; loss=5.0246; val_f1=0.0043; val_acc=0.0203; seconds=0.86
-epoch=2; loss=4.9839; val_f1=0.0175; val_acc=0.0283; seconds=0.53
-epoch=3; loss=4.9431; val_f1=0.0328; val_acc=0.0497; seconds=0.50
-epoch=4; loss=4.8574; val_f1=0.0649; val_acc=0.0800; seconds=0.55
-epoch=5; loss=4.6758; val_f1=0.1053; val_acc=0.1237; seconds=0.52
+epoch=1; loss=5.0246; val_f1=0.0043; val_acc=0.0203; seconds=0.78
+epoch=2; loss=4.9839; val_f1=0.0175; val_acc=0.0283; seconds=0.43
+epoch=3; loss=4.9431; val_f1=0.0328; val_acc=0.0497; seconds=0.45
+epoch=4; loss=4.8574; val_f1=0.0649; val_acc=0.0800; seconds=0.51
+epoch=5; loss=4.6758; val_f1=0.1053; val_acc=0.1237; seconds=0.48

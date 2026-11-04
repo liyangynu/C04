@@ -1,0 +1,67 @@
+{
+  "runs": [
+    {
+      "run": "k5_s17",
+      "model_parameters_bitwise_equal": true,
+      "prediction_files_identical": true
+    },
+    {
+      "run": "k5_s42",
+      "model_parameters_bitwise_equal": true,
+      "prediction_files_identical": true
+    },
+    {
+      "run": "k5_s2026",
+      "model_parameters_bitwise_equal": true,
+      "prediction_files_identical": true
+    },
+    {
+      "run": "k10_s17",
+      "model_parameters_bitwise_equal": true,
+      "prediction_files_identical": true
+    },
+    {
+      "run": "k10_s42",
+      "model_parameters_bitwise_equal": true,
+      "prediction_files_identical": true
+    },
+    {
+      "run": "k10_s2026",
+      "model_parameters_bitwise_equal": true,
+      "prediction_files_identical": true
+    },
+    {
+      "run": "k20_s17",
+      "model_parameters_bitwise_equal": true,
+      "prediction_files_identical": true
+    },
+    {
+      "run": "k20_s42",
+      "model_parameters_bitwise_equal": true,
+      "prediction_files_identical": true
+    },
+    {
+      "run": "k20_s2026",
+      "model_parameters_bitwise_equal": true,
+      "prediction_files_identical": true
+    },
+    {
+      "run": "k100_s17",
+      "model_parameters_bitwise_equal": true,
+      "prediction_files_identical": true
+    },
+    {
+      "run": "k100_s42",
+      "model_parameters_bitwise_equal": true,
+      "prediction_files_identical": true
+    },
+    {
+      "run": "k100_s2026",
+      "model_parameters_bitwise_equal": true,
+      "prediction_files_identical": true
+    }
+  ],
+  "all_passed": true,
+  "wall_seconds": 263.2297917000251,
+  "matrix_sha256": "7a23cf0816669dbca4a6f058c520dcc3a3991fa0f88397d318f619fb0f650456"
+}

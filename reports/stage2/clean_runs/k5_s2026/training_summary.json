@@ -3,7 +3,7 @@
   "best_val_macro_f1": 0.11409848769184809,
   "epochs_completed": 5,
   "early_stopped": false,
-  "total_epoch_seconds": 2.7456931999186054,
+  "total_epoch_seconds": 2.752822499955073,
   "history": [
     {
       "epoch": 1,
@@ -11,7 +11,7 @@
       "val_loss": 4.996304512023926,
       "val_macro_f1": 0.004186675316699087,
       "val_accuracy": 0.018,
-      "epoch_seconds": 0.7796951000345871,
+      "epoch_seconds": 0.83784769999329,
       "peak_gpu_memory_mb": 96.52490234375,
       "peak_gpu_reserved_mb": 120.0
     },
@@ -21,7 +21,7 @@
       "val_loss": 4.97422981262207,
       "val_macro_f1": 0.011141079396756364,
       "val_accuracy": 0.024333333333333332,
-      "epoch_seconds": 0.4847750999033451,
+      "epoch_seconds": 0.4746724999276921,
       "peak_gpu_memory_mb": 96.2509765625,
       "peak_gpu_reserved_mb": 120.0
     },
@@ -31,7 +31,7 @@
       "val_loss": 4.936746597290039,
       "val_macro_f1": 0.0434171204742813,
       "val_accuracy": 0.051666666666666666,
-      "epoch_seconds": 0.5170839000493288,
+      "epoch_seconds": 0.47065030003432184,
       "peak_gpu_memory_mb": 96.12255859375,
       "peak_gpu_reserved_mb": 120.0
     },
@@ -41,7 +41,7 @@
       "val_loss": 4.841821193695068,
       "val_macro_f1": 0.07578846743865443,
       "val_accuracy": 0.10033333333333333,
-      "epoch_seconds": 0.4779028999619186,
+      "epoch_seconds": 0.48952609999105334,
       "peak_gpu_memory_mb": 97.9658203125,
       "peak_gpu_reserved_mb": 120.0
     },
@@ -51,7 +51,7 @@
       "val_loss": 4.638399600982666,
       "val_macro_f1": 0.11409848769184809,
       "val_accuracy": 0.13533333333333333,
-      "epoch_seconds": 0.4862361999694258,
+      "epoch_seconds": 0.4801259000087157,
       "peak_gpu_memory_mb": 96.21533203125,
       "peak_gpu_reserved_mb": 120.0
     }
@@ -62,7 +62,7 @@
     "labels": "0bec80c5089c43d6abe66546d6e236064be65b4518be21724c5494051aeb2e8b"
   },
   "git": {
-    "revision": "0179afc3591ee50a3e12e1d804d0bee3c85c50a4",
+    "revision": "34d7c7667c0562bb65dfbcca474a5c5bbea8b63c",
     "dirty": false
   },
   "environment": {

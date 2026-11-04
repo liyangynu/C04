@@ -25,8 +25,10 @@ def main():
             shutil.copyfile(run/"evaluation"/file, dest/file)
         shutil.copyfile(run/"training/summary.json", dest/"training_summary.json")
         shutil.copyfile(run/"training/run_from_epoch_1.json", dest/"run.json")
-        shutil.copyfile(run/"train.log", dest/"train.log")
-        shutil.copyfile(run/"evaluate.log", dest/"evaluate.log")
+        for name in ["train", "evaluate"]:
+            # Git checks out text as LF; normalize captured Windows console logs before hashing.
+            (dest/f"{name}.log").write_text((run/f"{name}.log").read_text(encoding="utf-8"),
+                                           encoding="utf-8", newline="\n")
     write_json(args.output/"matrix.json", matrix)
     checksums = {str(p.relative_to(args.output)).replace("\\", "/"): file_sha256(p)
                  for p in sorted(args.output.rglob("*")) if p.is_file()}

@@ -1,7 +1,7 @@
 {
   "seed": 2026,
   "selected_epoch": 5,
-  "checkpoint_sha256": "4c1088d0c2485fbd77e9ff77a11c8ab412ffac3e7bf47a83f8b0c1a987eb4424",
+  "checkpoint_sha256": "02974fa7f445434c09318c24063b6e4204876043d0d632874751aa081af0f6bb",
   "train_sha256": "07ed83993db1ea81925913bb51748d884acee0165401e26c9e31530f24f1a333",
   "test_sha256": "2295b034d03b72c1b15cafd8dcfe90bae99b7b1e180e744f62940ddac2962782",
   "oos_test_sha256": "e5dd56d460d91c9dcfc7367abf5f011f78b06f5ca8bb4445f7bae9d59cbac7ad",
@@ -19,7 +19,7 @@
       "val_loss": 1.6904475688934326,
       "val_macro_f1": 0.6859201774309098,
       "val_accuracy": 0.691,
-      "epoch_seconds": 5.09098089998588,
+      "epoch_seconds": 4.896724699996412,
       "peak_gpu_memory_mb": 102.3603515625,
       "peak_gpu_reserved_mb": 118.0
     },
@@ -29,7 +29,7 @@
       "val_loss": 0.7994780540466309,
       "val_macro_f1": 0.8226244294945235,
       "val_accuracy": 0.825,
-      "epoch_seconds": 4.755683399969712,
+      "epoch_seconds": 4.811450900044292,
       "peak_gpu_memory_mb": 101.11767578125,
       "peak_gpu_reserved_mb": 118.0
     },
@@ -39,7 +39,7 @@
       "val_loss": 0.5643174052238464,
       "val_macro_f1": 0.8601665128523132,
       "val_accuracy": 0.861,
-      "epoch_seconds": 4.852717300062068,
+      "epoch_seconds": 4.848893300048076,
       "peak_gpu_memory_mb": 101.279296875,
       "peak_gpu_reserved_mb": 118.0
     },
@@ -49,7 +49,7 @@
       "val_loss": 0.47368428111076355,
       "val_macro_f1": 0.8835427489912188,
       "val_accuracy": 0.8836666666666667,
-      "epoch_seconds": 4.875345899956301,
+      "epoch_seconds": 4.666036800015718,
       "peak_gpu_memory_mb": 102.41455078125,
       "peak_gpu_reserved_mb": 118.0
     },
@@ -59,13 +59,13 @@
       "val_loss": 0.4030231535434723,
       "val_macro_f1": 0.8937369973658317,
       "val_accuracy": 0.894,
-      "epoch_seconds": 4.981558500090614,
+      "epoch_seconds": 4.68462349998299,
       "peak_gpu_memory_mb": 102.43408203125,
       "peak_gpu_reserved_mb": 118.0
     }
   ],
   "training_git": {
-    "revision": "0179afc3591ee50a3e12e1d804d0bee3c85c50a4",
+    "revision": "34d7c7667c0562bb65dfbcca474a5c5bbea8b63c",
     "dirty": true
   },
   "training_environment": {

@@ -3,7 +3,7 @@
   "best_val_macro_f1": 0.32968883880750627,
   "epochs_completed": 5,
   "early_stopped": false,
-  "total_epoch_seconds": 4.863069699960761,
+  "total_epoch_seconds": 3.9666581000201404,
   "history": [
     {
       "epoch": 1,
@@ -11,7 +11,7 @@
       "val_loss": 4.974594593048096,
       "val_macro_f1": 0.012047721673186471,
       "val_accuracy": 0.025,
-      "epoch_seconds": 1.405645899940282,
+      "epoch_seconds": 1.0772386000026017,
       "peak_gpu_memory_mb": 96.72998046875,
       "peak_gpu_reserved_mb": 118.0
     },
@@ -21,7 +21,7 @@
       "val_loss": 4.871387481689453,
       "val_macro_f1": 0.08524027718554374,
       "val_accuracy": 0.11333333333333333,
-      "epoch_seconds": 0.785286600003019,
+      "epoch_seconds": 0.6502565999981016,
       "peak_gpu_memory_mb": 97.3544921875,
       "peak_gpu_reserved_mb": 118.0
     },
@@ -31,7 +31,7 @@
       "val_loss": 4.420413970947266,
       "val_macro_f1": 0.1330243700970913,
       "val_accuracy": 0.15266666666666667,
-      "epoch_seconds": 0.9743250999599695,
+      "epoch_seconds": 0.7770446999929845,
       "peak_gpu_memory_mb": 98.78076171875,
       "peak_gpu_reserved_mb": 118.0
     },
@@ -41,7 +41,7 @@
       "val_loss": 3.840919256210327,
       "val_macro_f1": 0.24627695680515113,
       "val_accuracy": 0.2723333333333333,
-      "epoch_seconds": 0.9497331000166014,
+      "epoch_seconds": 0.7009007000597194,
       "peak_gpu_memory_mb": 97.25390625,
       "peak_gpu_reserved_mb": 118.0
     },
@@ -51,7 +51,7 @@
       "val_loss": 3.317275285720825,
       "val_macro_f1": 0.32968883880750627,
       "val_accuracy": 0.35233333333333333,
-      "epoch_seconds": 0.7480790000408888,
+      "epoch_seconds": 0.7612174999667332,
       "peak_gpu_memory_mb": 97.3486328125,
       "peak_gpu_reserved_mb": 118.0
     }
@@ -62,8 +62,8 @@
     "labels": "0bec80c5089c43d6abe66546d6e236064be65b4518be21724c5494051aeb2e8b"
   },
   "git": {
-    "revision": "0179afc3591ee50a3e12e1d804d0bee3c85c50a4",
-    "dirty": false
+    "revision": "34d7c7667c0562bb65dfbcca474a5c5bbea8b63c",
+    "dirty": true
   },
   "environment": {
     "python": "3.12.14",

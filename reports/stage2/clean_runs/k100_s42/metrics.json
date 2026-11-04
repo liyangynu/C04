@@ -1,7 +1,7 @@
 {
   "seed": 42,
   "selected_epoch": 5,
-  "checkpoint_sha256": "4c8fa5a7d49e04e72a57a6815cc7ee2efbd9611b6bf75b0f9ed3b9fe36ec4cd6",
+  "checkpoint_sha256": "11537530bf40cffbfb52f7ccc058cfb1ef2f81f5699392b01c875421bbb71d81",
   "train_sha256": "07ed83993db1ea81925913bb51748d884acee0165401e26c9e31530f24f1a333",
   "test_sha256": "2295b034d03b72c1b15cafd8dcfe90bae99b7b1e180e744f62940ddac2962782",
   "oos_test_sha256": "e5dd56d460d91c9dcfc7367abf5f011f78b06f5ca8bb4445f7bae9d59cbac7ad",
@@ -19,7 +19,7 @@
       "val_loss": 1.7574329376220703,
       "val_macro_f1": 0.6611020832846627,
       "val_accuracy": 0.669,
-      "epoch_seconds": 5.3570385000202805,
+      "epoch_seconds": 5.47193919995334,
       "peak_gpu_memory_mb": 102.38037109375,
       "peak_gpu_reserved_mb": 118.0
     },
@@ -29,7 +29,7 @@
       "val_loss": 0.829031229019165,
       "val_macro_f1": 0.8170401538199801,
       "val_accuracy": 0.8196666666666667,
-      "epoch_seconds": 4.874941899906844,
+      "epoch_seconds": 5.272322800010443,
       "peak_gpu_memory_mb": 102.42236328125,
       "peak_gpu_reserved_mb": 118.0
     },
@@ -39,7 +39,7 @@
       "val_loss": 0.559838593006134,
       "val_macro_f1": 0.8594054992673215,
       "val_accuracy": 0.8596666666666667,
-      "epoch_seconds": 5.368444200023077,
+      "epoch_seconds": 5.424123400007375,
       "peak_gpu_memory_mb": 102.51171875,
       "peak_gpu_reserved_mb": 118.0
     },
@@ -49,7 +49,7 @@
       "val_loss": 0.4684878885746002,
       "val_macro_f1": 0.8770338455918314,
       "val_accuracy": 0.8766666666666667,
-      "epoch_seconds": 5.142375799943693,
+      "epoch_seconds": 4.646283800015226,
       "peak_gpu_memory_mb": 102.43017578125,
       "peak_gpu_reserved_mb": 118.0
     },
@@ -59,13 +59,13 @@
       "val_loss": 0.41811156272888184,
       "val_macro_f1": 0.8899118973282388,
       "val_accuracy": 0.8903333333333333,
-      "epoch_seconds": 4.86004659999162,
+      "epoch_seconds": 5.015233000041917,
       "peak_gpu_memory_mb": 101.2724609375,
       "peak_gpu_reserved_mb": 118.0
     }
   ],
   "training_git": {
-    "revision": "0179afc3591ee50a3e12e1d804d0bee3c85c50a4",
+    "revision": "34d7c7667c0562bb65dfbcca474a5c5bbea8b63c",
     "dirty": true
   },
   "training_environment": {

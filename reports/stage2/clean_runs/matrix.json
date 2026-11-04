@@ -13,7 +13,7 @@
     100
   ],
   "epochs_max": 5,
-  "generated_utc": "2026-11-04T10:41:08.229737+00:00",
+  "generated_utc": "2026-11-04T10:50:21.867102+00:00",
   "dataset_sha256": "36923c3705a59e08fe9c3883d8bc2dd966ef93e22cb78ac41171782a698d56e0",
   "glove": {
     "source": "https://downloads.cs.stanford.edu/nlp/data/glove.6B.zip",
@@ -33,9 +33,9 @@
       "test_macro_f1": 0.14295617884775405,
       "test_accuracy": 0.16133333333333333,
       "oos_auroc": 0.6075092222222223,
-      "total_epoch_seconds": 2.9458882003091276,
+      "total_epoch_seconds": 2.829634699970484,
       "peak_gpu_allocated_mb": 96.1953125,
-      "run_dir": "artifacts\\stage2\\clean_matrix_v1\\k5_s17"
+      "run_dir": "artifacts\\stage2\\clean_matrix_frozen\\k5_s17"
     },
     {
       "seed": 42,
@@ -46,9 +46,9 @@
       "test_macro_f1": 0.10229072562890837,
       "test_accuracy": 0.11688888888888889,
       "oos_auroc": 0.5986277777777778,
-      "total_epoch_seconds": 2.957445500069298,
+      "total_epoch_seconds": 2.640722000040114,
       "peak_gpu_allocated_mb": 97.9609375,
-      "run_dir": "artifacts\\stage2\\clean_matrix_v1\\k5_s42"
+      "run_dir": "artifacts\\stage2\\clean_matrix_frozen\\k5_s42"
     },
     {
       "seed": 2026,
@@ -59,9 +59,9 @@
       "test_macro_f1": 0.10000595167780749,
       "test_accuracy": 0.12444444444444444,
       "oos_auroc": 0.6228986666666667,
-      "total_epoch_seconds": 2.7456931999186054,
+      "total_epoch_seconds": 2.752822499955073,
       "peak_gpu_allocated_mb": 97.9658203125,
-      "run_dir": "artifacts\\stage2\\clean_matrix_v1\\k5_s2026"
+      "run_dir": "artifacts\\stage2\\clean_matrix_frozen\\k5_s2026"
     },
     {
       "seed": 17,
@@ -72,9 +72,9 @@
       "test_macro_f1": 0.3484983261503771,
       "test_accuracy": 0.37977777777777777,
       "oos_auroc": 0.6811891111111111,
-      "total_epoch_seconds": 4.461004999815486,
+      "total_epoch_seconds": 3.496709199855104,
       "peak_gpu_allocated_mb": 97.1005859375,
-      "run_dir": "artifacts\\stage2\\clean_matrix_v1\\k10_s17"
+      "run_dir": "artifacts\\stage2\\clean_matrix_frozen\\k10_s17"
     },
     {
       "seed": 42,
@@ -85,9 +85,9 @@
       "test_macro_f1": 0.34340471800614314,
       "test_accuracy": 0.3675555555555556,
       "oos_auroc": 0.6624781111111111,
-      "total_epoch_seconds": 4.863069699960761,
+      "total_epoch_seconds": 3.9666581000201404,
       "peak_gpu_allocated_mb": 98.78076171875,
-      "run_dir": "artifacts\\stage2\\clean_matrix_v1\\k10_s42"
+      "run_dir": "artifacts\\stage2\\clean_matrix_frozen\\k10_s42"
     },
     {
       "seed": 2026,
@@ -98,9 +98,9 @@
       "test_macro_f1": 0.35514393306658526,
       "test_accuracy": 0.38133333333333336,
       "oos_auroc": 0.7128723333333333,
-      "total_epoch_seconds": 4.1613391999853775,
+      "total_epoch_seconds": 3.9732822999358177,
       "peak_gpu_allocated_mb": 98.65087890625,
-      "run_dir": "artifacts\\stage2\\clean_matrix_v1\\k10_s2026"
+      "run_dir": "artifacts\\stage2\\clean_matrix_frozen\\k10_s2026"
     },
     {
       "seed": 17,
@@ -111,9 +111,9 @@
       "test_macro_f1": 0.6251700610530408,
       "test_accuracy": 0.6357777777777778,
       "oos_auroc": 0.7939261111111111,
-      "total_epoch_seconds": 6.4335111998952925,
+      "total_epoch_seconds": 6.12888779991772,
       "peak_gpu_allocated_mb": 99.57275390625,
-      "run_dir": "artifacts\\stage2\\clean_matrix_v1\\k20_s17"
+      "run_dir": "artifacts\\stage2\\clean_matrix_frozen\\k20_s17"
     },
     {
       "seed": 42,
@@ -124,9 +124,9 @@
       "test_macro_f1": 0.6147600335187856,
       "test_accuracy": 0.6255555555555555,
       "oos_auroc": 0.7794035555555555,
-      "total_epoch_seconds": 6.027374299825169,
+      "total_epoch_seconds": 6.384461600217037,
       "peak_gpu_allocated_mb": 98.177734375,
-      "run_dir": "artifacts\\stage2\\clean_matrix_v1\\k20_s42"
+      "run_dir": "artifacts\\stage2\\clean_matrix_frozen\\k20_s42"
     },
     {
       "seed": 2026,
@@ -137,9 +137,9 @@
       "test_macro_f1": 0.6304570477449977,
       "test_accuracy": 0.6393333333333333,
       "oos_auroc": 0.806102,
-      "total_epoch_seconds": 6.124603499891236,
+      "total_epoch_seconds": 6.063947899965569,
       "peak_gpu_allocated_mb": 98.271484375,
-      "run_dir": "artifacts\\stage2\\clean_matrix_v1\\k20_s2026"
+      "run_dir": "artifacts\\stage2\\clean_matrix_frozen\\k20_s2026"
     },
     {
       "seed": 17,
@@ -150,9 +150,9 @@
       "test_macro_f1": 0.8947206681484962,
       "test_accuracy": 0.8955555555555555,
       "oos_auroc": 0.9196143333333333,
-      "total_epoch_seconds": 24.776228200178593,
+      "total_epoch_seconds": 25.270255099865608,
       "peak_gpu_allocated_mb": 102.4052734375,
-      "run_dir": "artifacts\\stage2\\clean_matrix_v1\\k100_s17"
+      "run_dir": "artifacts\\stage2\\clean_matrix_frozen\\k100_s17"
     },
     {
       "seed": 42,
@@ -163,9 +163,9 @@
       "test_macro_f1": 0.895137703861966,
       "test_accuracy": 0.896,
       "oos_auroc": 0.9233503333333334,
-      "total_epoch_seconds": 25.602846999885514,
+      "total_epoch_seconds": 25.8299022000283,
       "peak_gpu_allocated_mb": 102.51171875,
-      "run_dir": "artifacts\\stage2\\clean_matrix_v1\\k100_s42"
+      "run_dir": "artifacts\\stage2\\clean_matrix_frozen\\k100_s42"
     },
     {
       "seed": 2026,
@@ -176,9 +176,9 @@
       "test_macro_f1": 0.8937689968663313,
       "test_accuracy": 0.8946666666666667,
       "oos_auroc": 0.9234336666666667,
-      "total_epoch_seconds": 24.556286000064574,
+      "total_epoch_seconds": 23.907729200087488,
       "peak_gpu_allocated_mb": 102.43408203125,
-      "run_dir": "artifacts\\stage2\\clean_matrix_v1\\k100_s2026"
+      "run_dir": "artifacts\\stage2\\clean_matrix_frozen\\k100_s2026"
     }
   ],
   "summary_by_shots": {
@@ -351,6 +351,7 @@
       }
     }
   },
+  "wall_seconds": 263.2297917000251,
   "interpretation": "The CLINC150 paper reports GloVe-CNN accuracy and OOS recall, not this BiLSTM-Attention macro-F1 or MSP-AUROC configuration; results are reported as a project baseline.",
   "model_metrics_used_for_selection": "validation macro-F1 only"
 }
