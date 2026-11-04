@@ -138,7 +138,8 @@ def main():
         entry = {"epoch": epoch, "train_loss": loss, "val_loss": val_loss,
                  "val_macro_f1": result["macro_f1"], "val_accuracy": result["accuracy"],
                  "epoch_seconds": time.perf_counter()-start,
-                 "peak_gpu_memory_mb": torch.cuda.max_memory_allocated(device)/1024**2 if device.type == "cuda" else None}
+                 "peak_gpu_memory_mb": torch.cuda.max_memory_allocated(device)/1024**2 if device.type == "cuda" else None,
+                 "peak_gpu_reserved_mb": torch.cuda.max_memory_reserved(device)/1024**2 if device.type == "cuda" else None}
         history.append(entry)
         improved = entry["val_macro_f1"] > best_f1
         if improved:

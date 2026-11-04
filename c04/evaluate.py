@@ -1,6 +1,7 @@
 """Evaluate a saved classifier on the official closed-set and OOS test splits."""
 import argparse
 import csv
+import os
 from pathlib import Path
 
 from .runtime import (choose_device, configure_runtime, environment, load_official_split,
@@ -21,6 +22,9 @@ def write_csv(path, header, rows):
 
 
 def plot_results(output, result, oos_truth, scores, history):
+    cache = Path("tmp/matplotlib").resolve()
+    cache.mkdir(parents=True, exist_ok=True)
+    os.environ.setdefault("MPLCONFIGDIR", str(cache))
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt

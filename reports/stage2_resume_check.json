@@ -1,0 +1,47 @@
+{
+  "train_sha256": "b4167759fd2d675c32254770a8e003b4a60c2b2bdbc83ea6410c474be3c87724",
+  "seed": 17,
+  "epochs": 2,
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "torch": "2.9.1+cu126",
+    "cuda_runtime": "12.6",
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU"
+  },
+  "parameters_bitwise_equal": true,
+  "epoch_metrics_exactly_equal": true,
+  "continuous_history": [
+    {
+      "epoch": 1,
+      "train_loss": 5.018612600962321,
+      "val_loss": 4.993555068969727,
+      "val_macro_f1": 0.008682890805396552,
+      "val_accuracy": 0.025
+    },
+    {
+      "epoch": 2,
+      "train_loss": 4.978081897735596,
+      "val_loss": 4.9691853523254395,
+      "val_macro_f1": 0.01700805990762464,
+      "val_accuracy": 0.033666666666666664
+    }
+  ],
+  "resumed_history": [
+    {
+      "epoch": 1,
+      "train_loss": 5.018612600962321,
+      "val_loss": 4.993555068969727,
+      "val_macro_f1": 0.008682890805396552,
+      "val_accuracy": 0.025
+    },
+    {
+      "epoch": 2,
+      "train_loss": 4.978081897735596,
+      "val_loss": 4.9691853523254395,
+      "val_macro_f1": 0.01700805990762464,
+      "val_accuracy": 0.033666666666666664
+    }
+  ]
+}
