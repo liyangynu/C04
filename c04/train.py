@@ -87,6 +87,8 @@ def main():
         matrix = previous["model"]["embedding.weight"]
         asset_report = previous["embedding_report"]
     else:
+        if file_sha256(args.glove) != read_json("configs/glove.json")["member_sha256"]:
+            raise ValueError("Expected the pinned Stanford GloVe 6B 100d vectors")
         if output.exists() and any(output.iterdir()):
             raise ValueError("Output already contains files; use a new directory or --resume")
         output.mkdir(parents=True, exist_ok=True)

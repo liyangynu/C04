@@ -1,0 +1,21 @@
+{
+  "seed": 17,
+  "dimension": 100,
+  "vocab_size": 1767,
+  "train_sha256": "3189eecd49977fad819dffc3acdef0640b593c73e62a21aa5c8d35fb697260bb",
+  "glove_sha256": "95dde4dfd627ab26608d33e76d1195ec059734bd29089ea52cadb08d07c64544",
+  "vocab_sha256": "7c24feae9dda9d85a5a93d4dbc03207baed433d957425d8d7218a641db709bab",
+  "matrix_sha256": "b83608e2247a75fa387b63d98a9685fb727514b94d7120f36dff2f9345c8ba13",
+  "covered_types": 1690,
+  "total_types": 1765,
+  "type_coverage": 0.9575070821529745,
+  "token_coverage": 0.983091402137502,
+  "text_stats": {
+    "rows": 1500,
+    "tokens": 12538,
+    "unknown_tokens": 0,
+    "unknown_token_rate": 0.0,
+    "truncated_rows": 0,
+    "max_observed_length": 28
+  }
+}

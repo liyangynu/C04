@@ -1,0 +1,35 @@
+{
+  "best_epoch": 1,
+  "best_val_macro_f1": 0.007768878424228134,
+  "epochs_completed": 1,
+  "early_stopped": false,
+  "total_epoch_seconds": 1.4669320000102744,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 5.010309383392334,
+      "val_loss": 4.970782279968262,
+      "val_macro_f1": 0.007768878424228134,
+      "val_accuracy": 0.026333333333333334,
+      "epoch_seconds": 1.4669320000102744,
+      "peak_gpu_memory_mb": 96.83203125
+    }
+  ],
+  "fingerprints": {
+    "train": "3189eecd49977fad819dffc3acdef0640b593c73e62a21aa5c8d35fb697260bb",
+    "validation": "e4e166ea95ec901f5ab292a4ad2115b383564ae7e352710e7de723d6d7201d9b",
+    "labels": "0bec80c5089c43d6abe66546d6e236064be65b4518be21724c5494051aeb2e8b"
+  },
+  "git": {
+    "revision": "4a5b5c88b8953cd028b5ef4b18fef7acf8ee0fc3",
+    "dirty": true
+  },
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "torch": "2.9.1+cu126",
+    "cuda_runtime": "12.6",
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU"
+  }
+}
