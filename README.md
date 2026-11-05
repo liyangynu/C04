@@ -45,6 +45,14 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m c04.noise --input data/processed/fewshot/seed_17/k_10.jsonl --kind symmetric --rate 0.3 --seed 17 --output data/noisy/manual_s17_k10_sym30
 ```
 
+GCE 使用与 CE 相同的训练入口，只需切换配置：
+
+```powershell
+.\.venv\Scripts\python.exe -m c04.train --train data/noisy/manual_s17_k10_sym30/train.jsonl --config configs/gce.json --seed 17 --device cuda --output artifacts/gce_s17_k10_sym30
+```
+
+GCE 试跑结果和当前限制记录在 `reports/stage3_gce_pilot.json`。
+
 ## 文件与结果位置
 
 | 路径 | 用途 |

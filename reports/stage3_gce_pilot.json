@@ -1,0 +1,40 @@
+{
+  "stage": 3,
+  "method": "gce_q0.7",
+  "scope": "single_seed_10shot_symmetric30_pilot",
+  "seed": 17,
+  "shots_per_class": 10,
+  "noise": {
+    "kind": "symmetric",
+    "rate": 0.3,
+    "changed": 450,
+    "total": 1500,
+    "train_sha256": "3668dcbd2431f924b93bceb57eb879619eb6b7d59625ad10d5d853b0920dc842"
+  },
+  "protocol": {
+    "epochs_max": 5,
+    "selection": "validation macro-F1",
+    "same_training_file_as_ce": true,
+    "audit_labels_used_by_training": false
+  },
+  "environment": {
+    "python": "3.12.14",
+    "torch": "2.9.1+cu126",
+    "device": "NVIDIA GeForce RTX 3060 Laptop GPU"
+  },
+  "results": {
+    "ce": {
+      "test_macro_f1": 0.14861147101856506,
+      "test_accuracy": 0.18577777777777776,
+      "oos_auroc": 0.6673301111111111,
+      "best_val_macro_f1": 0.14006213648052637
+    },
+    "gce_q0.7": {
+      "test_macro_f1": 0.04412840347491263,
+      "test_accuracy": 0.08866666666666667,
+      "oos_auroc": 0.5719543333333333,
+      "best_val_macro_f1": 0.044081399130756274
+    }
+  },
+  "interpretation": "This is an implementation pilot, not a final robustness conclusion. Under the fixed five-epoch budget and this small noisy split, GCE learned more slowly than CE. The next check is a budget-sensitive pilot before a multi-seed matrix."
+}
