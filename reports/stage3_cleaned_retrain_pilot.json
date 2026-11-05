@@ -1,0 +1,24 @@
+{
+  "stage": 3,
+  "method": "confident_learning_clean_then_ce",
+  "scope": "single_seed_10shot_symmetric30_pilot",
+  "seed": 17,
+  "input_oof_train_sha256": "3668dcbd2431f924b93bceb57eb879619eb6b7d59625ad10d5d853b0920dc842",
+  "cleaned_rows": 677,
+  "budget_epochs": 5,
+  "results": {
+    "noisy_ce": {
+      "test_macro_f1": 0.14861147101856506,
+      "test_accuracy": 0.18577777777777776,
+      "oos_auroc": 0.6673301111111111
+    },
+    "cleaned_ce": {
+      "test_macro_f1": 0.02422951502358562,
+      "test_accuracy": 0.04822222222222222,
+      "oos_auroc": 0.6730444444444444
+    }
+  },
+  "uses_clean_labels": false,
+  "uses_test_labels_for_cleaning": false,
+  "interpretation": "The first cleaning pilot failed on closed-set classification: the short-budget OOF models flagged too many examples and the reduced training set lost useful coverage. This is retained as a negative result; no threshold was tuned against test labels."
+}
