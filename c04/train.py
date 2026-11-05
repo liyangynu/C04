@@ -13,18 +13,19 @@ import torch
 
 from .common import file_sha256, read_json, read_jsonl, write_json
 from .embeddings import build_assets
+from .losses import training_loss
 from .metrics import classification_metrics
 from .model import BiLSTMClassifier
 from .text import text_stats
 
 
-def train_epoch(model, loader, optimizer, device, gradient_clip):
+def train_epoch(model, loader, optimizer, device, gradient_clip, loss_config):
     model.train()
     total, seen = 0.0, 0
     for tokens, lengths, labels in loader:
         optimizer.zero_grad(set_to_none=True)
         logits = model(tokens.to(device), lengths)
-        loss = torch.nn.functional.cross_entropy(logits, labels.to(device))
+        loss = training_loss(logits, labels.to(device), loss_config).mean()
         if not torch.isfinite(loss):
             raise RuntimeError("Nonfinite training loss")
         loss.backward()
@@ -132,7 +133,7 @@ def main():
             torch.cuda.reset_peak_memory_stats(device)
             torch.cuda.synchronize(device)
         start = time.perf_counter()
-        loss = train_epoch(model, train_loader, optimizer, device, training["gradient_clip"])
+        loss = train_epoch(model, train_loader, optimizer, device, training["gradient_clip"], training)
         logits, truth = predict(model, val_loader, device)
         result = classification_metrics(truth, logits.argmax(axis=1), config["model"]["classes"])
         val_loss = float(torch.nn.functional.cross_entropy(torch.from_numpy(logits), torch.from_numpy(truth)))

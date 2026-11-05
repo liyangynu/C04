@@ -9,6 +9,7 @@
   },
   "text": {"max_length": 40, "min_frequency": 1},
   "training": {
+    "loss": "ce",
     "learning_rate": 0.001,
     "weight_decay": 0.01,
     "batch_size": 64,
