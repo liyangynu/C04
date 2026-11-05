@@ -53,6 +53,14 @@ GCE 使用与 CE 相同的训练入口，只需切换配置：
 
 GCE 试跑结果和当前限制记录在 `reports/stage3_gce_pilot.json`。
 
+五折 OOF 置信学习试跑：
+
+```powershell
+.\.venv\Scripts\python.exe -m c04.run_confident_learning --train data/noisy/manual_s17_k10_sym30/train.jsonl --config configs/baseline.json --seed 17 --folds 5 --device cuda --output artifacts/confident_learning_s17_k10_sym30
+```
+
+该入口只将观测训练标签和折外概率用于清洗，并保存每个样本的折号、概率和清洗报告；试跑记录在 `reports/stage3_oof_pilot.json`。
+
 ## 文件与结果位置
 
 | 路径 | 用途 |

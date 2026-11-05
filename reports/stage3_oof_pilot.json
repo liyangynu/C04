@@ -1,0 +1,17 @@
+{
+  "stage": 3,
+  "method": "five_fold_oof_confident_learning",
+  "scope": "single_seed_10shot_symmetric30_pilot",
+  "seed": 17,
+  "folds": 5,
+  "input_train_sha256": "3668dcbd2431f924b93bceb57eb879619eb6b7d59625ad10d5d853b0920dc842",
+  "rows": 1500,
+  "rows_with_exactly_one_oof_prediction": 1500,
+  "rows_flagged_by_observed_label_only_estimator": 823,
+  "rows_kept_for_cleaned_train": 677,
+  "uses_clean_labels": false,
+  "uses_test_labels": false,
+  "fallback_mode": "balanced_non_stratified",
+  "fallback_reason": "10-shot noisy labels have fewer than five observations in some observed classes",
+  "interpretation": "The fold runner and coverage audit completed. The high issue count is not a final cleaning result: the five-epoch fold models are underfit on this 10-shot pilot, so the next step is to compare a longer OOF budget and protect against over-cleaning before retraining."
+}
