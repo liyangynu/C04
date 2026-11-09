@@ -1,0 +1,13 @@
+{
+  "stage": 3,
+  "method": "gce_q_ablation_pilot",
+  "scope": "single_seed_10shot_symmetric30_5_epoch",
+  "seed": 17,
+  "train_sha256": "3668dcbd2431f924b93bceb57eb879619eb6b7d59625ad10d5d853b0920dc842",
+  "results": {
+    "q0.2": {"test_macro_f1": 0.1206, "test_accuracy": 0.1638, "oos_auroc": 0.6582, "best_val_macro_f1": 0.1125},
+    "q0.7": {"test_macro_f1": 0.0441, "test_accuracy": 0.0887, "oos_auroc": 0.5720, "best_val_macro_f1": 0.0441},
+    "q0.9": {"test_macro_f1": 0.0197, "test_accuracy": 0.0527, "oos_auroc": 0.5324, "best_val_macro_f1": 0.0216}
+  },
+  "interpretation": "At five epochs and this small noisy split, lower q performed better in this pilot, but every setting is still budget-limited. The q choice is not frozen from this result; extended-budget and multi-seed checks remain required."
+}

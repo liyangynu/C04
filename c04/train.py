@@ -50,6 +50,7 @@ def main():
     parser.add_argument("--config", type=Path, default=Path("configs/baseline.json"))
     parser.add_argument("--seed", type=int, default=17)
     parser.add_argument("--epochs", type=int, help="Total target epochs, including already completed epochs")
+    parser.add_argument("--q", type=float, help="Override GCE q for a fresh run")
     parser.add_argument("--device", choices=["auto", "cpu", "cuda"], default="auto")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--resume", action="store_true", help="Continue output/last.pt with its RNG and optimizer state")
@@ -57,6 +58,10 @@ def main():
     config = read_json(args.config)
     if args.epochs is not None:
         config["training"]["max_epochs"] = args.epochs
+    if args.q is not None:
+        if config["training"].get("loss", "ce") != "gce":
+            raise ValueError("--q can only override a GCE configuration")
+        config["training"]["q"] = args.q
     training = config["training"]
     if training["max_epochs"] < 1 or training["patience"] < 1:
         raise ValueError("Positive epoch count and patience required")
