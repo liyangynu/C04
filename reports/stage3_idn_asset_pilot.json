@@ -1,0 +1,23 @@
+{
+  "stage": 3,
+  "scope": "seed17_10shot_real_frozen_encoder",
+  "encoder": {
+    "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "dimension": 384,
+    "license": "apache-2.0",
+    "model_safetensors_sha256": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db"
+  },
+  "input_train": "data/processed/fewshot/seed_17/k_10.jsonl",
+  "embedding_artifact": {
+    "rows": 1500,
+    "sha256": "a36b69c65383c9fdc2e3a11296d64751ccec7a1e7564d0ff5d7c6e4be57077d0",
+    "format": "npz_no_pickle"
+  },
+  "idn30": {
+    "changed": 450,
+    "total": 1500,
+    "train_sha256": "326e717e7dd79416de7ee06f04cac0d7183556ca0aa8a758e852aac76316ca7b"
+  },
+  "note": "The model was downloaded with command-line HTTP because direct Python HTTPS was blocked in this environment; the fixed revision and file hash are recorded for replay."
+}

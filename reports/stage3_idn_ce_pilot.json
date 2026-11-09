@@ -1,0 +1,19 @@
+{
+  "stage": 3,
+  "method": "clean_cross_entropy_on_real_idn30",
+  "scope": "single_seed_10shot_5_epoch",
+  "seed": 17,
+  "noise_train_sha256": "326e717e7dd79416de7ee06f04cac0d7183556ca0aa8a758e852aac76316ca7b",
+  "encoder_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "results": {
+    "test_macro_f1": 0.2093,
+    "test_accuracy": 0.2487,
+    "oos_auroc": 0.6615,
+    "best_val_macro_f1": 0.2144
+  },
+  "comparison": {
+    "symmetric30_same_seed_shots_budget_macro_f1": 0.1486,
+    "idn30_minus_symmetric30_macro_f1": 0.0607
+  },
+  "interpretation": "This is an IDN asset and pipeline pilot, not a final noise-type conclusion. It uses one seed and the short five-epoch budget; the real comparison requires the same multi-seed matrix for both noise types."
+}

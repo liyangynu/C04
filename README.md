@@ -61,6 +61,15 @@ GCE 试跑结果和当前限制记录在 `reports/stage3_gce_pilot.json`。
 
 该入口只将观测训练标签和折外概率用于清洗，并保存每个样本的折号、概率和清洗报告；试跑记录在 `reports/stage3_oof_pilot.json`。
 
+真实实例相关噪声使用固定的 MiniLM 句向量模型。先安装 `requirements-idn.txt`，再按 `configs/idn_encoder.json` 中的 revision 下载模型并导出训练向量：
+
+```powershell
+.\.venv\Scripts\python.exe -m c04.sentence_embeddings --input data/processed/fewshot/seed_17/k_10.jsonl --output artifacts/idn_embeddings_s17_k10.npz --model <local-fixed-model-directory> --revision 1110a243fdf4706b3f48f1d95db1a4f5529b4d41 --device cuda
+.\.venv\Scripts\python.exe -m c04.noise --input data/processed/fewshot/seed_17/k_10.jsonl --kind instance --rate 0.3 --seed 17 --embeddings artifacts/idn_embeddings_s17_k10.npz --output artifacts/noisy_idn30_s17_k10
+```
+
+模型文件和向量校验记录在 `reports/stage3_idn_asset_pilot.json`。
+
 ## 文件与结果位置
 
 | 路径 | 用途 |
