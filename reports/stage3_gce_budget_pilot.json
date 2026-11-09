@@ -1,0 +1,15 @@
+{
+  "stage": 3,
+  "method": "ce_vs_gce_budget_sensitivity",
+  "scope": "single_seed_10shot_symmetric30",
+  "seed": 17,
+  "noise_train_sha256": "3668dcbd2431f924b93bceb57eb879619eb6b7d59625ad10d5d853b0920dc842",
+  "selection": "validation macro-F1",
+  "results": {
+    "ce_5_epoch": {"best_epoch": 5, "test_macro_f1": 0.14861147101856506, "test_accuracy": 0.18577777777777776, "oos_auroc": 0.6673301111111111},
+    "gce_5_epoch_q0.7": {"best_epoch": 5, "test_macro_f1": 0.04412840347491263, "test_accuracy": 0.08866666666666667, "oos_auroc": 0.5719543333333333},
+    "ce_budget_extended": {"max_epochs": 30, "epochs_completed": 19, "best_epoch": 17, "test_macro_f1": 0.4858, "test_accuracy": 0.4940, "oos_auroc": 0.7453},
+    "gce_budget_extended_q0.7": {"max_epochs": 30, "epochs_completed": 29, "best_epoch": 27, "test_macro_f1": 0.5527, "test_accuracy": 0.5584, "oos_auroc": 0.7526}
+  },
+  "interpretation": "With the same noisy data and initialization protocol, extending the budget changes the comparison: GCE overtakes CE in this single-seed pilot. This is evidence against interpreting the five-epoch result as a final robustness conclusion; a multi-seed matrix is still required."
+}
