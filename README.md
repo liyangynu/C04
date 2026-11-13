@@ -70,6 +70,14 @@ GCE 试跑结果和当前限制记录在 `reports/stage3_gce_pilot.json`。
 
 模型文件和向量校验记录在 `reports/stage3_idn_asset_pilot.json`。
 
+固定真实 IDN30%、10-shot、三个 seed 的 CE 矩阵可用下面的入口重跑：
+
+```powershell
+.\.venv\Scripts\python.exe -m c04.run_noise_matrix --seeds 17 42 2026 --shots 10 --noise instance --rate 0.3 --method ce --epochs 5 --device cuda --embeddings-template 'artifacts/stage3_pilot/idn_embeddings_s{seed}_k{shots}.npz' --output artifacts/stage3_idn_matrix_ce_k10
+```
+
+汇总结果记录在 `reports/stage3_idn_ce_matrix.json`。
+
 ## 文件与结果位置
 
 | 路径 | 用途 |

@@ -1,0 +1,15 @@
+{
+  "stage": 3,
+  "method": "clean_cross_entropy",
+  "noise": "real_instance_dependent",
+  "rate": 0.3,
+  "shots_per_class": 10,
+  "seeds": [17, 42, 2026],
+  "epochs_max": 5,
+  "summary": {
+    "test_macro_f1": {"mean": 0.19676536732689812, "std_sample": 0.015857336110173894, "values": [0.20927581492187045, 0.17893121291207456, 0.20208907414674934]},
+    "test_accuracy": {"mean": 0.23777777777777778, "std_sample": 0.013989413987144128, "values": [0.24866666666666667, 0.222, 0.24266666666666667]},
+    "oos_auroc": {"mean": 0.6787332962962962, "std_sample": 0.015081910112651219, "values": [0.6615397777777777, 0.6849318888888889, 0.6897282222222222]}
+  },
+  "interpretation": "This is the first three-seed real-IDN CE matrix at the fixed five-epoch project budget. GCE and confident-learning comparisons on the same generated noise files are still pending."
+}
