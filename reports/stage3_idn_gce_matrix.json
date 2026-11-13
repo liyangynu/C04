@@ -1,0 +1,16 @@
+{
+  "stage": 3,
+  "method": "gce_q0.7",
+  "noise": "real_instance_dependent",
+  "rate": 0.3,
+  "shots_per_class": 10,
+  "seeds": [17, 42, 2026],
+  "epochs_max": 5,
+  "summary": {
+    "test_macro_f1": {"mean": 0.06170480500481481, "std_sample": 0.008576468879669185, "values": [0.06577102640462924, 0.05185151520915138, 0.06749187340066379]},
+    "test_accuracy": {"mean": 0.10748148148148147, "std_sample": 0.01566994974793731, "values": [0.10111111111111111, 0.096, 0.12533333333333332]},
+    "oos_auroc": {"mean": 0.6176101851851851, "std_sample": 0.05078990056484491, "values": [0.5589631111111111, 0.6468664444444444, 0.647001]}
+  },
+  "paired_clean_ce": {"test_macro_f1_mean": 0.19676536732689812, "test_macro_f1_std_sample": 0.015857336110173894, "oos_auroc_mean": 0.6787332962962962},
+  "interpretation": "At the fixed five-epoch budget, GCE is below CE on this real-IDN 10-shot matrix. This is a paired engineering result, not the final method ranking, because earlier budget sensitivity showed GCE can need substantially more updates."
+}
