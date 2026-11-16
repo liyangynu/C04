@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-16",
+  "checked_commit": "a3692dcee659e8c7e0cf324c056581c67f42117f",
+  "checkout": "tmp/stage3-checkout-final",
+  "fresh_git_clone": true,
+  "python_environment": "reused project .venv; not a new dependency installation",
+  "official_data_source": "existing fixed data_full.json, SHA256 checked by c04.prepare",
+  "prepared_files_verified": 18,
+  "prediction_runs_verified": 12,
+  "oof_pipelines_verified": 3,
+  "observed_training_files_rebuilt_and_hash_verified": 3,
+  "tracked_checkout_clean_after_checks": true,
+  "full_27_fit_training_repeated_in_checkout": false,
+  "commands": [
+    "git clone --no-hardlinks . tmp/stage3-checkout-final",
+    "python -m c04.prepare --source <existing-fixed-data_full.json>",
+    "python -m c04.formal_results --results reports/stage3/formal_idn10_v2",
+    "python -m c04.prepare_formal_data --output data/formal_idn10_v2"
+  ],
+  "all_passed": true
+}
