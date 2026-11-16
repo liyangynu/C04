@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-16",
+  "checked_commit": "7dc6ee293cc51862432cd163f7cfe58b6a79a4ab",
+  "checkout": "tmp/stage3-symmetric-checkout",
+  "fresh_git_clone": true,
+  "python_environment": "reused project .venv; no new dependency installation",
+  "prepared_files_verified": 18,
+  "prediction_runs_verified": 24,
+  "oof_pipelines_verified": 6,
+  "observed_symmetric_files_rebuilt_and_hash_verified": 3,
+  "independent_generator_matches_rebuilt_files": true,
+  "rebuilt_noise_metadata": "symmetric",
+  "cross_condition_analysis_json_reproduced": true,
+  "tracked_checkout_clean_after_checks": true,
+  "full_27_fit_training_repeated_in_checkout": false,
+  "commands": [
+    "git clone --no-hardlinks . tmp/stage3-symmetric-checkout",
+    "python -m c04.prepare --source <existing-fixed-data_full.json>",
+    "python -m c04.formal_results --results reports/stage3/formal_sym10_v2",
+    "python -m c04.formal_results --results reports/stage3/formal_idn10_v2",
+    "python -m c04.prepare_formal_data --results reports/stage3/formal_sym10_v2 --output data/replay_sym10_v2",
+    "python -m c04.prepare_symmetric_comparison --output data/regenerated_sym10_v2",
+    "python -m c04.compare_noise_conditions --output tmp/noise-compare"
+  ],
+  "all_passed": true
+}
