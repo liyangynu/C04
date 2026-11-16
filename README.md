@@ -2,7 +2,7 @@
 
 本项目研究小样本与标签噪声共同作用下的短文本意图识别，采用 CLINC150 数据集，计划对比交叉熵基线、GCE 鲁棒损失和置信学习清洗三条路线。
 
-当前版本包含数据准备、噪声构造、GloVe-BiLSTM-Attention干净基线，以及真实IDN30%、10-shot、三个种子的CE/GCE/置信学习配对对照。干净基线见[阶段2结果](docs/阶段2基线结果.md)，本轮对照见[阶段3正式对照结果](docs/阶段3正式对照结果.md)。旧5轮试跑保留，尚未完成全部样本量和噪声比例实验。
+当前版本包含数据准备、噪声构造、GloVe-BiLSTM-Attention干净基线，以及10-shot、三个种子在真实IDN30%和对称30%下的CE/GCE/置信学习配对对照。干净基线见[阶段2结果](docs/阶段2基线结果.md)，两组结果分别见[IDN正式结果](docs/阶段3正式对照结果.md)、[对称噪声正式结果](docs/阶段3对称噪声正式结果.md)，并提供[两类条件比较](docs/阶段3两类噪声比较.md)。旧5轮试跑保留，尚未完成全部样本量和噪声比例实验。
 
 ## 当前可运行内容
 
@@ -19,13 +19,20 @@
 
 ## 本轮配对对照
 
-本轮固定最多30轮、早停耐心5，验证宏F1选模；三方法逐种子复用同一观测噪声文件，另跑相同预算的干净CE作为保持率参考。包含12次最终模型训练和15次OOF训练。协议、依赖和完整命令见[正式对照运行说明](docs/正式对照运行说明.md)。
+每组固定最多30轮、早停耐心5，验证宏F1选模；三方法逐种子复用同一观测噪声文件，另跑相同预算的干净CE作为保持率参考。每组包含12次最终模型训练和15次OOF训练，两组分别运行。协议、依赖和完整命令见[正式对照运行说明](docs/正式对照运行说明.md)。
 
 准备官方数据并安装 `requirements-formal-lock.txt` 后，可核验已发布预测并重建完全相同的观测训练输入：
 
 ```powershell
 .\.venv\Scripts\python.exe -m c04.formal_results --results reports/stage3/formal_idn10_v2
 .\.venv\Scripts\python.exe -m c04.prepare_formal_data --output data/formal_idn10_v2
+```
+
+对称噪声使用显式结果目录：
+
+```powershell
+.\.venv\Scripts\python.exe -m c04.formal_results --results reports/stage3/formal_sym10_v2
+.\.venv\Scripts\python.exe -m c04.prepare_formal_data --results reports/stage3/formal_sym10_v2 --output data/replay_sym10_v2
 ```
 
 旧清洗试跑使用的是阈值启发式，本轮改为校准置信学习，两个算法版本分别记录。清洗后的负结果保留；不根据测试分数或已知翻转数量调整删样数量。
@@ -106,8 +113,10 @@ GCE 试跑结果和当前限制记录在 `reports/stage3_gce_pilot.json`。
 | `c04/export_results.py` / `c04/check_results.py` | 导出原始预测、日志和图表，并独立重算结果 |
 | `reports/stage2/clean_runs/` | 12组逐种子预测、指标、配置、日志与图表 |
 | `reports/stage3/formal_idn10_v2/` | 本轮12组预测、日志、图表、OOF概率及清洗证据 |
+| `reports/stage3/formal_sym10_v2/` | 对称30%扩展的12组结果及OOF清洗证据 |
 | `c04/run_formal_comparison.py` | 固定范围的27次训练与独立评估入口 |
 | `c04/formal_results.py` / `c04/prepare_formal_data.py` | 独立验收及精确重建观测标签 |
+| `c04/compare_noise_conditions.py` | 两类条件比较及干净参考重跑一致性核对 |
 | `tests/test_data.py` | 数据隔离、重放一致性与噪声性质测试 |
 | `reports/stage1_validation.json` | 数据检查结果与各组数据文件校验值 |
 | `data/processed/manifest.json` | 原始文件与处理产物校验值 |
@@ -130,6 +139,6 @@ GCE 试跑结果和当前限制记录在 `reports/stage3_gce_pilot.json`。
 
 完整训练集的三种子测试宏F1为 **0.8945±0.0007**，准确率 **0.8954±0.0007**，OOS AUROC **0.9221±0.0022**。每组最多5轮，检查点仅由验证宏F1选择。
 
-5-shot和10-shot在5轮预算下存在欠拟合，已保留低分结果和单独的30轮预算诊断。本轮以统一30轮上限补齐一组IDN配对对照；后续仍需其他噪声类型/比例及样本量矩阵、正式消融与统计检验、可比公开基线验收，以及报告PDF和PPT。三种子描述性结果不等于显著性或OOS非劣结论。
+5-shot和10-shot在5轮预算下存在欠拟合，已保留低分结果和单独的30轮预算诊断。以统一30轮上限分别完成IDN30%与对称30%配对对照；后续仍需其他比例及样本量矩阵、正式消融与统计检验、可比公开基线验收，以及报告PDF和PPT。三种子描述性结果不等于显著性或OOS非劣结论。
 
 数据来源与使用条款以 [CLINC150 官方仓库](https://github.com/clinc/oos-eval) 为准。算法定义与参考资料见[实验协议](docs/实验协议.md)。

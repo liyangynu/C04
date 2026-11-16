@@ -1,0 +1,85 @@
+{
+  "scope": "symmetric30/10-shot/three-seed/v2",
+  "noise": "symmetric",
+  "rate": 0.3,
+  "diagnostics_use_clean_training_labels": true,
+  "used_for_training_or_threshold_selection": false,
+  "posthoc_cleaning": [
+    {
+      "seed": 17,
+      "actually_flipped": 450,
+      "flagged": 880,
+      "removed_flipped": 418,
+      "removed_originally_clean": 462,
+      "kept_flipped": 32,
+      "detection_precision": 0.475,
+      "detection_recall": 0.9288888888888889,
+      "final_optimizer_steps": 300
+    },
+    {
+      "seed": 42,
+      "actually_flipped": 450,
+      "flagged": 913,
+      "removed_flipped": 429,
+      "removed_originally_clean": 484,
+      "kept_flipped": 21,
+      "detection_precision": 0.46987951807228917,
+      "detection_recall": 0.9533333333333334,
+      "final_optimizer_steps": 300
+    },
+    {
+      "seed": 2026,
+      "actually_flipped": 450,
+      "flagged": 888,
+      "removed_flipped": 428,
+      "removed_originally_clean": 460,
+      "kept_flipped": 22,
+      "detection_precision": 0.481981981981982,
+      "detection_recall": 0.9511111111111111,
+      "final_optimizer_steps": 300
+    }
+  ],
+  "paired_against_noisy_ce": {
+    "gce": {
+      "test_macro_f1": {
+        "differences": [
+          0.0536199795443118,
+          0.05199876409028942,
+          0.051023566131532194
+        ],
+        "mean": 0.05221410325537781,
+        "std_sample": 0.0013115330226613378
+      },
+      "oos_auroc": {
+        "differences": [
+          0.0044520000000000115,
+          0.0010299999999999754,
+          0.0077703333333333235
+        ],
+        "mean": 0.0044174444444444365,
+        "std_sample": 0.00337029953059457
+      }
+    },
+    "cl_ce": {
+      "test_macro_f1": {
+        "differences": [
+          -0.15872762334321722,
+          -0.17358060745014275,
+          -0.13711744158852923
+        ],
+        "mean": -0.1564752241272964,
+        "std_sample": 0.018335637235552926
+      },
+      "oos_auroc": {
+        "differences": [
+          -0.048402222222222235,
+          -0.06734011111111116,
+          -0.05412355555555559
+        ],
+        "mean": -0.05662196296296299,
+        "std_sample": 0.009713003581385974
+      }
+    }
+  },
+  "formal_significance_and_noninferiority_claimed": false
+}

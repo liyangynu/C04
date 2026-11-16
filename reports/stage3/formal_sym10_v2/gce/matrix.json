@@ -1,0 +1,135 @@
+{
+  "records": [
+    {
+      "seed": 17,
+      "shots_per_class": 10,
+      "method": "gce",
+      "observed_sha256": "3668dcbd2431f924b93bceb57eb879619eb6b7d59625ad10d5d853b0920dc842",
+      "train_sha256": "3668dcbd2431f924b93bceb57eb879619eb6b7d59625ad10d5d853b0920dc842",
+      "config_sha256": "954bbae8ab627d36662a47d7bb5829705a4b4698c67bf82b35c0552bea8830f8",
+      "run_dir": "artifacts\\stage3_formal_sym10_v2\\gce\\k10_s17",
+      "best_epoch": 30,
+      "epochs_completed": 30,
+      "best_val_macro_f1": 0.5400249252019489,
+      "test_macro_f1": 0.552669063874045,
+      "test_accuracy": 0.5582222222222222,
+      "oos_auroc": 0.7486155555555556,
+      "rows_kept": 1500,
+      "sample_retention": 1.0,
+      "oof_wall_seconds": 0.0,
+      "oof_epoch_seconds": 0.0,
+      "final_epoch_seconds": 21.655178700573742,
+      "route_wall_seconds": 34.41018019989133,
+      "peak_final_allocated_mb": 97.36962890625,
+      "peak_final_reserved_mb": 120.0
+    },
+    {
+      "seed": 42,
+      "shots_per_class": 10,
+      "method": "gce",
+      "observed_sha256": "f7d35a650fc8fd3cdab64da0e641eec22baa8f7bb4e26d1ceeb1099c344580cc",
+      "train_sha256": "f7d35a650fc8fd3cdab64da0e641eec22baa8f7bb4e26d1ceeb1099c344580cc",
+      "config_sha256": "954bbae8ab627d36662a47d7bb5829705a4b4698c67bf82b35c0552bea8830f8",
+      "run_dir": "artifacts\\stage3_formal_sym10_v2\\gce\\k10_s42",
+      "best_epoch": 30,
+      "epochs_completed": 30,
+      "best_val_macro_f1": 0.5427267857660659,
+      "test_macro_f1": 0.5349586262901964,
+      "test_accuracy": 0.5397777777777778,
+      "oos_auroc": 0.7343146666666667,
+      "rows_kept": 1500,
+      "sample_retention": 1.0,
+      "oof_wall_seconds": 0.0,
+      "oof_epoch_seconds": 0.0,
+      "final_epoch_seconds": 22.0712654995732,
+      "route_wall_seconds": 34.88352679996751,
+      "peak_final_allocated_mb": 98.78076171875,
+      "peak_final_reserved_mb": 118.0
+    },
+    {
+      "seed": 2026,
+      "shots_per_class": 10,
+      "method": "gce",
+      "observed_sha256": "5b3cfbbec3d09bb730d34131b1bc210717ed9a96aea1c7ef211ab51114ad32ef",
+      "train_sha256": "5b3cfbbec3d09bb730d34131b1bc210717ed9a96aea1c7ef211ab51114ad32ef",
+      "config_sha256": "954bbae8ab627d36662a47d7bb5829705a4b4698c67bf82b35c0552bea8830f8",
+      "run_dir": "artifacts\\stage3_formal_sym10_v2\\gce\\k10_s2026",
+      "best_epoch": 29,
+      "epochs_completed": 30,
+      "best_val_macro_f1": 0.5254925230527173,
+      "test_macro_f1": 0.535114091125215,
+      "test_accuracy": 0.5426666666666666,
+      "oos_auroc": 0.7385575555555556,
+      "rows_kept": 1500,
+      "sample_retention": 1.0,
+      "oof_wall_seconds": 0.0,
+      "oof_epoch_seconds": 0.0,
+      "final_epoch_seconds": 21.798514200374484,
+      "route_wall_seconds": 34.1607861998491,
+      "peak_final_allocated_mb": 98.65087890625,
+      "peak_final_reserved_mb": 120.0
+    }
+  ],
+  "shots_per_class": [
+    10
+  ],
+  "noise": "symmetric",
+  "rate": 0.3,
+  "summary_by_shots": {
+    "10": {
+      "best_val_macro_f1": {
+        "mean": 0.536081411340244,
+        "std_sample": 0.009269219438619046,
+        "n": 3,
+        "values": [
+          0.5400249252019489,
+          0.5427267857660659,
+          0.5254925230527173
+        ]
+      },
+      "test_macro_f1": {
+        "mean": 0.5409139270964854,
+        "std_sample": 0.010180543837294814,
+        "n": 3,
+        "values": [
+          0.552669063874045,
+          0.5349586262901964,
+          0.535114091125215
+        ]
+      },
+      "test_accuracy": {
+        "mean": 0.5468888888888889,
+        "std_sample": 0.009920673015799845,
+        "n": 3,
+        "values": [
+          0.5582222222222222,
+          0.5397777777777778,
+          0.5426666666666666
+        ]
+      },
+      "oos_auroc": {
+        "mean": 0.740495925925926,
+        "std_sample": 0.00734484959155965,
+        "n": 3,
+        "values": [
+          0.7486155555555556,
+          0.7343146666666667,
+          0.7385575555555556
+        ]
+      }
+    }
+  },
+  "method": "gce",
+  "epochs_max": 30,
+  "patience": 5,
+  "seeds": [
+    17,
+    42,
+    2026
+  ],
+  "source_matrix_sha256": "040fbca38304f296b56ea8cf08debce502685000ee05a2d14bbfe4f478c40915",
+  "git": {
+    "revision": "c0c571d15f41d6974f47d29d7f61e3378117b6d6",
+    "dirty": false
+  }
+}

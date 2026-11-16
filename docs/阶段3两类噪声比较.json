@@ -1,0 +1,204 @@
+{
+  "scope": "10-shot, 30% noise, three seeds, v2",
+  "sources": {
+    "reports\\stage3\\formal_idn10_v2": "eda07d4b1014c20eff3b6a2901a65f8c33bd2449c13d204794117555ecba0e21",
+    "reports\\stage3\\formal_sym10_v2": "ddf621b91d196bf0ce29f6d382647e43fdeeb14f9eaeafeabef8322de190751d"
+  },
+  "clean_reference_repeated_predictions": [
+    {
+      "seed": 17,
+      "predictions_sha256": "8beb064e2c1639e13ea272765442d944427072f7ec5774a6260dbd90eb6ea639",
+      "byte_identical": true
+    },
+    {
+      "seed": 42,
+      "predictions_sha256": "14d310ff5fbc4c44e6d54e5bbdc2a7f7ba6cc492b971ca104a91337482cea6f7",
+      "byte_identical": true
+    },
+    {
+      "seed": 2026,
+      "predictions_sha256": "1e1c364dfcb4cfb8b2dfde49e121d95c3b564b3956ec741f56331866843d2795",
+      "byte_identical": true
+    }
+  ],
+  "differences": {
+    "clean_ce": {
+      "test_macro_f1": {
+        "seeds": [
+          17,
+          42,
+          2026
+        ],
+        "symmetric_minus_idn": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean": 0.0,
+        "std_sample": 0.0
+      },
+      "test_accuracy": {
+        "seeds": [
+          17,
+          42,
+          2026
+        ],
+        "symmetric_minus_idn": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean": 0.0,
+        "std_sample": 0.0
+      },
+      "oos_auroc": {
+        "seeds": [
+          17,
+          42,
+          2026
+        ],
+        "symmetric_minus_idn": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean": 0.0,
+        "std_sample": 0.0
+      }
+    },
+    "ce": {
+      "test_macro_f1": {
+        "seeds": [
+          17,
+          42,
+          2026
+        ],
+        "symmetric_minus_idn": [
+          -0.0009164968782513494,
+          -0.053100683137830285,
+          -0.01686661183761079
+        ],
+        "mean": -0.023627930617897475,
+        "std_sample": 0.026741052664958794
+      },
+      "test_accuracy": {
+        "seeds": [
+          17,
+          42,
+          2026
+        ],
+        "symmetric_minus_idn": [
+          -0.004222222222222238,
+          -0.0513333333333334,
+          -0.017111111111111132
+        ],
+        "mean": -0.024222222222222256,
+        "std_sample": 0.024347281644093072
+      },
+      "oos_auroc": {
+        "seeds": [
+          17,
+          42,
+          2026
+        ],
+        "symmetric_minus_idn": [
+          0.004613555555555537,
+          -0.015323777777777714,
+          -0.03232544444444441
+        ],
+        "mean": -0.014345222222222195,
+        "std_sample": 0.018488932053568708
+      }
+    },
+    "gce": {
+      "test_macro_f1": {
+        "seeds": [
+          17,
+          42,
+          2026
+        ],
+        "symmetric_minus_idn": [
+          0.032731990781010745,
+          -0.019697866106590745,
+          0.010488056349559738
+        ],
+        "mean": 0.007840727007993245,
+        "std_sample": 0.026314990742837673
+      },
+      "test_accuracy": {
+        "seeds": [
+          17,
+          42,
+          2026
+        ],
+        "symmetric_minus_idn": [
+          0.02733333333333332,
+          -0.02400000000000002,
+          0.01244444444444437
+        ],
+        "mean": 0.005259259259259223,
+        "std_sample": 0.026410186337601463
+      },
+      "oos_auroc": {
+        "seeds": [
+          17,
+          42,
+          2026
+        ],
+        "symmetric_minus_idn": [
+          -0.011352444444444387,
+          -0.018887333333333367,
+          -0.025085555555555583
+        ],
+        "mean": -0.01844177777777778,
+        "std_sample": 0.006877388676841399
+      }
+    },
+    "cl_ce": {
+      "test_macro_f1": {
+        "seeds": [
+          17,
+          42,
+          2026
+        ],
+        "symmetric_minus_idn": [
+          -0.005491061215862569,
+          -0.04824954930699027,
+          -0.0039749558561700815
+        ],
+        "mean": -0.019238522126340973,
+        "std_sample": 0.025135719950355538
+      },
+      "test_accuracy": {
+        "seeds": [
+          17,
+          42,
+          2026
+        ],
+        "symmetric_minus_idn": [
+          0.0,
+          -0.05711111111111111,
+          -0.0015555555555555323
+        ],
+        "mean": -0.019555555555555548,
+        "std_sample": 0.03253336369154625
+      },
+      "oos_auroc": {
+        "seeds": [
+          17,
+          42,
+          2026
+        ],
+        "symmetric_minus_idn": [
+          0.0014845555555556,
+          -0.0017195555555555853,
+          -0.014252777777777781
+        ],
+        "mean": -0.004829259259259255,
+        "std_sample": 0.008316766676703918
+      }
+    }
+  },
+  "significance_claimed": false,
+  "noise_selection_and_target_namespaces_differ_by_type": true
+}

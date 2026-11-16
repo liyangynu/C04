@@ -1,0 +1,135 @@
+{
+  "records": [
+    {
+      "seed": 17,
+      "shots_per_class": 10,
+      "method": "cl_ce",
+      "observed_sha256": "3668dcbd2431f924b93bceb57eb879619eb6b7d59625ad10d5d853b0920dc842",
+      "train_sha256": "fa338e75a664e170dbb995f8b19d59ab39ae68b0526aa9878375ca27ad20dc59",
+      "config_sha256": "b8b610fce118255763bd90faee04762cb0020c89dbdb9eb00a0d5f7dd1c2d606",
+      "run_dir": "artifacts\\stage3_formal_sym10_v2\\cl_ce\\k10_s17",
+      "best_epoch": 30,
+      "epochs_completed": 30,
+      "best_val_macro_f1": 0.3276372563462373,
+      "test_macro_f1": 0.340321460986516,
+      "test_accuracy": 0.36822222222222223,
+      "oos_auroc": 0.6957613333333333,
+      "rows_kept": 620,
+      "sample_retention": 0.41333333333333333,
+      "oof_wall_seconds": 130.405909499852,
+      "oof_epoch_seconds": 89.65313569922,
+      "final_epoch_seconds": 14.116500200238079,
+      "route_wall_seconds": 159.35644220001996,
+      "peak_final_allocated_mb": 96.2529296875,
+      "peak_final_reserved_mb": 118.0
+    },
+    {
+      "seed": 42,
+      "shots_per_class": 10,
+      "method": "cl_ce",
+      "observed_sha256": "f7d35a650fc8fd3cdab64da0e641eec22baa8f7bb4e26d1ceeb1099c344580cc",
+      "train_sha256": "2e3fbd7a427f6eaf125e80635224c0cea9d7c150df12dd0568a2ec21b2aca616",
+      "config_sha256": "b8b610fce118255763bd90faee04762cb0020c89dbdb9eb00a0d5f7dd1c2d606",
+      "run_dir": "artifacts\\stage3_formal_sym10_v2\\cl_ce\\k10_s42",
+      "best_epoch": 30,
+      "epochs_completed": 30,
+      "best_val_macro_f1": 0.30615533688760205,
+      "test_macro_f1": 0.30937925474976424,
+      "test_accuracy": 0.32844444444444443,
+      "oos_auroc": 0.6659445555555555,
+      "rows_kept": 587,
+      "sample_retention": 0.3913333333333333,
+      "oof_wall_seconds": 131.20645030005835,
+      "oof_epoch_seconds": 90.64014409831725,
+      "final_epoch_seconds": 14.877348199021071,
+      "route_wall_seconds": 161.00832160003483,
+      "peak_final_allocated_mb": 96.1728515625,
+      "peak_final_reserved_mb": 118.0
+    },
+    {
+      "seed": 2026,
+      "shots_per_class": 10,
+      "method": "cl_ce",
+      "observed_sha256": "5b3cfbbec3d09bb730d34131b1bc210717ed9a96aea1c7ef211ab51114ad32ef",
+      "train_sha256": "a403621f11c99225c534c9286390681b7c32e1bd5a12f74cca9416c376ab62c1",
+      "config_sha256": "b8b610fce118255763bd90faee04762cb0020c89dbdb9eb00a0d5f7dd1c2d606",
+      "run_dir": "artifacts\\stage3_formal_sym10_v2\\cl_ce\\k10_s2026",
+      "best_epoch": 30,
+      "epochs_completed": 30,
+      "best_val_macro_f1": 0.32620016556322934,
+      "test_macro_f1": 0.3469730834051536,
+      "test_accuracy": 0.3808888888888889,
+      "oos_auroc": 0.6766636666666667,
+      "rows_kept": 612,
+      "sample_retention": 0.408,
+      "oof_wall_seconds": 136.11514460016042,
+      "oof_epoch_seconds": 95.4420697002206,
+      "final_epoch_seconds": 13.820318699115887,
+      "route_wall_seconds": 165.05331770004705,
+      "peak_final_allocated_mb": 96.3876953125,
+      "peak_final_reserved_mb": 118.0
+    }
+  ],
+  "shots_per_class": [
+    10
+  ],
+  "noise": "symmetric",
+  "rate": 0.3,
+  "summary_by_shots": {
+    "10": {
+      "best_val_macro_f1": {
+        "mean": 0.3199975862656896,
+        "std_sample": 0.012009255112767186,
+        "n": 3,
+        "values": [
+          0.3276372563462373,
+          0.30615533688760205,
+          0.32620016556322934
+        ]
+      },
+      "test_macro_f1": {
+        "mean": 0.3322245997138113,
+        "std_sample": 0.02006223716574905,
+        "n": 3,
+        "values": [
+          0.340321460986516,
+          0.30937925474976424,
+          0.3469730834051536
+        ]
+      },
+      "test_accuracy": {
+        "mean": 0.3591851851851852,
+        "std_sample": 0.027365232816078687,
+        "n": 3,
+        "values": [
+          0.36822222222222223,
+          0.32844444444444443,
+          0.3808888888888889
+        ]
+      },
+      "oos_auroc": {
+        "mean": 0.6794565185185185,
+        "std_sample": 0.01510331339018496,
+        "n": 3,
+        "values": [
+          0.6957613333333333,
+          0.6659445555555555,
+          0.6766636666666667
+        ]
+      }
+    }
+  },
+  "method": "cl_ce",
+  "epochs_max": 30,
+  "patience": 5,
+  "seeds": [
+    17,
+    42,
+    2026
+  ],
+  "source_matrix_sha256": "040fbca38304f296b56ea8cf08debce502685000ee05a2d14bbfe4f478c40915",
+  "git": {
+    "revision": "c0c571d15f41d6974f47d29d7f61e3378117b6d6",
+    "dirty": true
+  }
+}
