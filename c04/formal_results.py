@@ -122,6 +122,10 @@ def verify(output):
         kept = [r['id'] for i, r in enumerate(rows) if result['keep_mask'][i]]
         if kept != read_json(dest/'kept_ids.json') or len(kept) != record['rows_kept']:
             raise ValueError('Cleaning cannot be reproduced from OOF scores')
+        cleaned = ''.join(json.dumps(r, ensure_ascii=False, sort_keys=True)+'\n'
+                          for i, r in enumerate(rows) if result['keep_mask'][i]).encode('utf-8')
+        if hashlib.sha256(cleaned).hexdigest() != record['train_sha256']:
+            raise ValueError('Cleaned training data checksum differs')
         if not np.array_equal(result['confident_joint'], report['confident_joint']):
             raise ValueError('Calibrated joint differs')
         reports.append({'seed': seed, 'oof_rows': len(ids), 'kept': len(kept),
