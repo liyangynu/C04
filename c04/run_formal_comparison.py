@@ -1,4 +1,4 @@
-"""Run the fixed v2 IDN10-shot cohort: clean CE, noisy CE/GCE and CL+CE.
+"""Run a fixed v2 10-shot cohort: clean CE, noisy CE/GCE and CL+CE.
 
 Inputs are the saved observed files from the earlier CE matrix. Neither this
 runner nor the cleaner reads audit labels. Every fit runs sequentially on one GPU.
@@ -11,6 +11,7 @@ import time
 import numpy as np
 
 from .common import file_sha256, read_json, write_json
+from .formal_protocol import validate_source
 from .run_noise_matrix import run_command
 from .runtime import git_state
 
@@ -29,8 +30,7 @@ def main():
     parser.add_argument('--device', choices=['cpu', 'cuda'], default='cuda')
     args = parser.parse_args()
     source = read_json(args.source)
-    if (source['noise'], source['rate'], source['shots_per_class'], source['seeds']) != ('instance', .3, [10], [17,42,2026]):
-        raise ValueError('Expected the fixed three-seed IDN30% 10-shot cohort')
+    validate_source(source)
     if args.output.exists():
         raise ValueError('Use a new output directory')
     for r in source['records']:
@@ -86,12 +86,15 @@ def main():
             write_json(args.output/'progress.json', all_records)
             print(f"{method} seed={seed}: F1={metrics['macro_f1']:.4f}; AUROC={metrics['oos_auroc']:.4f}; kept={kept}", flush=True)
         write_json(args.output/method/'matrix.json', {'records': records, 'shots_per_class': [10],
+            'noise': source['noise'], 'rate': source['rate'],
             'summary_by_shots': summarize(records), 'method': method, 'epochs_max': 30, 'patience': 5,
             'seeds': source['seeds'], 'source_matrix_sha256': file_sha256(args.source), 'git': git_state()})
     reference = {r['seed']: r['test_macro_f1'] for r in all_records if r['method'] == 'clean_ce'}
     for record in all_records:
         record['f1_retention'] = record['test_macro_f1']/reference[record['seed']]
     write_json(args.output/'comparison.json', {'records': all_records, 'git': git_state(),
+        'noise': source['noise'], 'rate': source['rate'], 'seeds': source['seeds'],
+        'shots_per_class': [10], 'source_matrix_sha256': file_sha256(args.source),
         'wall_seconds': time.perf_counter()-started, 'protocol': 'docs/正式对照协议.md',
         'summary_by_method': {m: summarize([r for r in all_records if r['method'] == m])['10']
             for m in ['clean_ce','ce','gce','cl_ce']}})

@@ -1,0 +1,21 @@
+{
+  "all_passed": true,
+  "inputs": [
+    {
+      "seed": 17,
+      "sha256": "3668dcbd2431f924b93bceb57eb879619eb6b7d59625ad10d5d853b0920dc842",
+      "matches_stage1": true
+    },
+    {
+      "seed": 42,
+      "sha256": "f7d35a650fc8fd3cdab64da0e641eec22baa8f7bb4e26d1ceeb1099c344580cc",
+      "matches_stage1": true
+    },
+    {
+      "seed": 2026,
+      "sha256": "5b3cfbbec3d09bb730d34131b1bc210717ed9a96aea1c7ef211ab51114ad32ef",
+      "matches_stage1": true
+    }
+  ],
+  "training_not_started_at_check": true
+}

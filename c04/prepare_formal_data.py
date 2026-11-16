@@ -1,10 +1,11 @@
-"""Rebuild the released observed IDN files for an exact training replay."""
+"""Rebuild released observed labels for an exact training replay."""
 import argparse
 from pathlib import Path
 
 import numpy as np
 
 from .common import file_sha256, read_json, read_jsonl, write_json, write_jsonl
+from .formal_protocol import comparison_noise
 
 
 def main():
@@ -15,6 +16,7 @@ def main():
     if args.output.exists():
         raise ValueError('Use a new data output directory')
     comparison = read_json(args.results/'comparison.json')
+    noise, rate = comparison_noise(comparison)
     checksums = read_json(args.results/'checksums.json')
     records = []
     for seed in [17,42,2026]:
@@ -37,7 +39,7 @@ def main():
             raise ValueError('Rebuilt noise file checksum mismatch')
         records.append({'seed':seed, 'run_dir':str(dest.parent.parent),
             'clean_train_sha256':file_sha256(clean_path), 'noisy_train_sha256':file_sha256(dest)})
-    write_json(args.output/'matrix.json', {'noise':'instance', 'rate':.3, 'shots_per_class':[10],
+    write_json(args.output/'matrix.json', {'noise':noise, 'rate':rate, 'shots_per_class':[10],
         'seeds':[17,42,2026], 'records':records, 'replay_source':str(args.results)})
     print(f'PASS: rebuilt 3 observed training files; source={args.output / "matrix.json"}')
 

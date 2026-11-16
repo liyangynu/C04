@@ -9,6 +9,8 @@ import numpy as np
 
 from .common import file_sha256, read_json, read_jsonl, write_json, write_jsonl
 from .confident_learning import estimate_label_issues
+from .formal_protocol import comparison_noise
+from .noise import inject
 from .runtime import load_official_split
 from .text import build_vocab
 
@@ -66,6 +68,7 @@ def verify(output):
     official, _ = load_official_split('data/processed/clean/train.jsonl', 'train')
     by_id = {r['id']: r for r in official}
     comparison = read_json(output/'comparison.json')
+    noise, rate = comparison_noise(comparison)
     reports = []
     for record in comparison['records']:
         method, seed = record['method'], record['seed']
@@ -76,6 +79,14 @@ def verify(output):
                 raise ValueError('Comparison differs from per-method matrix')
         if run['fingerprints']['train'] != record['train_sha256']:
             raise ValueError('Training fingerprints differ')
+        expected_config = read_json('configs/formal_gce.json' if method == 'gce' else 'configs/formal_ce.json')
+        if run['config'] != expected_config:
+            raise ValueError('Run does not use the fixed model and training configuration')
+        clean_path = Path(f'data/processed/fewshot/seed_{seed}/k_10.jsonl')
+        if method == 'clean_ce' and file_sha256(clean_path) != record['train_sha256']:
+            raise ValueError('Clean reference differs from the fixed fewshot input')
+        if method in {'ce', 'gce'} and record['train_sha256'] != record['observed_sha256']:
+            raise ValueError('Noisy classifier did not train on the paired observed input')
         if run['config']['training']['max_epochs'] != 30 or run['config']['training']['patience'] != 5:
             raise ValueError('Budget differs')
         peers = [r for r in comparison['records'] if r['seed'] == seed]
@@ -104,6 +115,10 @@ def verify(output):
         subset = read_jsonl(f'data/processed/fewshot/seed_{seed}/k_10.jsonl')
         if [r['id'] for r in subset] != ids:
             raise ValueError('OOF rows differ from fixed fewshot IDs')
+        if noise == 'symmetric':
+            regenerated, _, _ = inject(subset, 150, rate, seed, 'symmetric')
+            if regenerated != rows:
+                raise ValueError('Observed labels differ from the fixed symmetric noise generator')
         coverage = []
         for fold in report['fold_records']:
             heldout, train = set(fold['heldout_ids']), set(fold['training_ids'])
