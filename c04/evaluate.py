@@ -21,7 +21,7 @@ def write_csv(path, header, rows):
         writer.writerows(rows)
 
 
-def plot_results(output, result, oos_truth, scores, history):
+def plot_results(output, result, oos_truth, scores, history, loss_name="ce"):
     cache = Path("tmp/matplotlib").resolve()
     cache.mkdir(parents=True, exist_ok=True)
     os.environ.setdefault("MPLCONFIGDIR", str(cache))
@@ -51,9 +51,9 @@ def plot_results(output, result, oos_truth, scores, history):
     plt.close(fig)
     fig, axes = plt.subplots(1, 2, figsize=(10, 4))
     epochs = [r["epoch"] for r in history]
-    axes[0].plot(epochs, [r["train_loss"] for r in history], marker="o", label="Train")
-    axes[0].plot(epochs, [r["val_loss"] for r in history], marker="o", label="Validation")
-    axes[0].set(xlabel="Epoch", ylabel="Cross entropy", title="Learning curves")
+    axes[0].plot(epochs, [r["train_loss"] for r in history], marker="o", label=f"Train ({loss_name.upper()})")
+    axes[0].plot(epochs, [r["val_loss"] for r in history], marker="o", label="Validation (CE)")
+    axes[0].set(xlabel="Epoch", ylabel="Objective value", title="Learning curves")
     axes[0].legend()
     axes[1].plot(epochs, [r["val_macro_f1"] for r in history], marker="o")
     axes[1].set(xlabel="Epoch", ylabel="Macro F1", ylim=(0, 1), title="Validation (150 classes)")
@@ -112,7 +112,7 @@ def main():
         {"id": row["id"], "true_label": row["label"], "predicted_intent": int(logits[i].argmax()),
          "oos_score": float(scores[i])} for i, row in enumerate(rows)])
     np.savez_compressed(args.output/"logits.npz", ids=np.array([r["id"] for r in rows]), logits=logits)
-    plot_results(args.output, result, oos_truth, scores, checkpoint["history"])
+    plot_results(args.output, result, oos_truth, scores, checkpoint["history"], config["training"].get("loss", "ce"))
     print(f"macro_f1={summary['macro_f1']:.4f}; accuracy={summary['accuracy']:.4f}; OOS_AUROC={summary['oos_auroc']:.4f}")
 
 

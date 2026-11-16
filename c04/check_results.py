@@ -12,6 +12,7 @@ from .metrics import binary_auroc, classification_metrics
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--results", type=Path, required=True)
+    parser.add_argument("--report", type=Path, default=Path("reports/stage2_prediction_checks.json"))
     args = parser.parse_args()
     for name, checksum in read_json(args.results/"checksums.json").items():
         if file_sha256(args.results/name) != checksum:
@@ -62,7 +63,7 @@ def main():
                 raise ValueError("Aggregate sample deviation mismatch")
     report = {"matrix_sha256": file_sha256(args.results/"matrix.json"),
               "runs": reports, "all_passed": True}
-    write_json("reports/stage2_prediction_checks.json", report)
+    write_json(args.report, report)
     print(f"PASS: {len(reports)} exported runs match official labels, predictions, matrices and summaries.")
 
 

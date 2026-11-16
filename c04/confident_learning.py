@@ -7,7 +7,7 @@ from .common import stable_seed
 
 def make_folds(rows, classes, folds=5, seed=17):
     """Build deterministic OOF folds from observed training labels only."""
-    if folds < 2 or not rows:
+    if folds < 2 or len(rows) < folds:
         raise ValueError("At least two folds and one row are required")
     labels = np.asarray([r["label"] for r in rows], dtype=np.int64)
     if np.any(labels < 0) or np.any(labels >= classes):
@@ -24,11 +24,13 @@ def make_folds(rows, classes, folds=5, seed=17):
             buckets[position % folds].append(int(index))
         mode = "balanced_non_stratified"
     else:
+        offset = 0
         for label in range(classes):
             indices = np.flatnonzero(labels == label)
             indices = indices[rng.permutation(len(indices))]
             for position, index in enumerate(indices):
-                buckets[position % folds].append(int(index))
+                buckets[(offset + position) % folds].append(int(index))
+            offset = (offset + len(indices)) % folds
         mode = "observed_label_stratified"
     result = [np.asarray(sorted(bucket), dtype=np.int64) for bucket in buckets]
     coverage = np.concatenate(result)
@@ -51,18 +53,26 @@ def validate_oof_probabilities(probabilities, rows, classes):
 
 
 def estimate_label_issues(rows, probabilities, classes):
-    """Estimate removable issues from observed labels and OOF probabilities."""
+    """Calibrated confident joint and prune-by-noise-rate, cleanlab 2.9.0.
+
+    Northcutt et al. (2021); implementation supplied by cleanlab (AGPL-3.0).
+    No third-party source is copied. Fixed 150-way scores include absent classes.
+    """
+    import cleanlab
+    from cleanlab.count import compute_confident_joint, get_confident_thresholds
+    from cleanlab.filter import find_label_issues
+    if cleanlab.__version__ != "2.9.0":
+        raise RuntimeError("Expected cleanlab==2.9.0; install requirements-cleaning.txt")
     probabilities = validate_oof_probabilities(probabilities, rows, classes)
     observed = np.asarray([r["label"] for r in rows], dtype=np.int64)
-    thresholds = np.full(classes, np.nan, dtype=np.float64)
-    for label in range(classes):
-        selected = probabilities[observed == label, label]
-        if len(selected):
-            thresholds[label] = float(np.mean(selected))
+    if np.any(observed < 0) or np.any(observed >= classes):
+        raise ValueError("Invalid observed labels")
+    thresholds = get_confident_thresholds(observed, probabilities)
+    confident_joint = compute_confident_joint(observed, probabilities, calibrate=True)
+    issue_mask = find_label_issues(observed, probabilities, confident_joint=confident_joint,
+                                 filter_by="prune_by_noise_rate", min_examples_per_class=1,
+                                 n_jobs=1)
     predicted = probabilities.argmax(axis=1)
-    confidence = probabilities[np.arange(len(rows)), predicted]
-    candidate_threshold = thresholds[predicted]
-    issue_mask = (predicted != observed) & np.isfinite(candidate_threshold) & (confidence >= candidate_threshold)
     keep_mask = ~issue_mask
     protected = []
     for label in np.unique(observed):
@@ -72,10 +82,9 @@ def estimate_label_issues(rows, probabilities, classes):
             keep_mask[selected] = True
             issue_mask[selected] = False
             protected.append(int(label))
-    confident = confidence >= np.where(np.isfinite(candidate_threshold), candidate_threshold, np.inf)
-    confident_joint = np.zeros((classes, classes), dtype=np.int64)
-    np.add.at(confident_joint, (observed[confident], predicted[confident]), 1)
     return {"thresholds": thresholds, "predicted": predicted,
             "issue_mask": issue_mask, "keep_mask": keep_mask,
             "protected_observed_classes": protected,
-            "confident_joint": confident_joint}
+            "confident_joint": confident_joint,
+            "implementation": "cleanlab-2.9.0/prune_by_noise_rate",
+            "absent_observed_classes": np.flatnonzero(np.bincount(observed, minlength=classes) == 0).tolist()}

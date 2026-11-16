@@ -1,0 +1,5 @@
+-r requirements-train.txt
+cleanlab==2.9.0
+scikit-learn==1.9.1
+scipy==1.18.1
+pandas==3.0.6

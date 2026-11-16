@@ -43,6 +43,29 @@ class ConfidentLearningTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             estimate_label_issues(data, np.ones((len(data), 2)), classes=3)
 
+    def test_calibrated_joint_and_missing_class(self):
+        data = rows(classes=2, per_class=20)
+        p = np.full((len(data), 3), 0.01)
+        for i, row in enumerate(data):
+            p[i, row['label']] = 0.98
+        p[0] = [0.01, 0.98, 0.01]
+        result = estimate_label_issues(data, p, 3)
+        self.assertEqual(result['absent_observed_classes'], [2])
+        np.testing.assert_array_equal(result['confident_joint'].sum(axis=1), [20, 20, 0])
+        self.assertEqual(result['confident_joint'].shape, (3, 3))
+        self.assertTrue(result['issue_mask'][0])
+        for label in (0, 1):
+            self.assertTrue(any(result['keep_mask'][i] for i, r in enumerate(data) if r['label'] == label))
+
+    def test_uneven_class_counts_produce_balanced_disjoint_folds(self):
+        data = rows(classes=3, per_class=7)
+        folds, report = make_folds(data, 3)
+        self.assertLessEqual(max(report['fold_sizes'])-min(report['fold_sizes']), 1)
+        for fold in folds:
+            self.assertTrue(set(fold).isdisjoint(set(range(len(data)))-set(fold)))
+        with self.assertRaises(ValueError):
+            make_folds(data[:3], 3)
+
 
 if __name__ == "__main__":
     unittest.main()
