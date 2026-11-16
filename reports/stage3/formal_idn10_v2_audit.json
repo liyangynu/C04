@@ -1,0 +1,25 @@
+{
+  "all_passed": true,
+  "oof": [
+    {
+      "seed": 17,
+      "oof_rows": 1500,
+      "kept": 638,
+      "coverage_disjoint_vocabulary_and_cleaning_verified": true
+    },
+    {
+      "seed": 42,
+      "oof_rows": 1500,
+      "kept": 650,
+      "coverage_disjoint_vocabulary_and_cleaning_verified": true
+    },
+    {
+      "seed": 2026,
+      "oof_rows": 1500,
+      "kept": 693,
+      "coverage_disjoint_vocabulary_and_cleaning_verified": true
+    }
+  ],
+  "export_sha256": "eda07d4b1014c20eff3b6a2901a65f8c33bd2449c13d204794117555ecba0e21",
+  "prediction_runs_verified": 12
+}

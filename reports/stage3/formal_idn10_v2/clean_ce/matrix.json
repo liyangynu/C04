@@ -1,0 +1,133 @@
+{
+  "records": [
+    {
+      "seed": 17,
+      "shots_per_class": 10,
+      "method": "clean_ce",
+      "observed_sha256": "326e717e7dd79416de7ee06f04cac0d7183556ca0aa8a758e852aac76316ca7b",
+      "train_sha256": "3189eecd49977fad819dffc3acdef0640b593c73e62a21aa5c8d35fb697260bb",
+      "config_sha256": "b8b610fce118255763bd90faee04762cb0020c89dbdb9eb00a0d5f7dd1c2d606",
+      "run_dir": "artifacts\\stage3_formal_idn10_v2\\clean_ce\\k10_s17",
+      "best_epoch": 30,
+      "epochs_completed": 30,
+      "best_val_macro_f1": 0.6940674786050322,
+      "test_macro_f1": 0.7142896147096258,
+      "test_accuracy": 0.7157777777777777,
+      "oos_auroc": 0.8223271111111111,
+      "rows_kept": 1500,
+      "sample_retention": 1.0,
+      "oof_wall_seconds": 0.0,
+      "oof_epoch_seconds": 0.0,
+      "final_epoch_seconds": 28.898339999839664,
+      "route_wall_seconds": 47.83120739995502,
+      "peak_final_allocated_mb": 97.36962890625,
+      "peak_final_reserved_mb": 120.0
+    },
+    {
+      "seed": 42,
+      "shots_per_class": 10,
+      "method": "clean_ce",
+      "observed_sha256": "95bb5617956809e86cc2f8baabc1f59720773a405e5a3531cb2db68e479cd698",
+      "train_sha256": "2a4558a5ba614b85d1c7d2a6e1d74ab63288aa616af5068e73ad7a041c0846b6",
+      "config_sha256": "b8b610fce118255763bd90faee04762cb0020c89dbdb9eb00a0d5f7dd1c2d606",
+      "run_dir": "artifacts\\stage3_formal_idn10_v2\\clean_ce\\k10_s42",
+      "best_epoch": 29,
+      "epochs_completed": 30,
+      "best_val_macro_f1": 0.7077687486336844,
+      "test_macro_f1": 0.697902498360977,
+      "test_accuracy": 0.7,
+      "oos_auroc": 0.8229775555555555,
+      "rows_kept": 1500,
+      "sample_retention": 1.0,
+      "oof_wall_seconds": 0.0,
+      "oof_epoch_seconds": 0.0,
+      "final_epoch_seconds": 25.44670300045982,
+      "route_wall_seconds": 39.51047290000133,
+      "peak_final_allocated_mb": 98.78076171875,
+      "peak_final_reserved_mb": 120.0
+    },
+    {
+      "seed": 2026,
+      "shots_per_class": 10,
+      "method": "clean_ce",
+      "observed_sha256": "39d277f4cf94dab01b8b5e0972a6128801ea5d398c788dd188bd6f082332e0a0",
+      "train_sha256": "8ca239b7e46350c2923f668754b2d663ef962c5bbd8c367b746f78603d990f37",
+      "config_sha256": "b8b610fce118255763bd90faee04762cb0020c89dbdb9eb00a0d5f7dd1c2d606",
+      "run_dir": "artifacts\\stage3_formal_idn10_v2\\clean_ce\\k10_s2026",
+      "best_epoch": 29,
+      "epochs_completed": 30,
+      "best_val_macro_f1": 0.7010324254591482,
+      "test_macro_f1": 0.6915446071875084,
+      "test_accuracy": 0.6933333333333334,
+      "oos_auroc": 0.8331033333333333,
+      "rows_kept": 1500,
+      "sample_retention": 1.0,
+      "oof_wall_seconds": 0.0,
+      "oof_epoch_seconds": 0.0,
+      "final_epoch_seconds": 29.062778500141576,
+      "route_wall_seconds": 44.58041929989122,
+      "peak_final_allocated_mb": 98.65087890625,
+      "peak_final_reserved_mb": 120.0
+    }
+  ],
+  "shots_per_class": [
+    10
+  ],
+  "summary_by_shots": {
+    "10": {
+      "best_val_macro_f1": {
+        "mean": 0.7009562175659548,
+        "std_sample": 0.006850952914139032,
+        "n": 3,
+        "values": [
+          0.6940674786050322,
+          0.7077687486336844,
+          0.7010324254591482
+        ]
+      },
+      "test_macro_f1": {
+        "mean": 0.7012455734193704,
+        "std_sample": 0.011735244135928039,
+        "n": 3,
+        "values": [
+          0.7142896147096258,
+          0.697902498360977,
+          0.6915446071875084
+        ]
+      },
+      "test_accuracy": {
+        "mean": 0.703037037037037,
+        "std_sample": 0.011526316283973326,
+        "n": 3,
+        "values": [
+          0.7157777777777777,
+          0.7,
+          0.6933333333333334
+        ]
+      },
+      "oos_auroc": {
+        "mean": 0.826136,
+        "std_sample": 0.006042645929322717,
+        "n": 3,
+        "values": [
+          0.8223271111111111,
+          0.8229775555555555,
+          0.8331033333333333
+        ]
+      }
+    }
+  },
+  "method": "clean_ce",
+  "epochs_max": 30,
+  "patience": 5,
+  "seeds": [
+    17,
+    42,
+    2026
+  ],
+  "source_matrix_sha256": "cdfb06ac4f70c0482d5f3848e536c87e9631f50a82720a6801559c77691d3db2",
+  "git": {
+    "revision": "90c15f93f4b01846d3aef5d13a51dbf783d036e1",
+    "dirty": true
+  }
+}

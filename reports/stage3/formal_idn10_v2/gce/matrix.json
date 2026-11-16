@@ -1,0 +1,133 @@
+{
+  "records": [
+    {
+      "seed": 17,
+      "shots_per_class": 10,
+      "method": "gce",
+      "observed_sha256": "326e717e7dd79416de7ee06f04cac0d7183556ca0aa8a758e852aac76316ca7b",
+      "train_sha256": "326e717e7dd79416de7ee06f04cac0d7183556ca0aa8a758e852aac76316ca7b",
+      "config_sha256": "954bbae8ab627d36662a47d7bb5829705a4b4698c67bf82b35c0552bea8830f8",
+      "run_dir": "artifacts\\stage3_formal_idn10_v2\\gce\\k10_s17",
+      "best_epoch": 28,
+      "epochs_completed": 30,
+      "best_val_macro_f1": 0.5399685100082486,
+      "test_macro_f1": 0.5199370730930343,
+      "test_accuracy": 0.5308888888888889,
+      "oos_auroc": 0.759968,
+      "rows_kept": 1500,
+      "sample_retention": 1.0,
+      "oof_wall_seconds": 0.0,
+      "oof_epoch_seconds": 0.0,
+      "final_epoch_seconds": 27.777725299587473,
+      "route_wall_seconds": 43.51705489982851,
+      "peak_final_allocated_mb": 97.36962890625,
+      "peak_final_reserved_mb": 120.0
+    },
+    {
+      "seed": 42,
+      "shots_per_class": 10,
+      "method": "gce",
+      "observed_sha256": "95bb5617956809e86cc2f8baabc1f59720773a405e5a3531cb2db68e479cd698",
+      "train_sha256": "95bb5617956809e86cc2f8baabc1f59720773a405e5a3531cb2db68e479cd698",
+      "config_sha256": "954bbae8ab627d36662a47d7bb5829705a4b4698c67bf82b35c0552bea8830f8",
+      "run_dir": "artifacts\\stage3_formal_idn10_v2\\gce\\k10_s42",
+      "best_epoch": 29,
+      "epochs_completed": 30,
+      "best_val_macro_f1": 0.5540408981805922,
+      "test_macro_f1": 0.5546564923967872,
+      "test_accuracy": 0.5637777777777778,
+      "oos_auroc": 0.753202,
+      "rows_kept": 1500,
+      "sample_retention": 1.0,
+      "oof_wall_seconds": 0.0,
+      "oof_epoch_seconds": 0.0,
+      "final_epoch_seconds": 28.526905899634585,
+      "route_wall_seconds": 44.86760889994912,
+      "peak_final_allocated_mb": 98.78076171875,
+      "peak_final_reserved_mb": 118.0
+    },
+    {
+      "seed": 2026,
+      "shots_per_class": 10,
+      "method": "gce",
+      "observed_sha256": "39d277f4cf94dab01b8b5e0972a6128801ea5d398c788dd188bd6f082332e0a0",
+      "train_sha256": "39d277f4cf94dab01b8b5e0972a6128801ea5d398c788dd188bd6f082332e0a0",
+      "config_sha256": "954bbae8ab627d36662a47d7bb5829705a4b4698c67bf82b35c0552bea8830f8",
+      "run_dir": "artifacts\\stage3_formal_idn10_v2\\gce\\k10_s2026",
+      "best_epoch": 27,
+      "epochs_completed": 30,
+      "best_val_macro_f1": 0.5264238389063371,
+      "test_macro_f1": 0.5246260347756553,
+      "test_accuracy": 0.5302222222222223,
+      "oos_auroc": 0.7636431111111112,
+      "rows_kept": 1500,
+      "sample_retention": 1.0,
+      "oof_wall_seconds": 0.0,
+      "oof_epoch_seconds": 0.0,
+      "final_epoch_seconds": 24.088134500198066,
+      "route_wall_seconds": 37.534211799968034,
+      "peak_final_allocated_mb": 98.65087890625,
+      "peak_final_reserved_mb": 120.0
+    }
+  ],
+  "shots_per_class": [
+    10
+  ],
+  "summary_by_shots": {
+    "10": {
+      "best_val_macro_f1": {
+        "mean": 0.5401444156983927,
+        "std_sample": 0.01380936992944639,
+        "n": 3,
+        "values": [
+          0.5399685100082486,
+          0.5540408981805922,
+          0.5264238389063371
+        ]
+      },
+      "test_macro_f1": {
+        "mean": 0.5330732000884922,
+        "std_sample": 0.018838138723458034,
+        "n": 3,
+        "values": [
+          0.5199370730930343,
+          0.5546564923967872,
+          0.5246260347756553
+        ]
+      },
+      "test_accuracy": {
+        "mean": 0.5416296296296297,
+        "std_sample": 0.019183755130457402,
+        "n": 3,
+        "values": [
+          0.5308888888888889,
+          0.5637777777777778,
+          0.5302222222222223
+        ]
+      },
+      "oos_auroc": {
+        "mean": 0.7589377037037037,
+        "std_sample": 0.005296256522513177,
+        "n": 3,
+        "values": [
+          0.759968,
+          0.753202,
+          0.7636431111111112
+        ]
+      }
+    }
+  },
+  "method": "gce",
+  "epochs_max": 30,
+  "patience": 5,
+  "seeds": [
+    17,
+    42,
+    2026
+  ],
+  "source_matrix_sha256": "cdfb06ac4f70c0482d5f3848e536c87e9631f50a82720a6801559c77691d3db2",
+  "git": {
+    "revision": "163f332afe0fe45a7b3abf25c9fef4db65b55ad6",
+    "dirty": false
+  }
+}

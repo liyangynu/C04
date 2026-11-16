@@ -1,0 +1,83 @@
+{
+  "scope": "IDN30/10-shot/three-seed/v2",
+  "diagnostics_use_clean_training_labels": true,
+  "used_for_training_or_threshold_selection": false,
+  "posthoc_cleaning": [
+    {
+      "seed": 17,
+      "actually_flipped": 450,
+      "flagged": 862,
+      "removed_flipped": 419,
+      "removed_originally_clean": 443,
+      "kept_flipped": 31,
+      "detection_precision": 0.48607888631090485,
+      "detection_recall": 0.9311111111111111,
+      "final_optimizer_steps": 300
+    },
+    {
+      "seed": 42,
+      "actually_flipped": 450,
+      "flagged": 850,
+      "removed_flipped": 427,
+      "removed_originally_clean": 423,
+      "kept_flipped": 23,
+      "detection_precision": 0.5023529411764706,
+      "detection_recall": 0.9488888888888889,
+      "final_optimizer_steps": 330
+    },
+    {
+      "seed": 2026,
+      "actually_flipped": 450,
+      "flagged": 807,
+      "removed_flipped": 415,
+      "removed_originally_clean": 392,
+      "kept_flipped": 35,
+      "detection_precision": 0.5142503097893433,
+      "detection_recall": 0.9222222222222223,
+      "final_optimizer_steps": 330
+    }
+  ],
+  "paired_against_noisy_ce": {
+    "gce": {
+      "test_macro_f1": {
+        "differences": [
+          0.019971491885049708,
+          0.018595947059049878,
+          0.023668897944361666
+        ],
+        "mean": 0.020745445629487085,
+        "std_sample": 0.002623539778637422
+      },
+      "oos_auroc": {
+        "differences": [
+          0.020417999999999936,
+          0.0045935555555556284,
+          0.0005304444444445
+        ],
+        "mean": 0.008514000000000022,
+        "std_sample": 0.010507432130416411
+      }
+    },
+    "cl_ce": {
+      "test_macro_f1": {
+        "differences": [
+          -0.154153059005606,
+          -0.17843174128098277,
+          -0.15000909756996994
+        ],
+        "mean": -0.1608646326188529,
+        "std_sample": 0.01535400873242289
+      },
+      "oos_auroc": {
+        "differences": [
+          -0.0452732222222223,
+          -0.08094433333333328,
+          -0.07219622222222222
+        ],
+        "mean": -0.06613792592592593,
+        "std_sample": 0.01859124141862491
+      }
+    }
+  },
+  "formal_significance_and_noninferiority_claimed": false
+}
