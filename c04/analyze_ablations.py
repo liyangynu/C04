@@ -107,7 +107,10 @@ def main():
         axes[1].errorbar(qs, [summaries[n][metric]['mean'] for n in order],
             yerr=[summaries[n][metric]['std_sample'] for n in order], label=label,
             color=color, marker='o', capsize=3)
-    axes[1].set(xlabel='GCE q', ylabel='Macro-F1', ylim=(0, 1), title='q sensitivity (mean +/- sample SD)')
+    axes[1].set(xlabel='GCE q', ylabel='Macro-F1', ylim=(0, 1), xticks=qs,
+                xticklabels=['0.2', '0.4', '0.7', '0.9', '0.95'],
+                title='q sensitivity (mean +/- sample SD)')
+    axes[1].tick_params(axis='x', labelrotation=35)
     axes[1].legend()
     for ax in axes:
         ax.grid(axis='y', alpha=.2)
