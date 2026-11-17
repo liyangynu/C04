@@ -116,6 +116,8 @@ def main():
         '| --- | --- | --- | --- | --- | --- |']
     for d in [r for r in diagnostics if r['variant'] == 'relabel']:
         lines.append(f"| {d['seed']} | {d['relabels']} | {d['corrected_flipped']} | {d['damaged_originally_clean']} | {d['remaining_wrong']} | {len(d['absent_training_classes'])} |")
+    relabel_wrong = np.mean([d['remaining_wrong']/d['rows_retained'] for d in diagnostics if d['variant'] == 'relabel'])
+    lines += ['', f'硬重标注后的平均错标比例为{relabel_wrong:.2%}，原注入比例为30%。虽然修正了一部分翻转样本，同时把较多原始干净样本改成错误标签；这一结果不支持当前硬重标注规则有效。']
     lines += ['', '## 删除方式与加权', '',
         '| 来源 | seed | 保留样本 | 删掉翻转样本 | 删掉原始干净样本 | 保留翻转样本 |',
         '| --- | --- | --- | --- | --- | --- |']
@@ -126,6 +128,7 @@ def main():
     for d in [r for r in diagnostics if r['variant'] == 'weighted']:
         lines.append(f"| {d['seed']} | {d['mean_weight_flipped']:.4f} | {d['mean_weight_originally_clean']:.4f} | {d['weighted_flipped_fraction']:.4f} | {d['effective_sample_size']:.1f} |")
     lines += ['', '有效样本量为(Σw)²/Σw²，仅描述权重集中程度，不等于独立观测数量。加权后的翻转质量占比为翻转样本权重和除以全部权重和。', '',
+        '加权降低了翻转样本的总权重，但本组分类F1仍低于普通CE。说明降低该诊断量不能直接保证分类提升；权重同时降低了部分原始干净样本的贡献，当前实验未单独检验这些因素的因果作用。', '',
         '训练内打分没有折外隔离，模型见过每个被打分样本；即使其后分类分数较高，也不能据此认定它比OOF更能无偏识别错标。其打分模型使用全部1500条训练，而OOF每折只用1200条，额外算力和训练样本量也不同。', '',
         '删除会缩小训练集和词表并减少每轮更新；重标注/加权保留全部文本。处理方式、样本数量、词表及更新量同时变化，当前实验不能单独归因于某一个因素。', '',
         f'![清洗变体汇总]({args.output.with_suffix(".png").name})', '',
