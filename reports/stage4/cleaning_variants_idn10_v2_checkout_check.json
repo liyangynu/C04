@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-17",
+  "checked_commit": "541bdbb1560b514526501f5419fe80d443bdd945",
+  "checkout": "tmp/stage4-cleaning-checkout",
+  "fresh_git_clone": true,
+  "python_environment": "reused project .venv; no new dependency installation",
+  "prepared_files_verified": 18,
+  "prediction_runs_verified": 12,
+  "prediction_rows_verified": 66000,
+  "unweighted_ce_repeats_verified": 3,
+  "decisions_weights_training_fingerprints_configuration_vocabulary_verified": true,
+  "analysis_json_reproduced_exactly": true,
+  "checkout_clean_after_checks": true,
+  "full_12_fit_training_repeated_in_checkout": false,
+  "commands": [
+    "git clone --quiet --no-hardlinks . tmp/stage4-cleaning-checkout",
+    "python -m c04.prepare --source <existing-fixed-data_full.json>",
+    "python -m c04.cleaning_variant_results --results reports/stage4/cleaning_variants_idn10_v2",
+    "python -m c04.analyze_cleaning_variants --output tmp/checkout_cleaning",
+    "compare generated analysis JSON with docs/阶段4清洗变体结果.json; git status --short"
+  ],
+  "all_passed": true
+}
