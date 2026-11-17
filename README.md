@@ -37,6 +37,18 @@
 
 旧清洗试跑使用的是阈值启发式，本轮改为校准置信学习，两个算法版本分别记录。清洗后的负结果保留；不根据测试分数或已知翻转数量调整删样数量。
 
+## 消融实验
+
+IDN30%、10-shot下，固定三个种子比较末状态汇聚、冻结GloVe和GCE q∈{0.2,0.4,0.7,0.9,0.95}。q=0.7完整模型复用既有参考，本轮新增18次训练。协议见[消融实验协议](docs/消融实验协议.md)，结果见[阶段4消融结果](docs/阶段4消融结果.md)，完整重跑见[运行说明](docs/消融实验运行说明.md)。
+
+准备官方数据和依赖后，可从保存的预测、配置、词表与冻结矩阵核验本轮交付：
+
+```powershell
+.\.venv\Scripts\python.exe -m c04.ablation_results --results reports/stage4/ablations_idn10_v2
+```
+
+本轮只检查一个噪声/样本量条件，不根据测试最优值修改主参数q=0.7。末状态模型改变结构和随机初始化消耗，不能将配对差值当作保持全部权重初值的因果实验。
+
 ## 环境与运行
 
 在本目录执行，推荐Python 3.12；数据阶段唯一第三方依赖为NumPy 2.3.5。以下命令仅运行数据管线。训练环境安装步骤见[基线运行说明](docs/基线运行说明.md)。
@@ -117,6 +129,9 @@ GCE 试跑结果和当前限制记录在 `reports/stage3_gce_pilot.json`。
 | `c04/run_formal_comparison.py` | 固定范围的27次训练与独立评估入口 |
 | `c04/formal_results.py` / `c04/prepare_formal_data.py` | 独立验收及精确重建观测标签 |
 | `c04/compare_noise_conditions.py` | 两类条件比较及干净参考重跑一致性核对 |
+| `configs/ablation_idn10_v2.json` / `c04/run_ablations.py` | 三组消融的固定清单与18次训练入口 |
+| `reports/stage4/ablations_idn10_v2/` | 消融预测、配置、词表和冻结嵌入证据 |
+| `c04/ablation_results.py` / `c04/analyze_ablations.py` | 消融独立核验、配对差值和图表 |
 | `tests/test_data.py` | 数据隔离、重放一致性与噪声性质测试 |
 | `reports/stage1_validation.json` | 数据检查结果与各组数据文件校验值 |
 | `data/processed/manifest.json` | 原始文件与处理产物校验值 |
@@ -139,6 +154,6 @@ GCE 试跑结果和当前限制记录在 `reports/stage3_gce_pilot.json`。
 
 完整训练集的三种子测试宏F1为 **0.8945±0.0007**，准确率 **0.8954±0.0007**，OOS AUROC **0.9221±0.0022**。每组最多5轮，检查点仅由验证宏F1选择。
 
-5-shot和10-shot在5轮预算下存在欠拟合，已保留低分结果和单独的30轮预算诊断。以统一30轮上限分别完成IDN30%与对称30%配对对照；后续仍需其他比例及样本量矩阵、正式消融与统计检验、可比公开基线验收，以及报告PDF和PPT。三种子描述性结果不等于显著性或OOS非劣结论。
+5-shot和10-shot在5轮预算下存在欠拟合，已保留低分结果和单独的30轮预算诊断。以统一30轮上限分别完成IDN30%与对称30%配对对照，并在IDN条件下补齐模块、嵌入和q三个消融方向；后续仍需其他比例及样本量矩阵、清洗变体消融与统计检验、可比公开基线验收，以及报告PDF和PPT。三种子描述性结果不等于显著性或OOS非劣结论。
 
 数据来源与使用条款以 [CLINC150 官方仓库](https://github.com/clinc/oos-eval) 为准。算法定义与参考资料见[实验协议](docs/实验协议.md)。

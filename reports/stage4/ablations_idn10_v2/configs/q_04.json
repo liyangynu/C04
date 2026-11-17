@@ -1,0 +1,27 @@
+{
+  "model": {
+    "embedding_dim": 100,
+    "hidden_dim": 128,
+    "dropout": 0.3,
+    "pooling": "attention",
+    "embedding_trainable": true,
+    "classes": 150
+  },
+  "text": {
+    "max_length": 40,
+    "min_frequency": 1
+  },
+  "training": {
+    "loss": "gce",
+    "q": 0.4,
+    "learning_rate": 0.001,
+    "weight_decay": 0.01,
+    "batch_size": 64,
+    "max_epochs": 30,
+    "patience": 5,
+    "gradient_clip": 5.0,
+    "cpu_threads": 4,
+    "deterministic": true
+  },
+  "selection_metric": "val_macro_f1"
+}

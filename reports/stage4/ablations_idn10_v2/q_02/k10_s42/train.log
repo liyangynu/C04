@@ -1,0 +1,25 @@
+device=cuda; rows=1500; vocab=1777; start_epoch=1
+epoch=1; loss=3.1662; val_f1=0.0001; val_acc=0.0067; seconds=0.99
+epoch=2; loss=3.1421; val_f1=0.0040; val_acc=0.0103; seconds=0.64
+epoch=3; loss=3.0941; val_f1=0.0210; val_acc=0.0440; seconds=0.63
+epoch=4; loss=2.9676; val_f1=0.0652; val_acc=0.0913; seconds=0.71
+epoch=5; loss=2.7805; val_f1=0.1522; val_acc=0.2020; seconds=0.65
+epoch=6; loss=2.5816; val_f1=0.2197; val_acc=0.2687; seconds=0.65
+epoch=7; loss=2.3394; val_f1=0.2865; val_acc=0.3343; seconds=0.70
+epoch=8; loss=2.1338; val_f1=0.3298; val_acc=0.3713; seconds=0.65
+epoch=9; loss=1.9377; val_f1=0.3716; val_acc=0.4113; seconds=0.65
+epoch=10; loss=1.7692; val_f1=0.4195; val_acc=0.4497; seconds=0.69
+epoch=11; loss=1.6313; val_f1=0.4493; val_acc=0.4753; seconds=0.67
+epoch=12; loss=1.5231; val_f1=0.4717; val_acc=0.4980; seconds=0.63
+epoch=13; loss=1.4063; val_f1=0.4866; val_acc=0.5083; seconds=0.66
+epoch=14; loss=1.2895; val_f1=0.4948; val_acc=0.5120; seconds=0.67
+epoch=15; loss=1.2187; val_f1=0.5135; val_acc=0.5290; seconds=0.65
+epoch=16; loss=1.1344; val_f1=0.5253; val_acc=0.5400; seconds=0.70
+epoch=17; loss=1.0591; val_f1=0.5310; val_acc=0.5460; seconds=0.69
+epoch=18; loss=0.9890; val_f1=0.5336; val_acc=0.5477; seconds=0.67
+epoch=19; loss=0.9432; val_f1=0.5450; val_acc=0.5557; seconds=0.68
+epoch=20; loss=0.8911; val_f1=0.5444; val_acc=0.5567; seconds=0.71
+epoch=21; loss=0.8405; val_f1=0.5432; val_acc=0.5533; seconds=0.66
+epoch=22; loss=0.7906; val_f1=0.5418; val_acc=0.5523; seconds=0.65
+epoch=23; loss=0.7336; val_f1=0.5401; val_acc=0.5517; seconds=0.66
+epoch=24; loss=0.6806; val_f1=0.5370; val_acc=0.5440; seconds=0.74

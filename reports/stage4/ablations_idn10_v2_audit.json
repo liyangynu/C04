@@ -1,0 +1,98 @@
+{
+  "all_passed": true,
+  "runs": [
+    {
+      "variant": "last_state",
+      "seed": 17,
+      "passed": true
+    },
+    {
+      "variant": "last_state",
+      "seed": 42,
+      "passed": true
+    },
+    {
+      "variant": "last_state",
+      "seed": 2026,
+      "passed": true
+    },
+    {
+      "variant": "frozen_embeddings",
+      "seed": 17,
+      "passed": true
+    },
+    {
+      "variant": "frozen_embeddings",
+      "seed": 42,
+      "passed": true
+    },
+    {
+      "variant": "frozen_embeddings",
+      "seed": 2026,
+      "passed": true
+    },
+    {
+      "variant": "q_02",
+      "seed": 17,
+      "passed": true
+    },
+    {
+      "variant": "q_02",
+      "seed": 42,
+      "passed": true
+    },
+    {
+      "variant": "q_02",
+      "seed": 2026,
+      "passed": true
+    },
+    {
+      "variant": "q_04",
+      "seed": 17,
+      "passed": true
+    },
+    {
+      "variant": "q_04",
+      "seed": 42,
+      "passed": true
+    },
+    {
+      "variant": "q_04",
+      "seed": 2026,
+      "passed": true
+    },
+    {
+      "variant": "q_09",
+      "seed": 17,
+      "passed": true
+    },
+    {
+      "variant": "q_09",
+      "seed": 42,
+      "passed": true
+    },
+    {
+      "variant": "q_09",
+      "seed": 2026,
+      "passed": true
+    },
+    {
+      "variant": "q_095",
+      "seed": 17,
+      "passed": true
+    },
+    {
+      "variant": "q_095",
+      "seed": 42,
+      "passed": true
+    },
+    {
+      "variant": "q_095",
+      "seed": 2026,
+      "passed": true
+    }
+  ],
+  "prediction_runs_verified": 18,
+  "frozen_embedding_checks": 3,
+  "export_sha256": "b74b46c91029b11b1319961f5a58f98f9b162c797931071afc56e926919d216a"
+}
