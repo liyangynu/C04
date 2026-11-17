@@ -1,0 +1,17 @@
+{
+  "noise": "instance",
+  "rate": 0.3,
+  "shots_per_class": [10],
+  "seeds": [17, 42, 2026],
+  "base_config": "configs/formal_gce.json",
+  "reference_results": "reports/stage3/formal_idn10_v2",
+  "protocol": "docs/消融实验协议.md",
+  "variants": [
+    {"name": "last_state", "changes": {"model.pooling": "last"}},
+    {"name": "frozen_embeddings", "changes": {"model.embedding_trainable": false}},
+    {"name": "q_02", "changes": {"training.q": 0.2}},
+    {"name": "q_04", "changes": {"training.q": 0.4}},
+    {"name": "q_09", "changes": {"training.q": 0.9}},
+    {"name": "q_095", "changes": {"training.q": 0.95}}
+  ]
+}

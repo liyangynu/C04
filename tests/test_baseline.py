@@ -68,6 +68,20 @@ class ModelTests(unittest.TestCase):
         frozen = BiLSTMClassifier(self.embedding, embedding_trainable=False)
         self.assertFalse(frozen.embedding.weight.requires_grad)
 
+    def test_frozen_embeddings_survive_optimizer_step_while_classifier_learns(self):
+        model = BiLSTMClassifier(self.embedding, hidden_dim=3, dropout=0, classes=3,
+                                 embedding_trainable=False)
+        optimizer = torch.optim.AdamW(model.parameters(), lr=.01, weight_decay=.1)
+        embedding_before = model.embedding.weight.detach().clone()
+        classifier_before = model.classifier.weight.detach().clone()
+        loss = torch.nn.functional.cross_entropy(
+            model(torch.tensor([[2, 3], [3, 4]]), torch.tensor([2, 2])), torch.tensor([0, 1]))
+        loss.backward()
+        self.assertIsNone(model.embedding.weight.grad)
+        optimizer.step()
+        self.assertTrue(torch.equal(model.embedding.weight, embedding_before))
+        self.assertFalse(torch.equal(model.classifier.weight, classifier_before))
+
 
 if __name__ == "__main__":
     unittest.main()
