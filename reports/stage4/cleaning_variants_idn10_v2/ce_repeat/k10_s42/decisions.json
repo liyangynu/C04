@@ -1,0 +1,6 @@
+{
+  "variant": "ce_repeat",
+  "rows": 1500,
+  "rows_kept": 1500,
+  "uses_clean_labels": false
+}

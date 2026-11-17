@@ -1,0 +1,24 @@
+{
+  "noise": "instance",
+  "rate": 0.3,
+  "shots_per_class": [
+    10
+  ],
+  "seeds": [
+    17,
+    42,
+    2026
+  ],
+  "config": "configs/formal_ce.json",
+  "reference_results": "reports/stage3/formal_idn10_v2",
+  "weight_floor": 0.05,
+  "weight_rule": "clip observed-label OOF probability to [0.05,1], divide by global mean",
+  "relabel_rule": "only flagged rows receive OOF argmax; others retain observed labels",
+  "variants": [
+    "ce_repeat",
+    "relabel",
+    "weighted",
+    "insample_delete"
+  ],
+  "protocol": "docs/清洗变体实验协议.md"
+}

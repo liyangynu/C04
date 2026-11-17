@@ -49,6 +49,14 @@ IDN30%、10-shot下，固定三个种子比较末状态汇聚、冻结GloVe和GC
 
 本轮只检查一个噪声/样本量条件，不根据测试最优值修改主参数q=0.7。末状态模型改变结构和随机初始化消耗，不能将配对差值当作保持全部权重初值的因果实验。
 
+清洗变体在同一IDN条件下补充OOF硬重标注、概率加权和取消OOF后删除，各三个种子，并重跑普通CE检查权重接口。12次新训练的规则、结果和命令分别见[清洗变体协议](docs/清洗变体实验协议.md)、[阶段4清洗变体结果](docs/阶段4清洗变体结果.md)及[运行说明](docs/清洗变体运行说明.md)。
+
+```powershell
+.\.venv\Scripts\python.exe -m c04.cleaning_variant_results --results reports/stage4/cleaning_variants_idn10_v2
+```
+
+权重独立按训练ID对齐并纳入检查点指纹。取消OOF使用训练内预测，仅作为消融，不将其当作折外标签质量估计。原始负结果和事后误改/误删诊断均保留。
+
 ## 环境与运行
 
 在本目录执行，推荐Python 3.12；数据阶段唯一第三方依赖为NumPy 2.3.5。以下命令仅运行数据管线。训练环境安装步骤见[基线运行说明](docs/基线运行说明.md)。
@@ -132,6 +140,9 @@ GCE 试跑结果和当前限制记录在 `reports/stage3_gce_pilot.json`。
 | `configs/ablation_idn10_v2.json` / `c04/run_ablations.py` | 三组消融的固定清单与18次训练入口 |
 | `reports/stage4/ablations_idn10_v2/` | 消融预测、配置、词表和冻结嵌入证据 |
 | `c04/ablation_results.py` / `c04/analyze_ablations.py` | 消融独立核验、配对差值和图表 |
+| `c04/run_cleaning_variants.py` / `configs/cleaning_variants_idn10_v2.json` | 清洗变体固定协议与12次训练入口 |
+| `reports/stage4/cleaning_variants_idn10_v2/` | 预测、处理决策、权重和训练内打分证据 |
+| `c04/cleaning_variant_results.py` | 重放处理规则及独立核验 |
 | `tests/test_data.py` | 数据隔离、重放一致性与噪声性质测试 |
 | `reports/stage1_validation.json` | 数据检查结果与各组数据文件校验值 |
 | `data/processed/manifest.json` | 原始文件与处理产物校验值 |
@@ -154,6 +165,6 @@ GCE 试跑结果和当前限制记录在 `reports/stage3_gce_pilot.json`。
 
 完整训练集的三种子测试宏F1为 **0.8945±0.0007**，准确率 **0.8954±0.0007**，OOS AUROC **0.9221±0.0022**。每组最多5轮，检查点仅由验证宏F1选择。
 
-5-shot和10-shot在5轮预算下存在欠拟合，已保留低分结果和单独的30轮预算诊断。以统一30轮上限分别完成IDN30%与对称30%配对对照，并在IDN条件下补齐模块、嵌入和q三个消融方向；后续仍需其他比例及样本量矩阵、清洗变体消融与统计检验、可比公开基线验收，以及报告PDF和PPT。三种子描述性结果不等于显著性或OOS非劣结论。
+5-shot和10-shot在5轮预算下存在欠拟合，已保留低分结果和单独的30轮预算诊断。以统一30轮上限分别完成IDN30%与对称30%配对对照，并在IDN条件下补齐模块、嵌入、q及清洗变体/取消OOF检查；后续仍需其他比例及样本量矩阵、统计检验、可比公开基线验收，以及报告PDF和PPT。三种子描述性结果不等于显著性或OOS非劣结论。
 
 数据来源与使用条款以 [CLINC150 官方仓库](https://github.com/clinc/oos-eval) 为准。算法定义与参考资料见[实验协议](docs/实验协议.md)。

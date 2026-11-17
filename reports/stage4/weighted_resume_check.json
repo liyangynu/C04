@@ -1,0 +1,11 @@
+{
+  "scope": "two-epoch weighted diagnostic; separate from formal 30-epoch comparison",
+  "train_sha256": "326e717e7dd79416de7ee06f04cac0d7183556ca0aa8a758e852aac76316ca7b",
+  "weights_sha256": "d6384f1b0102194bf1af4a0b4ac614be56644ce0fb7dc3f5e32c4822cc1dd6c5",
+  "model_parameters_byte_identical": true,
+  "loss_and_validation_trajectory_exact": true,
+  "missing_weights_rejected": true,
+  "changed_weights_rejected": true,
+  "new_training_invocations": 3,
+  "all_passed": true
+}

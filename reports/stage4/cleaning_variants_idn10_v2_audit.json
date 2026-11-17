@@ -1,0 +1,80 @@
+{
+  "all_passed": true,
+  "runs": [
+    {
+      "variant": "ce_repeat",
+      "seed": 17,
+      "rows": 1500,
+      "passed": true
+    },
+    {
+      "variant": "ce_repeat",
+      "seed": 42,
+      "rows": 1500,
+      "passed": true
+    },
+    {
+      "variant": "ce_repeat",
+      "seed": 2026,
+      "rows": 1500,
+      "passed": true
+    },
+    {
+      "variant": "relabel",
+      "seed": 17,
+      "rows": 1500,
+      "passed": true
+    },
+    {
+      "variant": "relabel",
+      "seed": 42,
+      "rows": 1500,
+      "passed": true
+    },
+    {
+      "variant": "relabel",
+      "seed": 2026,
+      "rows": 1500,
+      "passed": true
+    },
+    {
+      "variant": "weighted",
+      "seed": 17,
+      "rows": 1500,
+      "passed": true
+    },
+    {
+      "variant": "weighted",
+      "seed": 42,
+      "rows": 1500,
+      "passed": true
+    },
+    {
+      "variant": "weighted",
+      "seed": 2026,
+      "rows": 1500,
+      "passed": true
+    },
+    {
+      "variant": "insample_delete",
+      "seed": 17,
+      "rows": 1495,
+      "passed": true
+    },
+    {
+      "variant": "insample_delete",
+      "seed": 42,
+      "rows": 1497,
+      "passed": true
+    },
+    {
+      "variant": "insample_delete",
+      "seed": 2026,
+      "rows": 1487,
+      "passed": true
+    }
+  ],
+  "prediction_runs_verified": 12,
+  "unweighted_ce_repeats_verified": 3,
+  "export_sha256": "8434deb24d98b40a3a9988a4477656bc7d08a6a79275e9bb78e4200f49c6ffe1"
+}

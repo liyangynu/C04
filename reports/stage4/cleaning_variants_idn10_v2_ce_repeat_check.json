@@ -1,0 +1,36 @@
+{
+  "matrix_sha256": "f2fac58f0d9c2466cea31d3e8780a66a259a52cfa4082b6bf90a2727e63a8907",
+  "runs": [
+    {
+      "run": "k10_s17",
+      "rows": 5500,
+      "metrics_recomputed": {
+        "macro_f1": 0.49996558120798457,
+        "accuracy": 0.5093333333333333,
+        "oos_auroc": 0.73955
+      },
+      "passed": true
+    },
+    {
+      "run": "k10_s42",
+      "rows": 5500,
+      "metrics_recomputed": {
+        "macro_f1": 0.5360605453377373,
+        "accuracy": 0.5402222222222223,
+        "oos_auroc": 0.7486084444444444
+      },
+      "passed": true
+    },
+    {
+      "run": "k10_s2026",
+      "rows": 5500,
+      "metrics_recomputed": {
+        "macro_f1": 0.5009571368312936,
+        "accuracy": 0.5077777777777778,
+        "oos_auroc": 0.7631126666666667
+      },
+      "passed": true
+    }
+  ],
+  "all_passed": true
+}
