@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-17",
+  "checked_commit": "c50b7a72be3828d01312af0c24b6bfe514a4d132",
+  "checkout": "tmp/stage4-ablation-checkout",
+  "fresh_git_clone": true,
+  "python_environment": "reused project .venv; no new dependency installation",
+  "prepared_files_verified": 18,
+  "prediction_runs_verified": 18,
+  "frozen_embedding_pairs_verified": 3,
+  "paired_configuration_data_environment_vocabulary_checks": true,
+  "analysis_json_reproduced_exactly": true,
+  "tracked_checkout_clean_after_checks": true,
+  "full_18_fit_training_repeated_in_checkout": false,
+  "commands": [
+    "git clone --no-hardlinks . tmp/stage4-ablation-checkout",
+    "python -m c04.prepare --source <existing-fixed-data_full.json>",
+    "python -m c04.ablation_results --results reports/stage4/ablations_idn10_v2",
+    "python -m c04.analyze_ablations --output tmp/checkout_ablations"
+  ],
+  "all_passed": true
+}
