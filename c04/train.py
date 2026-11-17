@@ -17,15 +17,18 @@ from .losses import training_loss
 from .metrics import classification_metrics
 from .model import BiLSTMClassifier
 from .text import text_stats
+from .sample_weights import reduce_loss, validate_weights
 
 
 def train_epoch(model, loader, optimizer, device, gradient_clip, loss_config):
     model.train()
     total, seen = 0.0, 0
-    for tokens, lengths, labels in loader:
+    for batch in loader:
+        tokens, lengths, labels = batch[:3]
+        weights = batch[3].to(device) if len(batch) == 4 else None
         optimizer.zero_grad(set_to_none=True)
         logits = model(tokens.to(device), lengths)
-        loss = training_loss(logits, labels.to(device), loss_config).mean()
+        loss = reduce_loss(training_loss(logits, labels.to(device), loss_config), weights)
         if not torch.isfinite(loss):
             raise RuntimeError("Nonfinite training loss")
         loss.backward()
@@ -51,6 +54,7 @@ def main():
     parser.add_argument("--seed", type=int, default=17)
     parser.add_argument("--epochs", type=int, help="Total target epochs, including already completed epochs")
     parser.add_argument("--q", type=float, help="Override GCE q for a fresh run")
+    parser.add_argument('--sample-weights', type=Path, help='JSON ID-to-weight map, global mean one')
     parser.add_argument("--device", choices=["auto", "cpu", "cuda"], default="auto")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--resume", action="store_true", help="Continue output/last.pt with its RNG and optimizer state")
@@ -74,6 +78,11 @@ def main():
         raise ValueError("Model class count differs from official label mapping")
     fingerprints = {"train": file_sha256(args.train), "validation": file_sha256(args.val),
                     "labels": file_sha256(args.val.parent.parent/"labels.json")}
+    sample_weights, weight_report = None, None
+    if args.sample_weights:
+        sample_weights = read_json(args.sample_weights)
+        weight_report = validate_weights(rows, sample_weights)
+        fingerprints['sample_weights'] = file_sha256(args.sample_weights)
     output = args.output
     previous = None
     if args.resume:
@@ -106,7 +115,8 @@ def main():
         import numpy as np
         matrix = torch.from_numpy(np.load(output/"assets/embeddings.npy", allow_pickle=False))
     generator = torch.Generator().manual_seed(args.seed)
-    train_loader = make_loader(rows, vocab, config["text"]["max_length"], training["batch_size"], True, generator)
+    train_loader = make_loader(rows, vocab, config["text"]["max_length"], training["batch_size"], True, generator,
+                               sample_weights=sample_weights)
     val_loader = make_loader(validation, vocab, config["text"]["max_length"], training["batch_size"])
     model_args = {k: v for k, v in config["model"].items() if k != "embedding_dim"}
     model = BiLSTMClassifier(matrix, **model_args).to(device)
@@ -131,6 +141,8 @@ def main():
            "validation_text": text_stats(validation, vocab, config["text"]["max_length"]),
            "parameters": sum(p.numel() for p in model.parameters()),
            "resumed_from_epoch": start_epoch-1, "started_utc": datetime.now(timezone.utc).isoformat()}
+    if weight_report is not None:
+        run['sample_weighting'] = weight_report
     write_json(output/f"run_from_epoch_{start_epoch}.json", run)
     print(f"device={device}; rows={len(rows)}; vocab={len(vocab)}; start_epoch={start_epoch}", flush=True)
     for epoch in range(start_epoch, training["max_epochs"]+1):

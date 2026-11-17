@@ -65,16 +65,20 @@ def load_official_split(path, split):
     return rows, read_json(root/"labels.json")
 
 
-def collate(rows, vocab, max_length):
+def collate(rows, vocab, max_length, sample_weights=None):
     sequences = [torch.tensor(encode(r["text"], vocab, max_length), dtype=torch.long) for r in rows]
-    return (pad_sequence(sequences, batch_first=True, padding_value=0),
+    batch = (pad_sequence(sequences, batch_first=True, padding_value=0),
             torch.tensor([len(s) for s in sequences]),
             torch.tensor([r["label"] for r in rows], dtype=torch.long))
+    if sample_weights is not None:
+        batch += (torch.tensor([sample_weights[r['id']] for r in rows], dtype=torch.float32),)
+    return batch
 
 
-def make_loader(rows, vocab, max_length, batch_size, shuffle=False, generator=None):
+def make_loader(rows, vocab, max_length, batch_size, shuffle=False, generator=None, sample_weights=None):
     return DataLoader(rows, batch_size=batch_size, shuffle=shuffle, generator=generator,
-                      num_workers=0, collate_fn=partial(collate, vocab=vocab, max_length=max_length))
+                      num_workers=0, collate_fn=partial(collate, vocab=vocab, max_length=max_length,
+                                                       sample_weights=sample_weights))
 
 
 @torch.inference_mode()

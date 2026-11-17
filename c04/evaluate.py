@@ -112,7 +112,10 @@ def main():
         {"id": row["id"], "true_label": row["label"], "predicted_intent": int(logits[i].argmax()),
          "oos_score": float(scores[i])} for i, row in enumerate(rows)])
     np.savez_compressed(args.output/"logits.npz", ids=np.array([r["id"] for r in rows]), logits=logits)
-    plot_results(args.output, result, oos_truth, scores, checkpoint["history"], config["training"].get("loss", "ce"))
+    loss_name = config['training'].get('loss', 'ce')
+    if 'sample_weights' in checkpoint['fingerprints']:
+        loss_name = 'weighted ' + loss_name
+    plot_results(args.output, result, oos_truth, scores, checkpoint["history"], loss_name)
     print(f"macro_f1={summary['macro_f1']:.4f}; accuracy={summary['accuracy']:.4f}; OOS_AUROC={summary['oos_auroc']:.4f}")
 
 
