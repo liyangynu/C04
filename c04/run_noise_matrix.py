@@ -4,6 +4,7 @@ import argparse
 from collections import defaultdict
 from datetime import datetime, timezone
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -15,9 +16,13 @@ from .common import file_sha256, read_json, write_json
 
 
 def run_command(command, log_path):
+    env = os.environ.copy()
+    env["PYTHONIOENCODING"] = "utf-8"
+    result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
+                            encoding="utf-8", errors="replace", env=env)
     with Path(log_path).open("w", encoding="utf-8", newline="\n") as stream:
-        result = subprocess.run(command, stdout=stream, stderr=subprocess.STDOUT, text=True)
-    log = Path(log_path).read_text(encoding="utf-8")
+        stream.write(result.stdout)
+    log = result.stdout
     if result.returncode:
         raise RuntimeError(f"Command failed; see {log_path}\n{log}")
     return log

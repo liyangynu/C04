@@ -50,9 +50,15 @@ def fit(method, seed, shots, train_path, run_dir, device):
     final_train = Path(train_path)
     if method == "confident_learning":
         oof_dir = run_dir / "oof"
-        run_command([sys.executable, "-m", "c04.run_confident_learning", "--train", str(train_path),
-                     "--config", str(config), "--seed", str(seed), "--folds", "5", "--device", device,
-                     "--output", str(oof_dir)], run_dir / "oof.log")
+        report_path = oof_dir / "cleaning_report.json"
+        if report_path.is_file():
+            cleaning = read_json(report_path)
+            if cleaning["input_sha256"] != file_sha256(train_path) or not cleaning["coverage_exactly_once"]:
+                raise ValueError(f"Existing OOF output does not match current input: {oof_dir}")
+        else:
+            run_command([sys.executable, "-m", "c04.run_confident_learning", "--train", str(train_path),
+                         "--config", str(config), "--seed", str(seed), "--folds", "5", "--device", device,
+                         "--output", str(oof_dir)], run_dir / "oof.log")
         cleaning = read_json(oof_dir / "cleaning_report.json")
         oof_seconds = cleaning["wall_seconds"]
         oof_epoch_seconds = sum(f["total_epoch_seconds"] for f in cleaning["fold_records"])
