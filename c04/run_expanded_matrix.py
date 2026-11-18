@@ -31,8 +31,9 @@ def released_records(noise):
     source = read_json(root / "comparison.json")
     result = []
     for item in source["records"]:
+        method = "confident_learning" if item["method"] == "cl_ce" else item["method"]
         result.append({"noise": noise, "rate": .3, "shots_per_class": 10,
-                       "seed": item["seed"], "method": item["method"],
+                       "seed": item["seed"], "method": method,
                        "test_macro_f1": item["test_macro_f1"],
                        "test_accuracy": item["test_accuracy"], "oos_auroc": item["oos_auroc"],
                        "f1_retention": item["f1_retention"],

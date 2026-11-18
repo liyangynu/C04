@@ -2,7 +2,17 @@
 
 本项目研究小样本与标签噪声共同作用下的短文本意图识别，采用 CLINC150 数据集，计划对比交叉熵基线、GCE 鲁棒损失和置信学习清洗三条路线。
 
-当前版本包含数据准备、噪声构造、GloVe-BiLSTM-Attention干净基线，以及10-shot、三个种子在真实IDN30%和对称30%下的CE/GCE/置信学习配对对照。干净基线见[阶段2结果](docs/阶段2基线结果.md)，两组结果分别见[IDN正式结果](docs/阶段3正式对照结果.md)、[对称噪声正式结果](docs/阶段3对称噪声正式结果.md)，并提供[两类条件比较](docs/阶段3两类噪声比较.md)。旧5轮试跑保留，尚未完成全部样本量和噪声比例实验。
+当前版本包含数据准备、噪声构造、GloVe-BiLSTM-Attention基线，以及扩展样本量/噪声比例下三种方法的三种子配对对照。10-shot、30%两种噪声的正式结果见[IDN结果](docs/阶段3正式对照结果.md)和[对称噪声结果](docs/阶段3对称噪声正式结果.md)；阶段5矩阵统计与核验见[扩展实验结果](docs/阶段5扩展实验结果.md)，固定协议见[扩展实验协议](docs/扩展实验协议.md)。公开CNN准确率参照和可比限制见[公开CNN核查](docs/公开CNN基线可比性核查.md)。
+
+阶段5共核验10个噪声/样本量条件，每个条件包含CE、GCE和五折置信学习清洗后CE，各三个种子；配对干净CE参考另含5/10/20/100-shot。六个10-shot、30%置信学习结果复用了发布包，统计中没有计入意外重复运行的拷贝。
+
+在相同环境和输入资产准备好后，可重新生成阶段5输入并运行矩阵：
+
+```powershell
+python -m c04.prepare_expanded_matrix --output data/stage5_expanded --embeddings-template "artifacts/stage5_embeddings/idn_s{seed}_k{shots}.npz"
+python -m c04.run_expanded_matrix --source data/stage5_expanded/matrix.json --output artifacts/stage5_expanded_runs --device cuda
+python -m c04.stage5_results
+```
 
 ## 当前可运行内容
 
