@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-18",
+  "checked_commit": "7038d7fc2a563e6e41a82e813dbb094359929533",
+  "checkout": "tmp/stage4-paired-stats-checkout",
+  "fresh_git_clone": true,
+  "python_environment": "reused project .venv; no dependency installation",
+  "source_result_bundles_verified": 4,
+  "paired_comparisons_reproduced": 26,
+  "json_identical": true,
+  "markdown_identical": true,
+  "checkout_clean_after_checks": true,
+  "commands": [
+    "git clone --quiet --no-hardlinks . tmp/stage4-paired-stats-checkout",
+    "python -m c04.paired_statistics --output tmp/recreated_paired_statistics.json --markdown tmp/recreated_paired_statistics.md",
+    "compare generated JSON and Markdown with published files; git status --short"
+  ],
+  "all_passed": true
+}
