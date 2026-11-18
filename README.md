@@ -143,6 +143,15 @@ GCE 试跑结果和当前限制记录在 `reports/stage3_gce_pilot.json`。
 | `c04/run_cleaning_variants.py` / `configs/cleaning_variants_idn10_v2.json` | 清洗变体固定协议与12次训练入口 |
 | `reports/stage4/cleaning_variants_idn10_v2/` | 预测、处理决策、权重和训练内打分证据 |
 | `c04/cleaning_variant_results.py` | 重放处理规则及独立核验 |
+| `c04/paired_statistics.py` | 固定三种子结果的配对检验、95%区间与Holm校正 |
+
+对固定矩阵执行配对统计（先核对四个结果包审计与文件校验值）：
+
+```powershell
+.\.venv\Scripts\python.exe -m c04.paired_statistics
+```
+
+统计结果见[配对统计报告](docs/配对统计结果.md)，完整逐种子数据见 `reports/stage4/paired_statistics.json`。
 | `tests/test_data.py` | 数据隔离、重放一致性与噪声性质测试 |
 | `reports/stage1_validation.json` | 数据检查结果与各组数据文件校验值 |
 | `data/processed/manifest.json` | 原始文件与处理产物校验值 |
