@@ -1,0 +1,1090 @@
+{
+  "title": "Paired seed-level statistics for fixed 10-shot, 30% noise comparisons",
+  "seeds": [
+    17,
+    42,
+    2026
+  ],
+  "source_checksums_sha256": {
+    "idn": "eda07d4b1014c20eff3b6a2901a65f8c33bd2449c13d204794117555ecba0e21",
+    "symmetric": "ddf621b91d196bf0ce29f6d382647e43fdeeb14f9eaeafeabef8322de190751d",
+    "ablations": "b74b46c91029b11b1319961f5a58f98f9b162c797931071afc56e926919d216a",
+    "cleaning": "8434deb24d98b40a3a9988a4477656bc7d08a6a79275e9bb78e4200f49c6ffe1"
+  },
+  "interpretation": {
+    "primary_family": "Four Macro-F1 comparisons: GCE and confident-learning CE vs noisy CE, in IDN and symmetric noise; Holm adjustment controls this family.",
+    "exploratory_families": "Ablations and cleaning variants are separate exploratory families; Holm adjustment is within each family.",
+    "confidence_interval": "95%配对t区间针对种子层面平均差；假设种子差值相互独立且总体近似正态。",
+    "tests": "双侧配对t检验与双侧精确Wilcoxon符号秩敏感性检验。",
+    "limitations": "只有三个配对种子，t区间和t检验易受分布假设影响；三个非零差值时精确Wilcoxon双侧p值最低为0.25。种子层面的检验不能证明跨数据集或数据划分的总体性能。",
+    "protocol_status": "这是对已固定并发布结果的事后统计分析，不是预注册研究；本次分析未根据测试结果调参。"
+  },
+  "comparisons": [
+    {
+      "family": "primary_macro_f1",
+      "comparison": "IDN30%: gce - noisy CE",
+      "metric": "test_macro_f1",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.5199370730930343,
+        0.5546564923967872,
+        0.5246260347756553
+      ],
+      "right_values": [
+        0.49996558120798457,
+        0.5360605453377373,
+        0.5009571368312936
+      ],
+      "paired_differences": [
+        0.019971491885049708,
+        0.018595947059049878,
+        0.023668897944361666
+      ],
+      "mean_difference": 0.020745445629487085,
+      "sd_difference": 0.002623539778637422,
+      "t_95_ci": [
+        0.014228211527096753,
+        0.027262679731877418
+      ],
+      "paired_t": {
+        "statistic": 13.696062910313978,
+        "p_two_sided": 0.005288743903815892,
+        "p_holm_within_family": 0.009091601464580252
+      },
+      "wilcoxon_exact": {
+        "statistic": 0.0,
+        "p_two_sided": 0.25,
+        "p_holm_within_family": 1.0
+      }
+    },
+    {
+      "family": "primary_oos_auroc",
+      "comparison": "IDN30%: gce - noisy CE",
+      "metric": "oos_auroc",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.759968,
+        0.753202,
+        0.7636431111111112
+      ],
+      "right_values": [
+        0.73955,
+        0.7486084444444444,
+        0.7631126666666667
+      ],
+      "paired_differences": [
+        0.020417999999999936,
+        0.0045935555555556284,
+        0.0005304444444445
+      ],
+      "mean_difference": 0.008514000000000022,
+      "sd_difference": 0.010507432130416411,
+      "t_95_ci": [
+        -0.017587908408824498,
+        0.034615908408824544
+      ],
+      "paired_t": {
+        "statistic": 1.4034523747199352,
+        "p_two_sided": 0.2955989277082788
+      },
+      "wilcoxon_exact": {
+        "statistic": 0.0,
+        "p_two_sided": 0.25
+      }
+    },
+    {
+      "family": "primary_macro_f1",
+      "comparison": "IDN30%: cl_ce - noisy CE",
+      "metric": "test_macro_f1",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.34581252220237857,
+        0.3576288040567545,
+        0.3509480392613237
+      ],
+      "right_values": [
+        0.49996558120798457,
+        0.5360605453377373,
+        0.5009571368312936
+      ],
+      "paired_differences": [
+        -0.154153059005606,
+        -0.17843174128098277,
+        -0.15000909756996994
+      ],
+      "mean_difference": -0.1608646326188529,
+      "sd_difference": 0.01535400873242289,
+      "t_95_ci": [
+        -0.1990061047376085,
+        -0.12272316050009731
+      ],
+      "paired_t": {
+        "statistic": -18.146773373157203,
+        "p_two_sided": 0.0030229323245273432,
+        "p_holm_within_family": 0.00906879697358203
+      },
+      "wilcoxon_exact": {
+        "statistic": 0.0,
+        "p_two_sided": 0.25,
+        "p_holm_within_family": 1.0
+      }
+    },
+    {
+      "family": "primary_oos_auroc",
+      "comparison": "IDN30%: cl_ce - noisy CE",
+      "metric": "oos_auroc",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.6942767777777777,
+        0.6676641111111111,
+        0.6909164444444444
+      ],
+      "right_values": [
+        0.73955,
+        0.7486084444444444,
+        0.7631126666666667
+      ],
+      "paired_differences": [
+        -0.0452732222222223,
+        -0.08094433333333328,
+        -0.07219622222222222
+      ],
+      "mean_difference": -0.06613792592592593,
+      "sd_difference": 0.01859124141862491,
+      "t_95_ci": [
+        -0.11232112984218678,
+        -0.01995472200966509
+      ],
+      "paired_t": {
+        "statistic": -6.161732045293591,
+        "p_two_sided": 0.025341781408553456
+      },
+      "wilcoxon_exact": {
+        "statistic": 0.0,
+        "p_two_sided": 0.25
+      }
+    },
+    {
+      "family": "primary_macro_f1",
+      "comparison": "Symmetric30%: gce - noisy CE",
+      "metric": "test_macro_f1",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.552669063874045,
+        0.5349586262901964,
+        0.535114091125215
+      ],
+      "right_values": [
+        0.4990490843297332,
+        0.482959862199907,
+        0.4840905249936828
+      ],
+      "paired_differences": [
+        0.0536199795443118,
+        0.05199876409028942,
+        0.051023566131532194
+      ],
+      "mean_difference": 0.05221410325537781,
+      "sd_difference": 0.0013115330226613378,
+      "t_95_ci": [
+        0.04895607461357888,
+        0.05547213189717674
+      ],
+      "paired_t": {
+        "statistic": 68.95554907679553,
+        "p_two_sided": 0.00021024446887457808,
+        "p_holm_within_family": 0.0008409778754983123
+      },
+      "wilcoxon_exact": {
+        "statistic": 0.0,
+        "p_two_sided": 0.25,
+        "p_holm_within_family": 1.0
+      }
+    },
+    {
+      "family": "primary_oos_auroc",
+      "comparison": "Symmetric30%: gce - noisy CE",
+      "metric": "oos_auroc",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.7486155555555556,
+        0.7343146666666667,
+        0.7385575555555556
+      ],
+      "right_values": [
+        0.7441635555555556,
+        0.7332846666666667,
+        0.7307872222222223
+      ],
+      "paired_differences": [
+        0.0044520000000000115,
+        0.0010299999999999754,
+        0.0077703333333333235
+      ],
+      "mean_difference": 0.0044174444444444365,
+      "sd_difference": 0.00337029953059457,
+      "t_95_ci": [
+        -0.003954843719399969,
+        0.012789732608288841
+      ],
+      "paired_t": {
+        "statistic": 2.2701953188240354,
+        "p_two_sided": 0.151219823854831
+      },
+      "wilcoxon_exact": {
+        "statistic": 0.0,
+        "p_two_sided": 0.25
+      }
+    },
+    {
+      "family": "primary_macro_f1",
+      "comparison": "Symmetric30%: cl_ce - noisy CE",
+      "metric": "test_macro_f1",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.340321460986516,
+        0.30937925474976424,
+        0.3469730834051536
+      ],
+      "right_values": [
+        0.4990490843297332,
+        0.482959862199907,
+        0.4840905249936828
+      ],
+      "paired_differences": [
+        -0.15872762334321722,
+        -0.17358060745014275,
+        -0.13711744158852923
+      ],
+      "mean_difference": -0.1564752241272964,
+      "sd_difference": 0.018335637235552926,
+      "t_95_ci": [
+        -0.202023472053107,
+        -0.1109269762014858
+      ],
+      "paired_t": {
+        "statistic": -14.78121730008321,
+        "p_two_sided": 0.004545800732290126,
+        "p_holm_within_family": 0.009091601464580252
+      },
+      "wilcoxon_exact": {
+        "statistic": 0.0,
+        "p_two_sided": 0.25,
+        "p_holm_within_family": 1.0
+      }
+    },
+    {
+      "family": "primary_oos_auroc",
+      "comparison": "Symmetric30%: cl_ce - noisy CE",
+      "metric": "oos_auroc",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.6957613333333333,
+        0.6659445555555555,
+        0.6766636666666667
+      ],
+      "right_values": [
+        0.7441635555555556,
+        0.7332846666666667,
+        0.7307872222222223
+      ],
+      "paired_differences": [
+        -0.048402222222222235,
+        -0.06734011111111116,
+        -0.05412355555555559
+      ],
+      "mean_difference": -0.05662196296296299,
+      "sd_difference": 0.009713003581385974,
+      "t_95_ci": [
+        -0.0807504014538499,
+        -0.03249352447207608
+      ],
+      "paired_t": {
+        "statistic": -10.096991713673491,
+        "p_two_sided": 0.009666803343670406
+      },
+      "wilcoxon_exact": {
+        "statistic": 0.0,
+        "p_two_sided": 0.25
+      }
+    },
+    {
+      "family": "exploratory_ablations_macro_f1",
+      "comparison": "IDN30%: last_state - GCE q=0.7",
+      "metric": "test_macro_f1",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.5690085896617245,
+        0.5979256312425767,
+        0.571502643099318
+      ],
+      "right_values": [
+        0.5199370730930343,
+        0.5546564923967872,
+        0.5246260347756553
+      ],
+      "paired_differences": [
+        0.04907151656869024,
+        0.043269138845789534,
+        0.046876608323662694
+      ],
+      "mean_difference": 0.04640575457938082,
+      "sd_difference": 0.002929705487959805,
+      "t_95_ci": [
+        0.039127962692417965,
+        0.05368354646634368
+      ],
+      "paired_t": {
+        "statistic": 27.435223446651932,
+        "p_two_sided": 0.0013259237991228503,
+        "p_holm_within_family": 0.007955542794737102
+      },
+      "wilcoxon_exact": {
+        "statistic": 0.0,
+        "p_two_sided": 0.25,
+        "p_holm_within_family": 1.0
+      }
+    },
+    {
+      "family": "exploratory_ablations_oos_auroc",
+      "comparison": "IDN30%: last_state - GCE q=0.7",
+      "metric": "oos_auroc",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.7678977777777778,
+        0.7890428888888888,
+        0.7740433333333333
+      ],
+      "right_values": [
+        0.759968,
+        0.753202,
+        0.7636431111111112
+      ],
+      "paired_differences": [
+        0.007929777777777813,
+        0.03584088888888881,
+        0.010400222222222144
+      ],
+      "mean_difference": 0.018056962962962924,
+      "sd_difference": 0.015450786062281287,
+      "t_95_ci": [
+        -0.0203249173705364,
+        0.056438843296462246
+      ],
+      "paired_t": {
+        "statistic": 2.0242062220116877,
+        "p_two_sided": 0.18024886512606775
+      },
+      "wilcoxon_exact": {
+        "statistic": 0.0,
+        "p_two_sided": 0.25
+      }
+    },
+    {
+      "family": "exploratory_ablations_macro_f1",
+      "comparison": "IDN30%: frozen_embeddings - GCE q=0.7",
+      "metric": "test_macro_f1",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.4637911677388028,
+        0.5010958910061624,
+        0.49015092625281853
+      ],
+      "right_values": [
+        0.5199370730930343,
+        0.5546564923967872,
+        0.5246260347756553
+      ],
+      "paired_differences": [
+        -0.05614590535423147,
+        -0.053560601390624796,
+        -0.03447510852283675
+      ],
+      "mean_difference": -0.04806053842256434,
+      "sd_difference": 0.011836125984306242,
+      "t_95_ci": [
+        -0.07746310534120747,
+        -0.01865797150392121
+      ],
+      "paired_t": {
+        "statistic": -7.032984820993929,
+        "p_two_sided": 0.019624034555371112,
+        "p_holm_within_family": 0.07849613822148445
+      },
+      "wilcoxon_exact": {
+        "statistic": 0.0,
+        "p_two_sided": 0.25,
+        "p_holm_within_family": 1.0
+      }
+    },
+    {
+      "family": "exploratory_ablations_oos_auroc",
+      "comparison": "IDN30%: frozen_embeddings - GCE q=0.7",
+      "metric": "oos_auroc",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.7279662222222222,
+        0.7281245555555556,
+        0.7425151111111111
+      ],
+      "right_values": [
+        0.759968,
+        0.753202,
+        0.7636431111111112
+      ],
+      "paired_differences": [
+        -0.032001777777777796,
+        -0.025077444444444486,
+        -0.021128000000000036
+      ],
+      "mean_difference": -0.026069074074074106,
+      "sd_difference": 0.00550429448538983,
+      "t_95_ci": [
+        -0.03974249958181036,
+        -0.012395648566337852
+      ],
+      "paired_t": {
+        "statistic": -8.203224032148613,
+        "p_two_sided": 0.014537160725880115
+      },
+      "wilcoxon_exact": {
+        "statistic": 0.0,
+        "p_two_sided": 0.25
+      }
+    },
+    {
+      "family": "exploratory_ablations_macro_f1",
+      "comparison": "IDN30%: q_02 - GCE q=0.7",
+      "metric": "test_macro_f1",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.5215219638936445,
+        0.544860475613016,
+        0.5179780658239017
+      ],
+      "right_values": [
+        0.5199370730930343,
+        0.5546564923967872,
+        0.5246260347756553
+      ],
+      "paired_differences": [
+        0.0015848908006101947,
+        -0.009796016783771178,
+        -0.006647968951753569
+      ],
+      "mean_difference": -0.004953031644971517,
+      "sd_difference": 0.005876723042350945,
+      "t_95_ci": [
+        -0.019551620975987633,
+        0.009645557686044599
+      ],
+      "paired_t": {
+        "statistic": -1.4598105778956678,
+        "p_two_sided": 0.28176520255754933,
+        "p_holm_within_family": 0.5635304051150987
+      },
+      "wilcoxon_exact": {
+        "statistic": 1.0,
+        "p_two_sided": 0.5,
+        "p_holm_within_family": 1.0
+      }
+    },
+    {
+      "family": "exploratory_ablations_oos_auroc",
+      "comparison": "IDN30%: q_02 - GCE q=0.7",
+      "metric": "oos_auroc",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.7523076666666667,
+        0.7460715555555556,
+        0.7623415555555556
+      ],
+      "right_values": [
+        0.759968,
+        0.753202,
+        0.7636431111111112
+      ],
+      "paired_differences": [
+        -0.007660333333333269,
+        -0.007130444444444439,
+        -0.0013015555555555558
+      ],
+      "mean_difference": -0.005364111111111088,
+      "sd_difference": 0.0035282380574620104,
+      "t_95_ci": [
+        -0.014128740325685195,
+        0.00340051810346302
+      ],
+      "paired_t": {
+        "statistic": -2.633301050148651,
+        "p_two_sided": 0.11901022404507099
+      },
+      "wilcoxon_exact": {
+        "statistic": 0.0,
+        "p_two_sided": 0.25
+      }
+    },
+    {
+      "family": "exploratory_ablations_macro_f1",
+      "comparison": "IDN30%: q_04 - GCE q=0.7",
+      "metric": "test_macro_f1",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.5251682916625846,
+        0.5522851797182512,
+        0.5235469863604632
+      ],
+      "right_values": [
+        0.5199370730930343,
+        0.5546564923967872,
+        0.5246260347756553
+      ],
+      "paired_differences": [
+        0.005231218569550333,
+        -0.002371312678535964,
+        -0.0010790484151921298
+      ],
+      "mean_difference": 0.0005936191586074132,
+      "sd_difference": 0.004067921207922111,
+      "t_95_ci": [
+        -0.009511657322420859,
+        0.010698895639635686
+      ],
+      "paired_t": {
+        "statistic": 0.2527528166110965,
+        "p_two_sided": 0.8240645471195308,
+        "p_holm_within_family": 0.8240645471195308
+      },
+      "wilcoxon_exact": {
+        "statistic": 3.0,
+        "p_two_sided": 1.0,
+        "p_holm_within_family": 1.0
+      }
+    },
+    {
+      "family": "exploratory_ablations_oos_auroc",
+      "comparison": "IDN30%: q_04 - GCE q=0.7",
+      "metric": "oos_auroc",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.7575582222222222,
+        0.7525124444444444,
+        0.7655404444444445
+      ],
+      "right_values": [
+        0.759968,
+        0.753202,
+        0.7636431111111112
+      ],
+      "paired_differences": [
+        -0.002409777777777733,
+        -0.0006895555555556099,
+        0.0018973333333333064
+      ],
+      "mean_difference": -0.00040066666666667877,
+      "sd_difference": 0.002168039234759522,
+      "t_95_ci": [
+        -0.005786374690287133,
+        0.004985041356953776
+      ],
+      "paired_t": {
+        "statistic": -0.32009338781312535,
+        "p_two_sided": 0.7792438277780412
+      },
+      "wilcoxon_exact": {
+        "statistic": 2.0,
+        "p_two_sided": 0.75
+      }
+    },
+    {
+      "family": "exploratory_ablations_macro_f1",
+      "comparison": "IDN30%: q_09 - GCE q=0.7",
+      "metric": "test_macro_f1",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.4125143958065279,
+        0.41899797722635507,
+        0.42734342908000317
+      ],
+      "right_values": [
+        0.5199370730930343,
+        0.5546564923967872,
+        0.5246260347756553
+      ],
+      "paired_differences": [
+        -0.1074226772865064,
+        -0.1356585151704321,
+        -0.09728260569565211
+      ],
+      "mean_difference": -0.11345459938419687,
+      "sd_difference": 0.019886318667581036,
+      "t_95_ci": [
+        -0.1628549535342195,
+        -0.06405424523417425
+      ],
+      "paired_t": {
+        "statistic": -9.881624335335312,
+        "p_two_sided": 0.010086342609055216,
+        "p_holm_within_family": 0.05043171304527608
+      },
+      "wilcoxon_exact": {
+        "statistic": 0.0,
+        "p_two_sided": 0.25,
+        "p_holm_within_family": 1.0
+      }
+    },
+    {
+      "family": "exploratory_ablations_oos_auroc",
+      "comparison": "IDN30%: q_09 - GCE q=0.7",
+      "metric": "oos_auroc",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.7331254444444445,
+        0.7246673333333333,
+        0.7325262222222222
+      ],
+      "right_values": [
+        0.759968,
+        0.753202,
+        0.7636431111111112
+      ],
+      "paired_differences": [
+        -0.02684255555555548,
+        -0.028534666666666708,
+        -0.03111688888888897
+      ],
+      "mean_difference": -0.028831370370370386,
+      "sd_difference": 0.0021525580542589456,
+      "t_95_ci": [
+        -0.034178621009686945,
+        -0.023484119731053826
+      ],
+      "paired_t": {
+        "statistic": -23.199094786091248,
+        "p_two_sided": 0.0018528896922819214
+      },
+      "wilcoxon_exact": {
+        "statistic": 0.0,
+        "p_two_sided": 0.25
+      }
+    },
+    {
+      "family": "exploratory_ablations_macro_f1",
+      "comparison": "IDN30%: q_095 - GCE q=0.7",
+      "metric": "test_macro_f1",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.34021965519309993,
+        0.2990825467856125,
+        0.36574193172998526
+      ],
+      "right_values": [
+        0.5199370730930343,
+        0.5546564923967872,
+        0.5246260347756553
+      ],
+      "paired_differences": [
+        -0.17971741789993434,
+        -0.25557394561117464,
+        -0.15888410304567002
+      ],
+      "mean_difference": -0.19805848885225966,
+      "sd_difference": 0.05088740096128108,
+      "t_95_ci": [
+        -0.324469800633138,
+        -0.07164717707138132
+      ],
+      "paired_t": {
+        "statistic": -6.741302544090309,
+        "p_two_sided": 0.0213038934319596,
+        "p_holm_within_family": 0.07849613822148445
+      },
+      "wilcoxon_exact": {
+        "statistic": 0.0,
+        "p_two_sided": 0.25,
+        "p_holm_within_family": 1.0
+      }
+    },
+    {
+      "family": "exploratory_ablations_oos_auroc",
+      "comparison": "IDN30%: q_095 - GCE q=0.7",
+      "metric": "oos_auroc",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.7201395555555555,
+        0.6955968888888889,
+        0.7115995555555555
+      ],
+      "right_values": [
+        0.759968,
+        0.753202,
+        0.7636431111111112
+      ],
+      "paired_differences": [
+        -0.039828444444444444,
+        -0.05760511111111111,
+        -0.05204355555555562
+      ],
+      "mean_difference": -0.049825703703703726,
+      "sd_difference": 0.00909349325463084,
+      "t_95_ci": [
+        -0.07241519322907944,
+        -0.027236214178328007
+      ],
+      "paired_t": {
+        "statistic": -9.490373822374503,
+        "p_two_sided": 0.010921269119383846
+      },
+      "wilcoxon_exact": {
+        "statistic": 0.0,
+        "p_two_sided": 0.25
+      }
+    },
+    {
+      "family": "exploratory_cleaning_macro_f1",
+      "comparison": "IDN30%: relabel - noisy CE",
+      "metric": "test_macro_f1",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.36616194862450463,
+        0.3699541861971711,
+        0.3578012093978015
+      ],
+      "right_values": [
+        0.49996558120798457,
+        0.5360605453377373,
+        0.5009571368312936
+      ],
+      "paired_differences": [
+        -0.13380363258347994,
+        -0.1661063591405662,
+        -0.1431559274334921
+      ],
+      "mean_difference": -0.14768863971917942,
+      "sd_difference": 0.016621541632895764,
+      "t_95_ci": [
+        -0.18897883811688396,
+        -0.10639844132147488
+      ],
+      "paired_t": {
+        "statistic": -15.389921906406709,
+        "p_two_sided": 0.004195534651244858,
+        "p_holm_within_family": 0.012586603953734576
+      },
+      "wilcoxon_exact": {
+        "statistic": 0.0,
+        "p_two_sided": 0.25,
+        "p_holm_within_family": 0.75
+      }
+    },
+    {
+      "family": "exploratory_cleaning_oos_auroc",
+      "comparison": "IDN30%: relabel - noisy CE",
+      "metric": "oos_auroc",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.6946682222222222,
+        0.6779264444444445,
+        0.7026004444444445
+      ],
+      "right_values": [
+        0.73955,
+        0.7486084444444444,
+        0.7631126666666667
+      ],
+      "paired_differences": [
+        -0.0448817777777778,
+        -0.07068199999999991,
+        -0.06051222222222219
+      ],
+      "mean_difference": -0.058691999999999966,
+      "sd_difference": 0.012996067612270823,
+      "t_95_ci": [
+        -0.09097602166009898,
+        -0.026407978339900953
+      ],
+      "paired_t": {
+        "statistic": -7.822175832776367,
+        "p_two_sided": 0.015953437829342103
+      },
+      "wilcoxon_exact": {
+        "statistic": 0.0,
+        "p_two_sided": 0.25
+      }
+    },
+    {
+      "family": "exploratory_cleaning_macro_f1",
+      "comparison": "IDN30%: weighted - noisy CE",
+      "metric": "test_macro_f1",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.46904875521226247,
+        0.5002014585308014,
+        0.4788675805836874
+      ],
+      "right_values": [
+        0.49996558120798457,
+        0.5360605453377373,
+        0.5009571368312936
+      ],
+      "paired_differences": [
+        -0.030916825995722097,
+        -0.035859086806935836,
+        -0.022089556247606223
+      ],
+      "mean_difference": -0.029621823016754718,
+      "sd_difference": 0.006975511987856433,
+      "t_95_ci": [
+        -0.04694995540455539,
+        -0.012293690628954041
+      ],
+      "paired_t": {
+        "statistic": -7.355231066501084,
+        "p_two_sided": 0.01798726581663742,
+        "p_holm_within_family": 0.03597453163327484
+      },
+      "wilcoxon_exact": {
+        "statistic": 0.0,
+        "p_two_sided": 0.25,
+        "p_holm_within_family": 0.75
+      }
+    },
+    {
+      "family": "exploratory_cleaning_oos_auroc",
+      "comparison": "IDN30%: weighted - noisy CE",
+      "metric": "oos_auroc",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.7186586666666667,
+        0.733217,
+        0.7497064444444445
+      ],
+      "right_values": [
+        0.73955,
+        0.7486084444444444,
+        0.7631126666666667
+      ],
+      "paired_differences": [
+        -0.020891333333333373,
+        -0.015391444444444402,
+        -0.013406222222222208
+      ],
+      "mean_difference": -0.016562999999999994,
+      "sd_difference": 0.003877644762124921,
+      "t_95_ci": [
+        -0.02619560358636565,
+        -0.0069303964136343404
+      ],
+      "paired_t": {
+        "statistic": -7.398294399212196,
+        "p_two_sided": 0.01778401431535873
+      },
+      "wilcoxon_exact": {
+        "statistic": 0.0,
+        "p_two_sided": 0.25
+      }
+    },
+    {
+      "family": "exploratory_cleaning_macro_f1",
+      "comparison": "IDN30%: insample_delete - noisy CE",
+      "metric": "test_macro_f1",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.5126788573503082,
+        0.5378291330051528,
+        0.4879834997851668
+      ],
+      "right_values": [
+        0.49996558120798457,
+        0.5360605453377373,
+        0.5009571368312936
+      ],
+      "paired_differences": [
+        0.012713276142323593,
+        0.0017685876674154999,
+        -0.012973637046126807
+      ],
+      "mean_difference": 0.0005027422545374286,
+      "sd_difference": 0.012890157126456027,
+      "t_95_ci": [
+        -0.031518183173679264,
+        0.032523667682754116
+      ],
+      "paired_t": {
+        "statistic": 0.06755349212798611,
+        "p_two_sided": 0.9522868710170462,
+        "p_holm_within_family": 0.9522868710170462
+      },
+      "wilcoxon_exact": {
+        "statistic": 3.0,
+        "p_two_sided": 1.0,
+        "p_holm_within_family": 1.0
+      }
+    },
+    {
+      "family": "exploratory_cleaning_oos_auroc",
+      "comparison": "IDN30%: insample_delete - noisy CE",
+      "metric": "oos_auroc",
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "n_pairs": 3,
+      "left_values": [
+        0.7510781111111111,
+        0.7652533333333333,
+        0.7621163333333333
+      ],
+      "right_values": [
+        0.73955,
+        0.7486084444444444,
+        0.7631126666666667
+      ],
+      "paired_differences": [
+        0.011528111111111072,
+        0.01664488888888893,
+        -0.0009963333333333768
+      ],
+      "mean_difference": 0.009058888888888875,
+      "sd_difference": 0.009076121096619112,
+      "t_95_ci": [
+        -0.013487445803635421,
+        0.03160522358141317
+      ],
+      "paired_t": {
+        "statistic": 1.7287622816669403,
+        "p_two_sided": 0.225992606644989
+      },
+      "wilcoxon_exact": {
+        "statistic": 1.0,
+        "p_two_sided": 0.5
+      }
+    }
+  ]
+}
