@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "scope": "opening-report core noise matrix and 30-percent sample-size comparison",
+  "status": "frozen before new training on 2026-11-18",
+  "dataset_sha256": "36923c3705a59e08fe9c3883d8bc2dd966ef93e22cb78ac41171782a698d56e0",
+  "seeds": [17, 42, 2026],
+  "shot_sizes_per_class": [5, 10, 20, 100],
+  "core_matrix": {
+    "shot_size_per_class": 10,
+    "conditions": [
+      {"noise": "symmetric", "rate": 0.1},
+      {"noise": "symmetric", "rate": 0.2},
+      {"noise": "symmetric", "rate": 0.3},
+      {"noise": "instance", "rate": 0.3}
+    ],
+    "methods": ["ce", "gce", "confident_learning"]
+  },
+  "sample_size_sweep": {
+    "conditions": [
+      {"noise": "symmetric", "rate": 0.3},
+      {"noise": "instance", "rate": 0.3}
+    ],
+    "methods": ["ce", "gce", "confident_learning"],
+    "clean_ce_reference": true,
+    "reuse_existing_10_shot_runs": true
+  },
+  "training": {
+    "ce_config": "configs/formal_ce.json",
+    "gce_config": "configs/formal_gce.json",
+    "max_epochs": 30,
+    "patience": 5,
+    "selection_metric": "validation_macro_f1",
+    "oof_folds": 5,
+    "gce_q": 0.7
+  },
+  "instance_noise": {
+    "encoder_id": "sentence-transformers/all-MiniLM-L6-v2",
+    "encoder_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "temperature": 0.2,
+    "embedding_batch_size": 64
+  },
+  "evaluation": [
+    "closed_set_macro_f1",
+    "closed_set_accuracy",
+    "oos_auroc_msp",
+    "f1_retention_vs_same_seed_and_shot_clean_ce",
+    "training_seconds",
+    "peak_allocated_gpu_memory"
+  ],
+  "resource_budget": {
+    "gpu_count": 1,
+    "max_vram_gb": 12,
+    "wall_time_hours": 48,
+    "new_final_model_fits_planned": 81,
+    "new_oof_fold_fits_planned": 120,
+    "total_new_model_fits_planned": 201
+  },
+  "selection_and_reporting": {
+    "test_data_used_for_model_selection": false,
+    "clean_labels_read_by_training_or_cleaning": false,
+    "rate_levels_nested_within_a_fixed_shot_and_seed": true,
+    "analysis_uses_test_metrics_only_after_all_runs_complete": true
+  }
+}
