@@ -1,5 +1,6 @@
 """Selection and target checks; synthetic values are not experiment results."""
 import unittest
+import json
 import tempfile
 from pathlib import Path
 import shutil
@@ -7,6 +8,7 @@ import shutil
 from c04.common import read_json, write_json
 from c04.completion_results import target_assessment
 from c04.local_experiment_audit import audit_oof
+from c04.paired_statistics import summarize_pair
 from c04.public_svm_selection import select_candidate
 
 
@@ -29,6 +31,12 @@ class CompletionTests(unittest.TestCase):
         self.assertTrue(result["auroc_drop_at_most_002_point_estimate"])
         self.assertFalse(result["f1_t95_lower_at_least_005"])
         self.assertFalse(result["auroc_t95_lower_at_least_minus002"])
+
+    def test_targets_from_computed_intervals_can_be_exported_as_json(self):
+        pair = summarize_pair([.7, .72, .74], [.65, .63, .68])
+        result = target_assessment(pair, pair)
+        self.assertEqual(json.loads(json.dumps(result)), result)
+        self.assertIs(type(result["f1_t95_lower_at_least_005"]), bool)
 
 
 @unittest.skipUnless(Path("artifacts/stage5_expanded_runs/instance_r30/confident_learning/k5_s17/oof/cleaning_report.json").exists(),

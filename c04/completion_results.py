@@ -15,10 +15,10 @@ from .stage5_results import summarize
 
 
 def target_assessment(pair_f1, pair_auroc):
-    return {"f1_gain_at_least_005_point_estimate": pair_f1["mean_difference"] >= .05,
-            "auroc_drop_at_most_002_point_estimate": pair_auroc["mean_difference"] >= -.02,
-            "f1_t95_lower_at_least_005": pair_f1["t_95_ci"][0] >= .05,
-            "auroc_t95_lower_at_least_minus002": pair_auroc["t_95_ci"][0] >= -.02,
+    return {"f1_gain_at_least_005_point_estimate": bool(pair_f1["mean_difference"] >= .05),
+            "auroc_drop_at_most_002_point_estimate": bool(pair_auroc["mean_difference"] >= -.02),
+            "f1_t95_lower_at_least_005": bool(pair_f1["t_95_ci"][0] >= .05),
+            "auroc_t95_lower_at_least_minus002": bool(pair_auroc["t_95_ci"][0] >= -.02),
             "note": "Point-estimate targets and t intervals are reported separately; n=3 and no general noninferiority claim."}
 
 
