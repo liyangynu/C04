@@ -1,0 +1,11 @@
+{
+  "model": {"embedding_dim": 100, "filters": 200, "kernel_size": 3, "dense_dim": 300, "dropout": 0.6, "classes": 151, "conv_activation": "softmax_channels"},
+  "text": {"max_length": 40, "min_frequency": 1},
+  "training": {"loss": "ce", "learning_rate": 0.001, "weight_decay": 0.0, "batch_size": 16, "max_epochs": 30, "patience": 5, "gradient_clip": 5.0, "cpu_threads": 4, "deterministic": true},
+  "selection_metric": "validation_accuracy_including_oos",
+  "optimizer": "Adam",
+  "seeds": [17, 42, 2026],
+  "reference": {"paper": "https://aclanthology.org/D19-1131/", "table": "Table 2, Full, CNN, oos-train", "id_accuracy": 0.912, "oos_recall": 0.189, "accuracy_tolerance_pp": 2.0},
+  "local_choices_not_specified_in_paper": ["kernel_size=3", "GloVe 6B 100 dimensions", "masked global max pooling", "softmax over filters at each convolution position", "dropout before dense and output layers", "project tokenizer and length limit", "Adam learning rate and gradient clipping", "30 epochs, patience 5, validation accuracy including OOS"],
+  "status": "paper-guided reimplementation; not exact original-code reproduction"
+}
