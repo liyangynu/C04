@@ -15,6 +15,14 @@ def conditions():
     return result
 
 
+def align_frozen_embeddings(path, rows, instance_protocol):
+    vectors, provenance = align_embeddings(path, rows)
+    for field in ("encoder_id", "encoder_revision"):
+        if provenance[field] != instance_protocol[field]:
+            raise ValueError(f"Embedding {field} differs from the frozen stage-5 protocol")
+    return vectors, provenance
+
+
 def prepare(output, embeddings_template):
     output = Path(output)
     if output.exists():
@@ -28,6 +36,8 @@ def prepare(output, embeddings_template):
 
     for shots, kind, rate in conditions():
         for seed in seeds:
+            # Reused labels have no new vector artifact; never inherit the previous iteration.
+            vectors, provenance, vector_path = None, None, None
             clean_path = Path(f"data/processed/fewshot/seed_{seed}/k_{shots}.jsonl")
             clean_rows = read_jsonl(clean_path)
             if kind == "instance" and shots == 10:
@@ -41,7 +51,6 @@ def prepare(output, embeddings_template):
                 clean_ids = [row["id"] for row in clean_rows]
                 if [row["id"] for row in observed_rows] != clean_ids:
                     raise ValueError(f"Existing IDN10 input IDs changed: seed={seed}")
-                audit_path = Path(f"reports/stage3/formal_idn10_v2/oof/seed_{seed}/oof_probabilities.npz")
                 clean_labels = [int(row["label"]) for row in clean_rows]
                 audit_rows = [{"id": row["id"], "clean_label": int(clean_labels[i]),
                                "observed_label": int(row["label"]),
@@ -55,14 +64,12 @@ def prepare(output, embeddings_template):
                                "total": len(audit_rows), "actual_rate": sum(r["flipped"] for r in audit_rows) / len(audit_rows),
                                "source": "released stage3 IDN10 OOF labels"}
                 write_json(noise_dir / "audit" / "diagnostics.json", diagnostics)
-                vector_path = None
             else:
-                vectors, provenance, vector_path = None, None, None
                 if kind == "instance":
                     if not embeddings_template:
                         raise ValueError("--embeddings-template is required for non-10-shot IDN")
                     vector_path = Path(embeddings_template.format(seed=seed, shots=shots))
-                    vectors, provenance = align_embeddings(vector_path, clean_rows)
+                    vectors, provenance = align_frozen_embeddings(vector_path, clean_rows, embedding_info)
                 observed_rows, audit_rows, diagnostics = inject(
                     clean_rows, dataset["classes"], rate, seed, kind, vectors,
                     embedding_info["temperature"])

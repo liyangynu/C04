@@ -13,7 +13,8 @@ from .runtime import git_state
 
 
 def key(record):
-    return (record["noise"], record["rate"], record["shots_per_class"], record["seed"], record["method"])
+    method = "confident_learning" if record["method"] == "cl_ce" else record["method"]
+    return (record["noise"], record["rate"], record["shots_per_class"], record["seed"], method)
 
 
 def metric_summary(records):
