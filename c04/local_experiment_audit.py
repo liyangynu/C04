@@ -63,7 +63,20 @@ def expected_config(item):
     return config
 
 
-def audit_metadata(item, expected, labels):
+def training_inputs(completion):
+    paths = list(Path("data/processed/fewshot").rglob("*.jsonl"))
+    paths += [Path(r["train_path"]) for r in read_json("data/stage5_expanded/matrix.json")["records"]]
+    paths += [Path(r["train_path"]) for r in read_json(completion / "inputs/matrix.json")["records"]]
+    paths += list(Path("artifacts").glob("stage3_formal_*/*/k10_s*/oof/cleaned_train.jsonl"))
+    paths += list(Path("artifacts").glob("stage5_expanded_runs/*/*/k*_s*/oof/cleaned_train.jsonl"))
+    paths += list(completion.glob("noise/*/*/seed_*/oof/cleaned_train.jsonl"))
+    paths += list(Path("artifacts/stage4_cleaning_variants_idn10_v2").glob("*/k10_s*/input/train.jsonl"))
+    # Some stage3 direct paths use the old layout; the stage5 matrix contains
+    # byte-identical copies, so fingerprints intentionally join across locations.
+    return {file_sha256(path): path for path in paths}
+
+
+def audit_metadata(item, expected, labels, inputs):
     root, record = item["run"], item["record"]
     config = expected_config(item)
     run = read_json(root / "training/run_from_epoch_1.json")
@@ -88,8 +101,20 @@ def audit_metadata(item, expected, labels):
             len(history) != summary["epochs_completed"] or len(history) > config["training"]["max_epochs"]):
         raise ValueError(f"Validation checkpoint selection differs: {root}")
     vocab = read_json(root / "training/assets/vocab.json")
-    if file_sha256(root / "training/assets/vocab.json") != run["embedding"]["vocab_sha256"]:
+    train_path = inputs.get(fingerprints["train"])
+    if train_path is None:
+        raise ValueError(f"Cannot locate frozen training data: {root}")
+    training = read_jsonl(train_path)
+    if (file_sha256(root / "training/assets/vocab.json") != run["embedding"]["vocab_sha256"] or
+            vocab != build_vocab(training, config["text"]["min_frequency"]) or run["train_rows"] != len(training)):
         raise ValueError(f"Vocabulary changed: {root}")
+    if "sample_weights" in fingerprints:
+        if file_sha256(root / "input/weights.json") != fingerprints["sample_weights"]:
+            raise ValueError(f"Training weights changed: {root}")
+    if (fingerprints["labels"] != file_sha256("data/processed/labels.json") or
+            metrics["test_sha256"] != file_sha256("data/processed/clean/test.jsonl") or
+            metrics["oos_test_sha256"] != file_sha256("data/processed/clean/oos_test.jsonl")):
+        raise ValueError(f"Label/evaluation fingerprint differs: {root}")
     return {"run": root.as_posix(), "group": item["group"], "seed": record["seed"], **values,
             "checkpoint_sha256": metrics["checkpoint_sha256"], "training_git": run["git"],
             "training_environment": run["environment"], "vocab_size": len(vocab),
@@ -199,9 +224,10 @@ def main():
     oos, _ = load_official_split("data/processed/clean/oos_test.jsonl", "oos_test")
     rows = test + oos
     expected = [(r["id"], r["label"]) for r in rows]
+    inputs = training_inputs(args.completion)
     finals, replays = [], []
     for i, item in enumerate(items):
-        finals.append(audit_metadata(item, expected, labels))
+        finals.append(audit_metadata(item, expected, labels, inputs))
         if args.weights:
             replays.append(replay_final(item, rows, args.device))
         if (i + 1) % 10 == 0:
