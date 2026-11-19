@@ -5,3 +5,4 @@ data/
 artifacts/
 tmp/
 .pytest_cache/
+references/course_materials/
