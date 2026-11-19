@@ -1,0 +1,37 @@
+{
+  "seeds": [
+    17,
+    42,
+    2026
+  ],
+  "vectorizer": {
+    "binary": true,
+    "lowercase": true,
+    "ngram_range": [
+      1,
+      1
+    ],
+    "token_pattern": "(?u)\\b\\w\\w+\\b"
+  },
+  "classifier": {
+    "C": 1.0,
+    "kernel": "linear",
+    "probability": false,
+    "decision_function_shape": "ovr",
+    "cache_size": 512
+  },
+  "reference": {
+    "paper": "https://aclanthology.org/D19-1131/",
+    "table": "Table 2, Full, SVM, oos-train",
+    "id_accuracy": 0.91,
+    "oos_recall": 0.145,
+    "accuracy_tolerance_pp": 2.0
+  },
+  "implementation": "scikit-learn CountVectorizer(binary=True) + SVC(kernel=linear,C=1)",
+  "unspecified_local_choices": [
+    "binary unigram bag of words; lowercase; sklearn default token pattern",
+    "libsvm multiclass SVC, no probability calibration, no class weights"
+  ],
+  "training": "official ID train + OOS train as class 150; vocabulary from training only; no tuning",
+  "status": "paper-guided public SVM baseline; original implementation unavailable"
+}

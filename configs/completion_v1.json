@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "frozen_on": "2026-11-19",
+  "seeds": [
+    17,
+    42,
+    2026
+  ],
+  "additional_noise_conditions": [
+    {
+      "noise": "instance",
+      "rate": 0.1,
+      "shots_per_class": 10
+    },
+    {
+      "noise": "instance",
+      "rate": 0.2,
+      "shots_per_class": 10
+    }
+  ],
+  "methods": [
+    "ce",
+    "gce",
+    "confident_learning"
+  ],
+  "q_values": [
+    0.2,
+    0.4,
+    0.7,
+    0.9,
+    0.95
+  ],
+  "q_conditions": [
+    {
+      "noise": "symmetric",
+      "rate": 0.1,
+      "shots_per_class": 10
+    },
+    {
+      "noise": "symmetric",
+      "rate": 0.3,
+      "shots_per_class": 10
+    },
+    {
+      "noise": "instance",
+      "rate": 0.1,
+      "shots_per_class": 10
+    },
+    {
+      "noise": "instance",
+      "rate": 0.3,
+      "shots_per_class": 10
+    },
+    {
+      "noise": "symmetric",
+      "rate": 0.3,
+      "shots_per_class": 5
+    },
+    {
+      "noise": "instance",
+      "rate": 0.3,
+      "shots_per_class": 5
+    }
+  ],
+  "base_ce_config": "configs/formal_ce.json",
+  "base_gce_config": "configs/formal_gce.json",
+  "encoder": {
+    "id": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "temperature": 0.2
+  },
+  "new_final_noise_fits": 18,
+  "new_oof_fold_fits": 30,
+  "new_q_fits": 60,
+  "selection": "unchanged validation macro-F1, 30 epochs, patience 5; q=.7 remains the main setting",
+  "direct_comparison": "IDN30%, 10-shot: confident-learning CE minus GCE, both Macro-F1 and OOS AUROC",
+  "hypothesis_goals": {
+    "high_noise_f1_increase": 0.05,
+    "oos_auroc_tolerance": 0.02
+  },
+  "test_based_tuning": false,
+  "limitations": [
+    "Supplementary protocol after earlier results; not preregistration.",
+    "Three seed-level pairs do not establish cross-dataset significance."
+  ]
+}
