@@ -1,6 +1,9 @@
 """Export and independently check the three paper-guided CNN runs."""
 import argparse
 import csv
+import hashlib
+import json
+import os
 import shutil
 from pathlib import Path
 
@@ -26,8 +29,9 @@ def export(source, output):
         for name in ("run.json", "history.json", "metrics.json", "predictions.jsonl", "confusion_matrix.csv", "per_class.csv"):
             shutil.copyfile(run / name, dest / name)
         shutil.copyfile(run / "assets/vocab.json", dest / "vocab.json")
-        if (run / "train.log").is_file():
-            (dest / "train.log").write_text((run / "train.log").read_text(encoding="utf-8"), encoding="utf-8", newline="\n")
+        log_path = source / f"seed_{seed}.log"
+        if log_path.is_file():
+            (dest / "train.log").write_text(log_path.read_text(encoding="utf-8"), encoding="utf-8", newline="\n")
     shutil.copyfile(config_path, output / "config.json")
     write_json(output / "checksums.json", {p.relative_to(output).as_posix(): file_sha256(p)
                                           for p in sorted(output.rglob("*")) if p.is_file()})
@@ -48,6 +52,7 @@ def verify(root):
     for split in ("train", "oos_train", "val", "oos_val", "test", "oos_test"):
         official[split], _ = load_official_split(Path(f"data/processed/clean/{split}.jsonl"), split)
     train_rows = official["train"] + [dict(r, id="train:" + r["id"], label=150) for r in official["oos_train"]]
+    expected_train_sha = hashlib.sha256("".join(json.dumps(r, ensure_ascii=False, sort_keys=True) + "\n" for r in train_rows).encode("utf-8")).hexdigest()
     expected_vocab = build_vocab(train_rows, config["text"]["min_frequency"])
     expected_test = [(r["id"], r["label"]) for r in official["test"]] + [(r["id"], 150) for r in official["oos_test"]]
     records = []
@@ -56,6 +61,10 @@ def verify(root):
         run, report = read_json(dest / "run.json"), read_json(dest / "metrics.json")
         if run["seed"] != seed or report["seed"] != seed or run["config"] != config:
             raise ValueError("Run seed/config differs from frozen config")
+        if (run["config_sha256"] != file_sha256(root / "config.json") or
+                run["train_rows"] != len(train_rows) or run["validation_rows"] != 3100 or
+                run["assets"]["train_sha256"] != expected_train_sha or report["train_sha256"] != expected_train_sha):
+            raise ValueError("Training configuration/data fingerprint mismatch")
         if read_json(dest / "vocab.json") != expected_vocab:
             raise ValueError("CNN vocabulary differs from training-only vocabulary")
         for split, digest in run["official_input_sha256"].items():
@@ -89,8 +98,9 @@ def verify(root):
             raise ValueError("CNN confusion matrix mismatch")
         with (dest / "per_class.csv").open(encoding="utf-8", newline="") as stream:
             per_class = list(csv.DictReader(stream))
-        if len(per_class) != 151 or any(int(r["id"]) != i or abs(float(r["f1"]) - full["f1"][i]) > 1e-12
-                                       for i, r in enumerate(per_class)):
+        if len(per_class) != 151 or any(int(r["id"]) != i or any(
+                abs(float(r[k]) - full[k][i]) > 1e-12 for k in ("f1", "precision", "recall", "support"))
+                for i, r in enumerate(per_class)):
             raise ValueError("CNN per-class F1 mismatch")
         history = read_json(dest / "history.json")
         best = max(history, key=lambda h: h["val_accuracy"])
@@ -107,6 +117,31 @@ def verify(root):
             "records": records, "summary": summaries, "reference": config["reference"],
             "id_accuracy_difference_pp": delta, "within_two_percentage_points": abs(delta) <= 2,
             "implementation_status": config["status"]}
+
+
+def plot_report(root, report, output):
+    cache = Path("tmp/matplotlib").resolve()
+    cache.mkdir(parents=True, exist_ok=True)
+    os.environ.setdefault("MPLCONFIGDIR", str(cache))
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+    for r in report["records"]:
+        h = read_json(root / f"seed_{r['seed']}/history.json")
+        axes[0].plot([x["epoch"] for x in h], [x["val_accuracy"] for x in h], label=f"seed {r['seed']}")
+    axes[0].set(xlabel="Epoch", ylabel="Validation accuracy (151 classes)", ylim=(0, 1), title="Fixed CNN v1 training")
+    axes[0].legend()
+    x = np.arange(2)
+    means = [report["summary"][k]["mean"] for k in ("id_accuracy", "oos_recall")]
+    errors = [report["summary"][k]["std_sample"] for k in ("id_accuracy", "oos_recall")]
+    axes[1].bar(x-.18, [report["reference"][k] for k in ("id_accuracy", "oos_recall")], width=.36, label="Paper (Table 2)", color="#8999aa")
+    axes[1].bar(x+.18, means, width=.36, yerr=errors, capsize=4, label="Reimplementation (mean +/- SD)", color="#337ab7")
+    axes[1].set(xticks=x, xticklabels=["ID accuracy", "OOS recall"], ylim=(0, 1.06), title="Full / oos-train")
+    axes[1].legend(fontsize=8)
+    fig.tight_layout()
+    fig.savefig(output, dpi=160)
+    plt.close(fig)
 
 
 def write_report(report, stem):
@@ -170,6 +205,7 @@ def main():
         export(args.source, args.results)
     report = verify(args.results)
     write_report(report, args.output)
+    plot_report(args.results, report, args.output.with_suffix(".png"))
     if args.replay_checkpoints:
         write_json(args.output.with_name(args.output.name + "_权重重放").with_suffix(".json"),
                    replay_weights(args.results, args.replay_checkpoints, args.device))
