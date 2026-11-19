@@ -82,7 +82,7 @@ def markdown_report(report):
     cost = report["runtime_summary"]
     lines += ["", "指标完整表、逐种子配对差值、区间和检验见同目录下JSON。 Holm校正在Macro-F1主比较族和OOS AUROC次要比较族内分别执行。", "",
               "## 运行成本", "",
-              f"唯一新增模型拟合 {cost['unique_new_model_fits']} 次，其中OOF折训练 {cost['unique_new_oof_fold_fits']} 次；复用已发布结果 {cost['reused_model_results']} 项。正式清单墙钟约 {cost['unique_new_route_wall_seconds'] / 3600:.2f} 小时，运行期间的重复核对另增加 {cost['all_executed_new_route_wall_seconds_including_repeats'] - cost['unique_new_route_wall_seconds']:.0f} 秒。最高PyTorch峰值保留显存 {cost['peak_final_reserved_mb']:.1f} MiB。", "",
+              f"新增最终模型拟合 {cost['unique_new_model_fits']} 次，另有OOF折训练 {cost['unique_new_oof_fold_fits']} 次，共 {cost['unique_new_model_fits'] + cost['unique_new_oof_fold_fits']} 次；复用已发布带噪结果 {cost['reused_model_results']} 项。含干净参考的已记录路线耗时之和为 {cost['unique_new_route_wall_seconds'] / 3600:.2f} 小时，六次重复核对的已记录路线耗时另计 {cost['all_executed_new_route_wall_seconds_including_repeats'] - cost['unique_new_route_wall_seconds']:.0f} 秒。最高最终模型PyTorch峰值保留显存 {cost['peak_final_reserved_mb']:.1f} MiB。日志编码中断前已完成的OOF耗时保存在原始清洗报告中，续跑路线计时未覆盖该段，因此这里不是完整实耗墙钟，也不代表整卡占用。", "",
               "## 解释范围", "", "10-shot/30%条件复用已发布正式结果；其中六个置信学习项曾因旧方法名不统一被重复运行一次。重复运行与已发布测试Macro-F1逐种子完全相同，统计只使用原发布记录。三种子检验能力有限，结果是固定数据与随机种子下的比较，不作跨数据集或普遍噪声结论。", ""]
     return "\n".join(lines)
 
@@ -211,7 +211,9 @@ def analyze(source_path, progress_path, output_stem):
                   "redundant_exact_repeat_fits": len(duplicate_checks),
                   "unique_new_oof_fold_fits": sum(a.get("oof_folds", 0) for a in audits),
                   "unique_new_route_wall_seconds": sum(r.get("route_wall_seconds", 0) for r in selected.values()
-                                                        if not r.get("reused", False)),
+                                                        if not r.get("reused", False)) + sum(
+                                                            r.get("route_wall_seconds", 0) for r in clean_refs.values()
+                                                            if not r.get("reused", False)),
                   "all_executed_new_route_wall_seconds_including_repeats": sum(
                       r.get("route_wall_seconds", 0) for r in progress if not r.get("reused", False)),
                   "all_executed_oof_wall_seconds_including_repeats": sum(

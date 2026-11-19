@@ -4717,7 +4717,7 @@
     "reused_model_results": 18,
     "redundant_exact_repeat_fits": 6,
     "unique_new_oof_fold_fits": 120,
-    "unique_new_route_wall_seconds": 7662.335889699985,
+    "unique_new_route_wall_seconds": 8218.977571199997,
     "all_executed_new_route_wall_seconds_including_repeats": 9167.838445999994,
     "all_executed_oof_wall_seconds_including_repeats": 5144.231183600015,
     "peak_final_allocated_mb": 102.62646484375,
