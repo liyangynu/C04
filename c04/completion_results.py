@@ -86,6 +86,10 @@ def analyze(root):
                              key=lambda r: r["seed"])
             if [r["seed"] for r in records] != [17, 42, 2026]:
                 raise ValueError("Missing or duplicate q seeds")
+            # Earlier released summary records omit validation F1; read the original
+            # training summary rather than inventing or dropping that provenance.
+            records = [dict(r, best_val_macro_f1=read_json(resolve_run(r) / "training/summary.json")["best_val_macro_f1"])
+                       for r in records]
             group[str(q)] = {m: summarize([r[m] for r in records]) for m in
                              ("test_macro_f1", "oos_auroc", "best_val_macro_f1")}
         for q in plan["q_values"]:
