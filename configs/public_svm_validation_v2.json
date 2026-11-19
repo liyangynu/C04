@@ -1,0 +1,53 @@
+{
+  "frozen_on": "2026-11-19",
+  "seeds": [
+    17,
+    42,
+    2026
+  ],
+  "candidates": [
+    {
+      "name": "svc_binary",
+      "solver": "svc",
+      "binary": true
+    },
+    {
+      "name": "svc_counts",
+      "solver": "svc",
+      "binary": false
+    },
+    {
+      "name": "linear_svc_binary",
+      "solver": "linear_svc",
+      "binary": true
+    },
+    {
+      "name": "linear_svc_counts",
+      "solver": "linear_svc",
+      "binary": false
+    }
+  ],
+  "C": 1.0,
+  "linear_svc": {
+    "loss": "squared_hinge",
+    "penalty": "l2",
+    "dual": "auto",
+    "tol": 0.0001,
+    "max_iter": 20000
+  },
+  "selection": "maximum combined official ID+OOS validation accuracy; candidate list order breaks ties; seed17; no test calls until selection is saved",
+  "reference": {
+    "paper": "https://aclanthology.org/D19-1131/",
+    "table": "Table 2, Full, SVM, oos-train",
+    "id_accuracy": 0.91,
+    "oos_recall": 0.145,
+    "accuracy_tolerance_pp": 2.0
+  },
+  "reason": "Original paper omits count/binary representation and multiclass solver/loss details. Evaluate these four predeclared linear C=1 implementations only on validation.",
+  "limitations": [
+    "Post-v1 supplementary protocol; previous test results are known.",
+    "SVC uses one-vs-one hinge optimization; LinearSVC uses one-vs-rest squared hinge. This is an explicit local implementation choice, not recovered original source.",
+    "Deterministic repeated seeds do not quantify stochastic uncertainty."
+  ],
+  "main_bilstm_protocol_unchanged": true
+}
