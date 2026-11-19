@@ -1,0 +1,71 @@
+{
+  "all_passed": true,
+  "checksums_sha256": "73cd90efff4e812ce953cd93511cf50993a11bad22c40210911586160b2cc256",
+  "scope": "saved-prediction, official-split, vocabulary, validation-selection and metric verification; no weight inference replay",
+  "records": [
+    {
+      "seed": 17,
+      "id_accuracy": 0.868,
+      "oos_recall": 0.212,
+      "id_macro_f1": 0.8670611753917677,
+      "oos_auroc_p_oos": 0.924474,
+      "best_epoch": 28,
+      "epochs_completed": 30,
+      "wall_seconds": 172.63891469998634,
+      "peak_allocated_mb": 78.36669921875,
+      "peak_reserved_mb": 92.0
+    },
+    {
+      "seed": 42,
+      "id_accuracy": 0.8751111111111111,
+      "oos_recall": 0.267,
+      "id_macro_f1": 0.8749386252719796,
+      "oos_auroc_p_oos": 0.9117962222222222,
+      "best_epoch": 25,
+      "epochs_completed": 30,
+      "wall_seconds": 173.20450949997758,
+      "peak_allocated_mb": 78.36669921875,
+      "peak_reserved_mb": 92.0
+    },
+    {
+      "seed": 2026,
+      "id_accuracy": 0.8791111111111111,
+      "oos_recall": 0.225,
+      "id_macro_f1": 0.8793691499217884,
+      "oos_auroc_p_oos": 0.9086274444444444,
+      "best_epoch": 26,
+      "epochs_completed": 30,
+      "wall_seconds": 160.17648840000038,
+      "peak_allocated_mb": 78.36669921875,
+      "peak_reserved_mb": 92.0
+    }
+  ],
+  "summary": {
+    "id_accuracy": {
+      "mean": 0.8740740740740741,
+      "std_sample": 0.00562767997428815
+    },
+    "oos_recall": {
+      "mean": 0.23466666666666666,
+      "std_sample": 0.02874601421646719
+    },
+    "id_macro_f1": {
+      "mean": 0.8737896501951786,
+      "std_sample": 0.006233912660058822
+    },
+    "oos_auroc_p_oos": {
+      "mean": 0.9149658888888889,
+      "std_sample": 0.008385309822967826
+    }
+  },
+  "reference": {
+    "paper": "https://aclanthology.org/D19-1131/",
+    "table": "Table 2, Full, CNN, oos-train",
+    "id_accuracy": 0.912,
+    "oos_recall": 0.189,
+    "accuracy_tolerance_pp": 2.0
+  },
+  "id_accuracy_difference_pp": -3.792592592592592,
+  "within_two_percentage_points": false,
+  "implementation_status": "paper-guided reimplementation; not exact original-code reproduction"
+}

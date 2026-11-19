@@ -1,0 +1,96 @@
+{
+  "seed": 42,
+  "config": {
+    "model": {
+      "embedding_dim": 100,
+      "filters": 200,
+      "kernel_size": 3,
+      "dense_dim": 300,
+      "dropout": 0.6,
+      "classes": 151,
+      "conv_activation": "softmax_channels"
+    },
+    "text": {
+      "max_length": 40,
+      "min_frequency": 1
+    },
+    "training": {
+      "loss": "ce",
+      "learning_rate": 0.001,
+      "weight_decay": 0.0,
+      "batch_size": 16,
+      "max_epochs": 30,
+      "patience": 5,
+      "gradient_clip": 5.0,
+      "cpu_threads": 4,
+      "deterministic": true
+    },
+    "selection_metric": "validation_accuracy_including_oos",
+    "optimizer": "Adam",
+    "seeds": [
+      17,
+      42,
+      2026
+    ],
+    "reference": {
+      "paper": "https://aclanthology.org/D19-1131/",
+      "table": "Table 2, Full, CNN, oos-train",
+      "id_accuracy": 0.912,
+      "oos_recall": 0.189,
+      "accuracy_tolerance_pp": 2.0
+    },
+    "local_choices_not_specified_in_paper": [
+      "kernel_size=3",
+      "GloVe 6B 100 dimensions",
+      "masked global max pooling",
+      "softmax over filters at each convolution position",
+      "dropout before dense and output layers",
+      "project tokenizer and length limit",
+      "Adam learning rate and gradient clipping",
+      "30 epochs, patience 5, validation accuracy including OOS"
+    ],
+    "status": "paper-guided reimplementation; not exact original-code reproduction"
+  },
+  "config_sha256": "e520176a920e788548cc630d658019f86b246a25494fb8b843c5de1fc148018b",
+  "git": {
+    "revision": "66f6d8a5e732e94844d4ac80d1d73586c61de468",
+    "dirty": true
+  },
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "torch": "2.9.1+cu126",
+    "cuda_runtime": "12.6",
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU"
+  },
+  "assets": {
+    "seed": 42,
+    "dimension": 100,
+    "vocab_size": 5339,
+    "train_sha256": "6d0f2dbc2dfede7ef95f961e3cef257c837b92c435eb2e943ef858b4b4f4da44",
+    "glove_sha256": "95dde4dfd627ab26608d33e76d1195ec059734bd29089ea52cadb08d07c64544",
+    "vocab_sha256": "ba16a6cf3bd60984590aec62196eb46883eab498730502daeeb32b812ba2d34b",
+    "matrix_sha256": "40ababe670bab4a07f9ff83bc0cca341e949cd9fdfa54623a9c063055b30e334",
+    "covered_types": 4906,
+    "total_types": 5337,
+    "type_coverage": 0.9192430204234588,
+    "token_coverage": 0.9827583508123846,
+    "text_stats": {
+      "rows": 15100,
+      "tokens": 127772,
+      "unknown_tokens": 0,
+      "unknown_token_rate": 0.0,
+      "truncated_rows": 0,
+      "max_observed_length": 28
+    }
+  },
+  "official_input_sha256": {
+    "train": "07ed83993db1ea81925913bb51748d884acee0165401e26c9e31530f24f1a333",
+    "oos_train": "8b73c948f2b72f77e3bdb96b53b845fefd38feb56029f873fb6714a580414b4b",
+    "val": "e4e166ea95ec901f5ab292a4ad2115b383564ae7e352710e7de723d6d7201d9b",
+    "oos_val": "2ba4381dfd34f02ba0116b80479b4aef6d2881c6296726479ccea1f4fe6e3b2f"
+  },
+  "train_rows": 15100,
+  "validation_rows": 3100
+}

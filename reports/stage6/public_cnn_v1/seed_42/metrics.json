@@ -1,0 +1,25 @@
+{
+  "seed": 42,
+  "best_epoch": 25,
+  "best_validation_accuracy": 0.8674193548387097,
+  "epochs_completed": 30,
+  "metrics": {
+    "id_accuracy": 0.8751111111111111,
+    "oos_recall": 0.267,
+    "id_macro_f1": 0.8749386252719796,
+    "oos_auroc_p_oos": 0.9117962222222222
+  },
+  "checkpoint_sha256": "c2cb61287619b9c7a70cb91ace72f345da111fdeb78e0e7c06b5eb6ab2f13460",
+  "train_sha256": "6d0f2dbc2dfede7ef95f961e3cef257c837b92c435eb2e943ef858b4b4f4da44",
+  "predictions_sha256": "c00923c1d6f8a07e7279c0c333a04810b4f2a7b78ad158ca708c54b2b92a42b4",
+  "test_sha256": "2295b034d03b72c1b15cafd8dcfe90bae99b7b1e180e744f62940ddac2962782",
+  "oos_test_sha256": "e5dd56d460d91c9dcfc7367abf5f011f78b06f5ca8bb4445f7bae9d59cbac7ad",
+  "wall_seconds": 173.20450949997758,
+  "total_epoch_seconds": 168.2217255998985,
+  "peak_allocated_mb": 78.36669921875,
+  "peak_reserved_mb": 92.0,
+  "git": {
+    "revision": "66f6d8a5e732e94844d4ac80d1d73586c61de468",
+    "dirty": true
+  }
+}

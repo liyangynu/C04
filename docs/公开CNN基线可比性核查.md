@@ -14,6 +14,8 @@ CLINC150 原论文 Larson 等（EMNLP-IJCNLP 2019）表2的 Full 设置中，CNN
 
 ## 验收结论
 
-课程要求的“公开模型数值±2%”目前只通过未匹配模型下的准确率数值筛查，尚未通过同模型复现验收。由于CNN卷积窗口和训练细节缺失，不应自行补一个窗口后称为论文复现。后续若要完成严格对照，应明确采用一个可获取的公开CNN实现与固定窗口配置，并标成“基于公开论文设置的重实现”；同时将OOS训练为第151类，保持官方训练/验证/测试划分与论文 `oos-train` 指标定义。
+上述BiLSTM数值接近不能验收为公开CNN复现。2026-11-19，项目按[预先固定的重实现协议](公开CNN重实现协议.md)补充了151类CNN、完整官方划分和 `oos-train` 指标，并把未公开细节的补充选择明列在配置中。三个种子ID准确率为87.41%±0.56%，与91.2%相差-3.79个百分点，未达到±2个百分点要求；OOS召回为23.47%±2.87%。[逐种子结果与限制](公开CNN重实现结果.md)完整保留。
 
-参考：Larson et al., “An Evaluation Dataset for Intent Classification and Out-of-Scope Prediction,” EMNLP-IJCNLP 2019, Table 2 and supplementary hyperparameter file. 论文PDF和可检索文本见 `tmp/clinc-reference/paper.pdf`、`tmp/clinc-supp.txt` 与 `tmp/clinc-reference/hyperparameters.csv`；上游数据和补充材料仓库为 <https://github.com/clinc/oos-eval>。
+本轮16,500条预测通过官方ID/真值、词表、验证选模和指标重算核验，三个检查点的推理重放与保存类别/概率完全一致。但原论文缺失细节没有因此恢复，且数值未达标；公开基线验收仍为未通过。
+
+参考：Larson et al., “An Evaluation Dataset for Intent Classification and Out-of-Scope Prediction,” EMNLP-IJCNLP 2019, Table 2，论文 <https://aclanthology.org/D19-1131/>。官方补充参数、许可与固定版本出处已发布在 `references/clinc150/`，上游为 <https://github.com/clinc/oos-eval>。

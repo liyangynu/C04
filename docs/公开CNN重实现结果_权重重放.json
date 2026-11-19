@@ -1,0 +1,27 @@
+{
+  "all_passed": true,
+  "device": "cuda",
+  "records": [
+    {
+      "seed": 17,
+      "predictions": 5500,
+      "classes_equal": true,
+      "max_probability_error": 0.0,
+      "checkpoint_sha256": "7dbf2eab6f9f2481d8de4a5b2592c7daff6a4a40722bb5a259d731b0fb1f244b"
+    },
+    {
+      "seed": 42,
+      "predictions": 5500,
+      "classes_equal": true,
+      "max_probability_error": 0.0,
+      "checkpoint_sha256": "c2cb61287619b9c7a70cb91ace72f345da111fdeb78e0e7c06b5eb6ab2f13460"
+    },
+    {
+      "seed": 2026,
+      "predictions": 5500,
+      "classes_equal": true,
+      "max_probability_error": 0.0,
+      "checkpoint_sha256": "ce16ba5bdb97c0ad0d9f46b70a7fbfa9c864d643478e348e53db96f59a776567"
+    }
+  ]
+}
