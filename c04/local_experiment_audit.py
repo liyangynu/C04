@@ -151,6 +151,9 @@ def audit_oof(root, replay=False, device_name="cuda"):
     report = read_json(root / "cleaning_report.json")
     if report["uses_clean_labels"] or report["uses_test_labels"] or not report["coverage_exactly_once"]:
         raise ValueError(f"OOF isolation statement differs: {root}")
+    ce_config = read_json("configs/formal_ce.json")
+    if report["config_sha256"] != file_sha256("configs/formal_ce.json"):
+        raise ValueError(f"OOF training configuration differs: {root}")
     if file_sha256(root / "oof_probabilities.npz") != report["oof_sha256"]:
         raise ValueError(f"OOF probability hash differs: {root}")
     with np.load(root / "oof_probabilities.npz", allow_pickle=False) as data:
@@ -179,11 +182,22 @@ def audit_oof(root, replay=False, device_name="cuda"):
                 file_sha256(folder / "training/best.pt") != fold["checkpoint_sha256"]):
             raise ValueError(f"OOF fold input/vocabulary/weight differs: {root}")
         summary = read_json(folder / "training/summary.json")
+        run = read_json(folder / "training/run_from_epoch_1.json")
+        best = max(summary["history"], key=lambda h: h["val_macro_f1"])
+        if (run["config"] != ce_config or run["seed"] != fold["seed"] or
+                run["fingerprints"]["train"] != fold["train_sha256"] or
+                run["fingerprints"]["validation"] != file_sha256("data/processed/clean/val.jsonl") or
+                summary["best_epoch"] != best["epoch"] or fold["best_epoch"] != best["epoch"]):
+            raise ValueError(f"OOF training/validation selection differs: {root}")
         seconds.append(summary["total_epoch_seconds"])
         peaks.append(max(h["peak_gpu_reserved_mb"] or 0 for h in summary["history"]))
         if replay:
             checkpoint = torch.load(folder / "training/best.pt", map_location="cpu", weights_only=True)
             config = checkpoint["config"]
+            if (config != ce_config or checkpoint["seed"] != fold["seed"] or
+                    checkpoint["fingerprints"]["train"] != fold["train_sha256"] or
+                    checkpoint["vocab"] != build_vocab(train_rows)):
+                raise ValueError(f"OOF checkpoint config/input/vocabulary differs: {root}")
             configure_runtime(checkpoint["seed"], config["training"])
             device = choose_device(device_name)
             model = BiLSTMClassifier(checkpoint["model"]["embedding.weight"],
