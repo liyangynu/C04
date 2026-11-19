@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-19",
+  "tested_revision": "77df44a762ec7ae42936c7bf5a5c44425c46f7da",
+  "all_passed": true,
+  "official_data_files_prepared": 18,
+  "cnn_prediction_rows_verified": 16500,
+  "seeds": [
+    17,
+    42,
+    2026
+  ],
+  "generated_files_identical": {
+    "docs/公开CNN重实现结果.json": true,
+    "docs/公开CNN重实现结果.md": true,
+    "docs/公开CNN重实现结果.png": true
+  },
+  "checkout_clean_after_checks": true,
+  "targeted_tests_passed": 5,
+  "existing_dependency_environment_reused": true,
+  "dependencies_reinstalled": false,
+  "models_retrained": false,
+  "scope": "Fresh Git checkout, official data preparation, saved-prediction/vocabulary/selection verification and report regeneration; model-weight replay was performed separately in the original workspace."
+}
