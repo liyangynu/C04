@@ -17,6 +17,7 @@ def write_status(acceptance, output):
     models = read_json(acceptance / "local_models.json")
     retrained = read_json(acceptance / "retraining_verified.json")
     encoder = read_json(acceptance / "encoder.json")
+    inventory = read_json("artifacts/experiment_inventory.json")
     if not all(r["all_passed"] for r in (svm, models, retrained, encoder)):
         raise ValueError("Missing successful local audit")
     lines = ["# 实验完成记录", "", "本记录在补充训练、新环境重训和本地推理核验实际完成后生成。原始预测、权重、图表和校验清单保存在D盘本地忽略目录，不自动上传。", "",
@@ -44,6 +45,9 @@ def write_status(acceptance, output):
         lines.append(f"| {p['noise']}: {p['comparison']} | {p['metric']} | {p['mean_difference']:+.4f} | "
                      f"[{p['t_95_ci'][0]:+.4f}, {p['t_95_ci'][1]:+.4f}] | {p['paired_t']['p_holm']:.4g} | {p['wilcoxon_exact']['p_holm']:.4g} |")
     lines += ["", "研究目标没有统一达成。GCE的收益随噪声和样本量变化；置信学习删除路线存在明显负结果。具体F1提高0.05与AUROC下降不超过0.02的点估计及区间检查见本地targets.csv，不把点估计达标写成统计非劣。三种子精确Wilcoxon检验分辨率有限，配对t推断依赖分布假设。", "",
+              "## 资源记录", "",
+              f"本地保留{inventory['completed_bilstm_training_directories']}个已完成BiLSTM训练目录和{len(inventory['incomplete_histories'])}份中断训练历史，另有{len(inventory['cnn'])}次CNN训练；包含试跑、诊断和重复训练。已记录轮次时间合计{inventory['recorded_epoch_hours_total']:.2f}小时，PyTorch显存保留峰值{inventory['peak_recorded_pytorch_reserved_mb']:.1f} MiB。使用单张6GB RTX3060 Laptop GPU。", "",
+              "轮次时间包括验证，不包括下载、安装、加载、独立评估、审计和空闲时间；因此不能据此声称完整项目墙钟已通过48小时要求。未留下逐轮历史的中断成本无法补算。", "",
               "## 本地证据与剩余交付", "",
               "运行方法及路径见[实验运行与本地结果](实验运行与本地结果.md)。本地 `artifacts/final_acceptance_v1/completed.json` 引用环境、重训、权重重放、编码器及测试日志的校验值；`artifacts/experiment_inventory.json` 记录证据和保留的训练耗时。训练轮次计时不等于完整项目墙钟，PyTorch显存不等于整卡占用。", "",
               "本记录完成的是实验执行、分析和本地复现核验。正式技术报告PDF/源文件、答辩PPT与演示材料仍是后续交付，未在本轮冒充完成。开题报告和要求图片继续只保留本地。", ""]
