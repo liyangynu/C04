@@ -1,0 +1,17 @@
+{
+  "repository": "https://github.com/clinc/oos-eval",
+  "revision": "828f8093932c8fe6ca7936c3d2e52903b1c523de",
+  "hyperparameters_url": "https://github.com/clinc/oos-eval/blob/828f8093932c8fe6ca7936c3d2e52903b1c523de/hyperparameters.csv",
+  "paper": "https://aclanthology.org/D19-1131/",
+  "license": "CC BY 3.0",
+  "attribution": "Larson et al., 2019, CLINC150 / oos-eval supplementary material",
+  "files": {
+    "hyperparameters.csv": "3653907dc2835874719bdc8c41b1d01a50bd5e9281c2202b2f1ed96b52f1a2a3",
+    "LICENSE": "e6bc9e9c474700b708f568bac9e5a8a9bcb2b1dad53442f5ba449fcb848b8e76"
+  },
+  "normalization": "Published text copies use LF line endings; content otherwise unchanged",
+  "upstream_blob_sha256": {
+    "hyperparameters.csv": "e65a2786e2c479cb97d66f260b8e5d0f582e0d95ac07cfaee240adce6f9a4012",
+    "LICENSE": "e6bc9e9c474700b708f568bac9e5a8a9bcb2b1dad53442f5ba449fcb848b8e76"
+  }
+}
