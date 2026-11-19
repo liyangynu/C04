@@ -7,7 +7,7 @@ import shutil
 
 from c04.common import read_json, write_json
 from c04.completion_results import target_assessment
-from c04.local_experiment_audit import audit_oof
+from c04.local_experiment_audit import audit_oof, required_oof_roots
 from c04.paired_statistics import summarize_pair
 from c04.public_svm_selection import select_candidate
 
@@ -37,6 +37,12 @@ class CompletionTests(unittest.TestCase):
         result = target_assessment(pair, pair)
         self.assertEqual(json.loads(json.dumps(result)), result)
         self.assertIs(type(result["f1_t95_lower_at_least_005"]), bool)
+
+    def test_missing_cleaning_evidence_is_not_silently_skipped(self):
+        with tempfile.TemporaryDirectory() as temp:
+            item = {"run": Path(temp), "record": {"method": "confident_learning"}}
+            with self.assertRaisesRegex(ValueError, "Missing required OOF evidence"):
+                required_oof_roots([item])
 
 
 @unittest.skipUnless(Path("artifacts/stage5_expanded_runs/instance_r30/confident_learning/k5_s17/oof/cleaning_report.json").exists(),

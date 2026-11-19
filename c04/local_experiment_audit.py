@@ -63,6 +63,15 @@ def expected_config(item):
     return config
 
 
+def required_oof_roots(items):
+    roots = [item["run"] / "oof" for item in items
+             if item["record"].get("method") in {"cl_ce", "confident_learning"}]
+    for root in roots:
+        if not (root / "cleaning_report.json").exists():
+            raise ValueError(f"Missing required OOF evidence: {root}")
+    return roots
+
+
 def training_inputs(completion):
     paths = list(Path("data/processed/fewshot").rglob("*.jsonl"))
     paths += [Path(r["train_path"]) for r in read_json("data/stage5_expanded/matrix.json")["records"]]
@@ -234,6 +243,9 @@ def main():
     parser.add_argument("--device", choices=["cpu", "cuda"], default="cuda")
     args = parser.parse_args()
     items = collect_runs(args.completion, not args.partial)
+    oof_roots = required_oof_roots(items)
+    if not args.partial and len(oof_roots) != 36:
+        raise ValueError(f"Expected 36 OOF routes, found {len(oof_roots)}")
     test, labels = load_official_split("data/processed/clean/test.jsonl", "test")
     oos, _ = load_official_split("data/processed/clean/oos_test.jsonl", "oos_test")
     rows = test + oos
@@ -247,10 +259,9 @@ def main():
         if (i + 1) % 10 == 0:
             print(f"Verified final runs {i+1}/{len(items)}", flush=True)
     oof = []
-    for item in items:
-        if (item["run"] / "oof/cleaning_report.json").exists():
-            oof.append(audit_oof(item["run"] / "oof", args.oof_weights, args.device))
-            print(f"Verified OOF routes {len(oof)}", flush=True)
+    for root in oof_roots:
+        oof.append(audit_oof(root, args.oof_weights, args.device))
+        print(f"Verified OOF routes {len(oof)}", flush=True)
     write_json(args.output, {"all_passed": True, "partial": args.partial,
                "final_model_count": len(finals), "prediction_rows": len(rows)*len(finals),
                "final_runs": finals, "weight_replays": replays, "oof": oof,
