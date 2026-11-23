@@ -1,0 +1,22 @@
+{
+  "config_sha256": {
+    "configs/formal_ce.json": "b8b610fce118255763bd90faee04762cb0020c89dbdb9eb00a0d5f7dd1c2d606",
+    "configs/formal_gce.json": "954bbae8ab627d36662a47d7bb5829705a4b4698c67bf82b35c0552bea8830f8",
+    "configs/expanded_matrix_v1.json": "4e7b9807c120c1de741eb45d4f44977b761e59ba060e9e408d08aada9594035d",
+    "configs/completion_v1.json": "b5575f77036d8d69284b7d05793f1ea9ed8bb84d27277416f3607b53e31e3940",
+    "configs/protocol.json": "90495eaff3b0453c231017b4136edbadb4d2dba87f66d97954b1039e636910e7"
+  },
+  "local_source_sha256": {
+    "artifacts\\stage5_expanded_runs\\progress.json": "cdff426a53b2913d21b34e3ee6c9a4109f8989c0026f101b7d0a12268fadb291",
+    "artifacts\\completion_v1\\progress.json": "11c526c1492171680ba830fc7dc1647b9bd72fe11462815d84cb21d421277831",
+    "artifacts\\completion_v1\\analysis\\analysis.json": "0e5f9fd2e51fa2fa45450ad05795c6ae6cd2129a89a429878a6731d6a16ca2ce"
+  },
+  "dataset_sha256": "36923c3705a59e08fe9c3883d8bc2dd966ef93e22cb78ac41171782a698d56e0",
+  "exporter_sha256": "5a0cbb85398741505121e3ca968991433f25fdf1a2c1a97af1e3efa7b8dfa81e",
+  "seed_order": [
+    17,
+    42,
+    2026
+  ],
+  "deduplication": "12 clean references and 108 distinct noisy condition/method/seed keys"
+}

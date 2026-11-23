@@ -1,0 +1,11 @@
+{
+  "all_passed": true,
+  "prediction_runs": 120,
+  "prediction_rows": 660000,
+  "scope": "Recomputed saved predictions against official IDs/truth, per-class metrics, confusion matrices, training configs, validation selection and final aggregates.",
+  "limitations": [
+    "Raw predictions and weights remain local; only their hashes are exported.",
+    "Export does not retrain models or replay weights/OOF/encoder.",
+    "Verify-only checks the published tables and configs, not absent local predictions."
+  ]
+}

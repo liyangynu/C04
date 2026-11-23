@@ -2,6 +2,46 @@
 
 本项目研究小样本与标签噪声共同作用下的短文本意图识别，采用 CLINC150 数据集，计划对比交叉熵基线、GCE 鲁棒损失和置信学习清洗三条路线。
 
+## 最终核心实验结果与复现入口
+
+最终结果见 [`reports/final_core/`](reports/final_core/README.md)。固定种子为 **17、42、2026**：两类噪声各包含10-shot下10%/20%/30%和30%下5/20/100-shot，共12个条件，CE、GCE、置信学习清洗后CE共108组结果；另有12组干净CE参考。
+
+- [逐种子结果CSV](reports/final_core/core_results.csv)：条件、方法、种子、配置、验证选模、Macro-F1、准确率、OOS AUROC和F1保持率。
+- [干净参考CSV](reports/final_core/clean_reference.csv)与[均值及样本标准差CSV](reports/final_core/summary.csv)。
+- [完整精度JSON](reports/final_core/results.json)：逐种子指标、验证历史、输入指纹和汇总。种子顺序始终为17、42、2026。
+- [预测核验范围](reports/final_core/validation.json)与[文件SHA256](reports/final_core/checksums.json)。
+
+在仓库根目录执行以下命令即可核对已发布表格，无需安装第三方依赖或下载模型：
+
+```powershell
+python -m c04.final_core_results --verify-only
+```
+
+结果导出时已针对120组本地保存预测重算指标，并核对官方测试ID/真值、逐类表、混淆矩阵、模型配置、验证选模及最终分析，共660000条预测。上述 `--verify-only` 只检查已发布表格的种子覆盖、配置、保持率、统计和文件一致性，不读取未发布的原始预测，也不重新训练。
+
+训练环境为Windows、Python 3.12.14、PyTorch 2.9.1+cu126；按相同环境安装冻结依赖，先准备固定官方数据和GloVe：
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements-formal-lock.txt
+.\.venv\Scripts\python.exe -m pip check
+.\.venv\Scripts\python.exe -m c04.prepare
+.\.venv\Scripts\python.exe -m c04.prepare_glove
+```
+
+从发布的观测标签重建IDN30%、10-shot的三个种子输入，再完整重跑正式对照并独立评估：
+
+```powershell
+.\.venv\Scripts\python.exe -m c04.prepare_formal_data --output data/replay_core_idn30
+.\.venv\Scripts\python.exe -m c04.run_formal_comparison --source data/replay_core_idn30/matrix.json --output artifacts/replay_core_idn30 --device cuda
+.\.venv\Scripts\python.exe -m c04.formal_results --source artifacts/replay_core_idn30 --results reports/replay_core_idn30
+```
+
+这里按三个种子运行干净CE、带噪CE、GCE、清洗后CE及五折OOF，输出目录必须不存在。对称噪声命令见[正式对照运行说明](docs/正式对照运行说明.md)。重新生成IDN需固定MiniLM版本及训练句向量；扩展矩阵入口为 `c04.prepare_expanded_matrix`、`c04.run_expanded_matrix`，新增IDN10%/20%入口为 `c04.completion_experiments`。它们有前置输入和历史阶段依赖，须按[扩展实验协议](docs/扩展实验协议.md)和[补充实验运行说明](docs/实验运行与本地结果.md)依次准备，不能在空目录直接跳过前序阶段。
+
+完成相应本地训练和分析后，可用 `python -m c04.final_core_results --output reports/final_core_reexport` 重新核对120组预测并导出统一结果包。此入口依赖完整本地阶段5及补充实验进度；不会覆盖已有交付目录。原始预测和模型权重继续留在本地，本结果包提供其校验值。
+
+
 当前版本包含数据准备、噪声构造、GloVe-BiLSTM-Attention基线，以及扩展样本量/噪声比例下三种方法的三种子配对对照。10-shot、30%两种噪声的正式结果见[IDN结果](docs/阶段3正式对照结果.md)和[对称噪声结果](docs/阶段3对称噪声正式结果.md)；阶段5矩阵统计与核验见[扩展实验结果](docs/阶段5扩展实验结果.md)，固定协议见[扩展实验协议](docs/扩展实验协议.md)。公开CNN准确率参照和可比限制见[公开CNN核查](docs/公开CNN基线可比性核查.md)。
 
 2026-11-19补充实验及最终本地核验已完成：核心矩阵扩展至12个条件、108组带噪结果，六个条件的90组q扫描齐全。新依赖环境重训完整IDN30%、10-shot三种子对照，12组最终模型参数及预测与原运行完全一致；213个最终模型、36条五折OOF路线的权重重放和61项测试通过。完整范围、主要结果及限制见[实验完成记录](docs/实验完成记录.md)，命令和D盘本地证据路径见[实验运行与本地结果](docs/实验运行与本地结果.md)。以下阶段说明保留当时的实验范围。
@@ -184,7 +224,7 @@ GCE 试跑结果和当前限制记录在 `reports/stage3_gce_pilot.json`。
 | [实验协议](docs/实验协议.md) | 噪声定义、数据隔离、统计与资源约定 |
 | [过程记录](docs/过程记录.md) | 阶段实现、验证记录和已知问题 |
 
-大数据、中间文件不提交 Git；生成脚本、配置、阶段报告进入 Git。开题报告和课程要求图片仅保留本地，不上传；本轮新增的大批实验产物也不自动上传。重新下载同一固定数据并按相同环境运行即可重建数据。生成时间等元数据随运行变化，训练数据文件的内容与 SHA256 应保持一致。
+大数据、中间文件不提交 Git；生成脚本、配置、阶段报告进入 Git。开题报告和课程要求图片仅保留本地，不上传；最终核心实验的逐种子表格与配置/选模核验结果已提交到 `reports/final_core/`；其余原始预测、权重和中间产物仍保留本地。重新下载同一固定数据并按相同环境运行即可重建数据。生成时间等元数据随运行变化，训练数据文件的内容与 SHA256 应保持一致。
 
 ## 当前验收结果
 
